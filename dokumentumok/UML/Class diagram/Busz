@@ -1,4 +1,3 @@
-
 @startuml
 ' Beállítások a BME-s analízis modell stílushoz
 skinparam classAttributeIconSize 0
@@ -27,13 +26,17 @@ class Utszakasz {
   + checkVegallomas(): boolean
 }
 
-class Buszvezeto {
-  - penz: int
-  - sajatBusz: Busz
+abstract class Jatekos {
+  - nev: Szoveg
+  - egyenleg: Szam
   + penztKap(osszeg: Szam): void
-  + utvonalatValtoztat(ujCel: Utszakasz): void
+  + getEgyenleg(): Szam
 }
 
+class Buszvezeto {
+  - sajatBusz: Busz
+  + utvonalatValtoztat(ujCel: Utszakasz): void
+}
 class Busz {
   - celAllomas: VegAllomas
   - hatralevoJavitasiIdo: Ido
@@ -44,6 +47,8 @@ class Busz {
   + javitasEltelt(): void
 }
 
+' Öröklődés jelölése
+Jatekos <|-- Buszvezeto
 Jarmu <|-- Busz
 ILepheto <|.. Busz
 
