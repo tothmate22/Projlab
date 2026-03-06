@@ -1,1 +1,56 @@
 
+@startuml
+' Beállítások a BME-s analízis modell stílushoz
+skinparam classAttributeIconSize 0
+hide circle
+
+' --- Külső/Közös osztályok (Fekete dobozok) ---
+
+abstract class Jarmu {
+  - pozicio: Utszakasz
+  + {abstract} halad(cel: Utszakasz): void
+  + {abstract} utkozott(masik: Jarmu): void
+  + getPozicio(): Utszakasz
+}
+
+interface ILepheto <<interface>> {
+  + idoEltelt(): void
+}
+
+class Utszakasz {
+  - hoVastagsag: int
+  - isVegallomas: boolean
+  + jarhatoE(): boolean
+  + checkVegallomas(): boolean
+  + jarmuErkezik(j: Jarmu): void
+  + jarmuTavozik(j: Jarmu): void
+  + checkVegallomas(): boolean
+}
+
+class Buszvezeto {
+  - penz: int
+  - sajatBusz: Busz
+  + penztKap(osszeg: Szam): void
+  + utvonalatValtoztat(ujCel: Utszakasz): void
+}
+
+class Busz {
+  - celAllomas: VegAllomas
+  - hatralevoJavitasiIdo: Ido
+  - vezerlo: Buszvezeto
+  + halad(cel: Utszakasz): void
+  + utkozott(masik: Jarmu): void
+  + celbaErt(): void
+  + javitasEltelt(): void
+}
+
+Jarmu <|-- Busz
+ILepheto <|.. Busz
+
+' Asszociációk
+Busz "1" -right- "1" Buszvezeto 
+
+' Függőség (Dependency) - a metódus paraméterek miatt
+Busz ..> Utszakasz
+Buszvezeto ..> Utszakasz
+@enduml
