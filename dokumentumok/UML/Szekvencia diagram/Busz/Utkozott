@@ -1,7 +1,7 @@
 @startuml
 skinparam monochrome true
 
-title 4. Megcsúszás és ütközés (Use-case: Jármű csúsztatása)
+title  Megcsúszás és ütközés (Use-case: Jármű csúsztatása)
 
 actor "Környezet" as Kornyezet
 participant "b: Busz" as Busz
