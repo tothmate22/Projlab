@@ -3,8 +3,6 @@
 skinparam classAttributeIconSize 0
 skinparam monochrome true
 
-' --- Interfészek ---
-
 interface ILepheto {
   + idoEltelt(): void
 }
@@ -13,8 +11,6 @@ interface ICsuszhat {
     + kicsuszik() : void
     + utkozott(masik : Jarmu) : void
 }
-
-' --- Közös osztályok és Enumok (A csapattárs alapján) ---
 
 enum UtTipus {
     NORMAL
@@ -50,11 +46,8 @@ class Utszakasz {
     +foglaltSagValtoztatas(foglaltsag : boolean, jarmu : Jarmu) : void
 }
 
-' Enumok bekötése az Utszakaszba (Aggregáció)
 Utszakasz o-- "1" UtTipus 
 Utszakasz o-- "0..1" Epulet 
-
-' --- Saját domén (Busz és Játékos) ---
 
 abstract class Jatekos {
   - nev: String
@@ -79,19 +72,16 @@ class Busz {
   + idoEltelt(): void
 }
 
-' --- Kapcsolatok ---
-
 Jatekos <|-- Buszvezeto
 Jarmu <|-- Busz
 
-' Interfész megvalósítások
 ILepheto <|.. Busz
 ICsuszhat <|.. Busz
 
-' Asszociáció a Busz és a vezetője között
 Busz "1" -right- "1" Buszvezeto 
 
-' A Busz és az Útszakasz közötti kapcsolatok
+' --- Nyilak a csapattárs stílusához igazítva ---
+Jarmu --> "1" Utszakasz : pozicio >
 Busz --> "1" Utszakasz : celAllomas >
 Buszvezeto ..> Utszakasz : kijelöli >
 @enduml
