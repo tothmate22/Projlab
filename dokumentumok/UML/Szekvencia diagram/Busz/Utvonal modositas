@@ -1,0 +1,21 @@
+@startuml
+skinparam monochrome true
+
+title 2. Utvonal modositasa (Use-case: Kozlekedes)
+
+actor "Jatekos" as Jatekos
+participant "v: Buszvezeto" as Vezeto
+participant "b: Busz" as Busz
+
+Jatekos -> Vezeto : utvonalatValtoztat(ujCel)
+activate Vezeto
+
+' A vezető közvetlenül frissíti a busz publikus állapotát (nincs kamu setter)
+Vezeto -> Busz : celAllomas = ujCel
+activate Busz
+Busz --> Vezeto :
+deactivate Busz
+
+Vezeto --> Jatekos :
+deactivate Vezeto
+@enduml
