@@ -1,0 +1,27 @@
+@startuml
+skinparam monochrome true
+
+title 4. Megcsúszás és ütközés (Use-case: Jármű csúsztatása)
+
+actor "Környezet" as Kornyezet
+participant "b: Busz" as Busz
+participant "szomszed: Utszakasz" as Utszakasz
+participant "masik: Jarmu" as Masik
+
+Kornyezet -> Busz : kicsuszik()
+activate Busz
+
+Busz -> Utszakasz : foglaltE()
+activate Utszakasz
+Utszakasz --> Busz : true
+deactivate Utszakasz
+
+Busz -> Busz : utkozott(masik)
+note right of Busz
+hatralevoJavitasiIdo = 1
+end note
+
+Busz -> Masik : utkozott(Busz)
+
+deactivate Busz
+@enduml
