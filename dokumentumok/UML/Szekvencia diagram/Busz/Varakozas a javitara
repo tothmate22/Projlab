@@ -1,7 +1,7 @@
 @startuml
 skinparam monochrome true
 
-title 5. Várakozás a javításra (Use-case: Autó/Busz javítás)
+title Várakozás a javításra (Use-case: Autó/Busz javítás)
 
 actor "Környezet (Óra)" as Idozito
 participant "b: Busz" as Busz
