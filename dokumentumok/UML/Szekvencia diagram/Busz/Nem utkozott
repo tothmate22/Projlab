@@ -1,0 +1,12 @@
+@startuml
+title Takarítás
+actor Takarito_aktor as "Takarító"
+Takarito_aktor -> Hokotro: halad(cel)
+Hokotro -> Utszakasz: jarhatoE()
+Utszakasz --> Hokotro: true
+Hokotro -> Fej: takarit(utszakasz)
+Fej -> Utszakasz: idojarasFrissites()
+Hokotro -> Fej: kopas()
+Hokotro -> Takarito: penztKeres()
+Takarito -> Jatekos: penztKap(50)
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+title Út jegesítése (Use-case: Út jegesítése)
+actor Kornyezet as "Környezet"
+
+Kornyezet -> "a: Auto": idoEltelt()
+activate "a: Auto"
+"a: Auto" -> "u: Utszakasz": foglaltSagValtoztatas(true, auto)
+activate "u: Utszakasz"
+"u: Utszakasz" -> "u: Utszakasz": havonAthaladt++
+alt havonAthaladt >= 15 és ho >= 10
+    "u: Utszakasz" -> "u: Utszakasz": ho = 0
+    "u: Utszakasz" -> "u: Utszakasz": jeg += 2
+end
+deactivate "u: Utszakasz"
+deactivate "a: Auto"
+
+@enduml
