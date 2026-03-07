@@ -1,0 +1,21 @@
+@startuml
+skinparam monochrome true
+
+title 5. Várakozás a javításra (Use-case: Autó/Busz javítás)
+
+actor "Környezet (Óra)" as Idozito
+participant "b: Busz" as Busz
+
+Idozito -> Busz : idoEltelt()
+activate Busz
+
+note right of Busz
+A busz javítás alatt áll,
+ezért ebben a tick-ben
+nem halad tovább.
+end note
+
+Busz -> Busz : hatralevoJavitasiIdoCsokkent()
+
+deactivate Busz
+@enduml
