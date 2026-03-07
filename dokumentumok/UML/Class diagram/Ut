@@ -1,0 +1,57 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+enum UtTipus {
+    NORMAL
+    ALAGUT
+    HID
+    KERESZTEZODES
+}
+
+enum Epulet {
+    MEGALLO
+    HAZ
+    MUNKAHELY
+    BAZIS
+}
+
+class Utszakasz {
+    - ho: int
+    - jeg: int
+    - havonAthaladt: int
+    - kozlekedoJarmu: Jarmu
+    - felrehuzodottJarmu: Jarmu
+    - szuloUttest: Uttest
+    
+    --
+    + idojarasFrissites()
+    + foglaltE(): boolean
+    + foglaltsagValtoztatas(foglaltsag: boolean, )
+    + letakaritas()
+}
+
+class Uttest {
+    - savok: List<List<Utszakasz>>
+    --
+    + Uttest(savSzam: int, hossz: int, utTipusa: UtTipus)
+    + balraSorolasLehetseges(jelenlegi: Utszakasz): boolean
+    + jobbraSorolasLehetseges(jelenlegi: Utszakasz): boolean
+}
+
+class Keresztezodes {
+    - kijaratok: List<Uttest>
+    --
+    + Keresztezodes(type: UtTipus)
+    + kijaratHozzaadas(uttest: Uttest)
+}
+
+
+' Kapcsolatok
+Uttest *-- "1..*" Utszakasz : tartalmaz
+Keresztezodes --|> Uttest : öröklődik
+Utszakasz o-- UtTipus : típusa van
+Utszakasz o-- Epulet : ehhez tartozik
+
+
+
+@enduml
