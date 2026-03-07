@@ -1,61 +1,97 @@
 @startuml
 ' Beállítások a BME-s analízis modell stílushoz
 skinparam classAttributeIconSize 0
-hide circle
+skinparam monochrome true
 
-' --- Külső/Közös osztályok (Fekete dobozok) ---
+' --- Interfészek ---
+
+interface ILepheto {
+  + idoEltelt(): void
+}
+
+interface ICsuszhat {
+    + kicsuszik() : void
+    + utkozott(masik : Jarmu) : void
+}
+
+' --- Közös osztályok és Enumok (A csapattárs alapján) ---
+
+enum UtTipus {
+    NORMAL
+    ALAGUT
+    HID
+    KERESZTEZODES
+}
+
+enum Epulet {
+    MEGALLO
+    HAZ
+    MUNKAHELY
+    BAZIS
+}
 
 abstract class Jarmu {
   - pozicio: Utszakasz
   + {abstract} halad(cel: Utszakasz): void
-  + {abstract} utkozott(masik: Jarmu): void
   + getPozicio(): Utszakasz
 }
 
-interface ILepheto <<interface>> {
-  + idoEltelt(): void
+class Utszakasz {
+    -ho : int
+    -jeg : int
+    -havonAthaladt : int
+    -kozlekedoJarmu : Jarmu
+    -felrehuzodottJarmu : Jarmu
+    -szakaszElore : Utszakasz
+    -szakaszBalra : Utszakasz
+    -szakaszJobbra : Utszakasz
+    +idojarasFrissites() : void
+    +foglaltE() : boolean
+    +foglaltSagValtoztatas(foglaltsag : boolean, jarmu : Jarmu) : void
 }
 
-class Utszakasz {
-  - hoVastagsag: int
-  - isVegallomas: boolean
-  + jarhatoE(): boolean
-  + checkVegallomas(): boolean
-  + jarmuErkezik(j: Jarmu): void
-  + jarmuTavozik(j: Jarmu): void
-  + checkVegallomas(): boolean
-}
+' Enumok bekötése az Utszakaszba (Aggregáció)
+Utszakasz o-- "1" UtTipus 
+Utszakasz o-- "0..1" Epulet 
+
+' --- Saját domén (Busz és Játékos) ---
 
 abstract class Jatekos {
-  - nev: Szoveg
-  - egyenleg: Szam
-  + penztKap(osszeg: Szam): void
-  + getEgyenleg(): Szam
+  - nev: String
+  - egyenleg: int
+  + penztKap(osszeg: int): void
+  + getEgyenleg(): int
 }
 
 class Buszvezeto {
   - sajatBusz: Busz
   + utvonalatValtoztat(ujCel: Utszakasz): void
 }
+
 class Busz {
-  - celAllomas: VegAllomas
-  - hatralevoJavitasiIdo: Ido
+  - celAllomas: Utszakasz
+  - hatralevoJavitasiIdo: int
   - vezerlo: Buszvezeto
   + halad(cel: Utszakasz): void
   + utkozott(masik: Jarmu): void
+  + kicsuszik(): void
   + celbaErt(): void
-  + javitasEltelt(): void
+  + idoEltelt(): void
 }
 
-' Öröklődés jelölése
+' --- Kapcsolatok ---
+
 Jatekos <|-- Buszvezeto
 Jarmu <|-- Busz
-ILepheto <|.. Busz
 
-' Asszociációk
+' Interfész megvalósítások
+ILepheto <|.. Busz
+ICsuszhat <|.. Busz
+
+' Asszociáció a Busz és a vezetője között
 Busz "1" -right- "1" Buszvezeto 
 
-' Függőség (Dependency) - a metódus paraméterek miatt
-Busz ..> Utszakasz
-Buszvezeto ..> Utszakasz
+' A Busz és az Útszakasz közötti kapcsolatok
+Busz --> "1" Utszakasz : celAllomas >
+Buszvezeto ..> Utszakasz : kijelöli >
 @enduml
