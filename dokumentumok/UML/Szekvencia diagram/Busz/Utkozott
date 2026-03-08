@@ -1,27 +1,48 @@
 @startuml
 skinparam monochrome true
 
-title  Megcsúszás és ütközés (Use-case: Jármű csúsztatása)
+title Megcsúszás és ütközés (Use-case: Jármű csúsztatása)
 
 actor "Környezet" as Kornyezet
 participant "b: Busz" as Busz
 participant "szomszed: Utszakasz" as Utszakasz
 participant "masik: Jarmu" as Masik
 
+note left of Busz
+  A Környezet az ICsuszhat
+  interfészen keresztül
+  hívja a Buszt!
+end note
+
 Kornyezet -> Busz : kicsuszik()
 activate Busz
 
 Busz -> Utszakasz : foglaltE()
 activate Utszakasz
-Utszakasz --> Busz : true
+Utszakasz --> Busz : isFoglalt
 deactivate Utszakasz
 
-Busz -> Busz : utkozott(masik)
-note right of Busz
-hatralevoJavitasiIdo = 1
-end note
+alt [isFoglalt == true]
+    ' Az interfész másik kötelező metódusa
+    Busz -> Busz : utkozott(masik)
+    note right of Busz
+      hatralevoJavitasiIdo = 1
+    end note
+    
+    Busz -> Masik : utkozott(b)
+    activate Masik
+    Masik --> Busz :
+    deactivate Masik
+    
+else [isFoglalt == false]
+    Busz -> Utszakasz : foglaltSagValtoztatas(true, b)
+    activate Utszakasz
+    Utszakasz --> Busz :
+    deactivate Utszakasz
+    
+    Busz -> Busz : pozicio = szomszed
+end
 
-Busz -> Masik : utkozott(Busz)
-
+Busz --> Kornyezet :
 deactivate Busz
 @enduml
