@@ -1,0 +1,20 @@
+@startuml
+title Hókotró vásárlás (Use-case: Hókotró vásárlás)
+actor Takarito_aktor as "Takarító"
+
+Takarito_aktor -> Takarito: vasarol(2000)
+activate Takarito
+Takarito -> Jatekos: getEgyenleg()
+activate Jatekos
+Jatekos --> Takarito: egyenleg
+deactivate Jatekos
+alt egyenleg >= 2000
+    Takarito -> Jatekos: penztKap(-2000)
+    activate Jatekos
+    deactivate Jatekos
+    Takarito -> Hokotro: new Hokotro(takarito)
+    activate Hokotro
+    deactivate Hokotro
+end
+deactivate Takarito
+@enduml
