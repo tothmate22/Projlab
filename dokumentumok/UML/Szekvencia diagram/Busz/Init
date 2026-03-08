@@ -1,0 +1,52 @@
+@startuml
+title Busz és Buszvezető inicializálása (Játék indítása)
+
+actor "Rendszer " as Main
+participant "j: Jatek" as Jatek
+participant "o: Ora" as Ora
+participant "kezdo: Utszakasz" as Utszakasz
+participant "v: Buszvezeto" as Vezeto
+participant "b: Busz" as Busz
+
+Main -> Jatek : init()
+activate Jatek
+
+' Objektumok példányosítása (az UML-ben a ** és a <<create>> jelöli a konstruktort)
+Jatek -> Ora ** : <<create>>
+Jatek -> Utszakasz ** : <<create>>
+Jatek -> Vezeto ** : <<create>>
+Jatek -> Busz ** : <<create>>
+
+note right of Jatek
+  A Jatek osztály közvetlenül
+  az attribútumokon keresztül
+  állítja be a referenciákat
+  (nincsenek kitalált setterek).
+end note
+
+' Kapcsolatok beállítása (asszociációk)
+Jatek -> Vezeto : sajatBusz = b
+Jatek -> Busz : vezerlo = v
+Jatek -> Busz : pozicio = kezdo
+
+' A Busz fizikai elhelyezése a pályán a hivatalos metódussal
+Jatek -> Utszakasz : foglaltSagValtoztatas(true, b)
+activate Utszakasz
+Utszakasz --> Jatek :
+deactivate Utszakasz
+
+' Feliratkozás az időzítőre
+note right of Jatek
+  A Busz megvalósítja az
+  ILepheto interfészt, ezért
+  az Óra tudja fogadni.
+end note
+
+Jatek -> Ora : addLepheto(b)
+activate Ora
+Ora --> Jatek :
+deactivate Ora
+
+Jatek --> Main :
+deactivate Jatek
+@enduml
