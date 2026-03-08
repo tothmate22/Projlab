@@ -26,14 +26,12 @@ class Utszakasz {
     --
     + idojarasFrissites()
     + foglaltE(): boolean
-    + foglaltsagValtoztatas(foglaltsag: boolean, )
     + letakaritas()
 }
 
 class Uttest {
     - savok: List<List<Utszakasz>>
     --
-    + Uttest(savSzam: int, hossz: int, utTipusa: UtTipus)
     + balraSorolasLehetseges(jelenlegi: Utszakasz): boolean
     + jobbraSorolasLehetseges(jelenlegi: Utszakasz): boolean
 }
@@ -41,7 +39,6 @@ class Uttest {
 class Keresztezodes {
     - kijaratok: List<Uttest>
     --
-    + Keresztezodes(type: UtTipus)
     + kijaratHozzaadas(uttest: Uttest)
 }
 
