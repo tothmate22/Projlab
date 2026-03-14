@@ -2,14 +2,11 @@
 title Hó növelése (Use-case: Hó növelése)
 actor Kornyezet as "Környezet (Óra)"
 
-Kornyezet -> "i: Idojaras": idoEltelt()
-activate "i: Idojaras"
-"i: Idojaras" -> "i: Idojaras": snowfall()
-"i: Idojaras" -> "u: Utszakasz": idojarasFrissites()
-activate "u: Utszakasz"
-note right of "u: Utszakasz": ALAGUT típusnál\nnem hívódik meg
-"u: Utszakasz" -> "u: Utszakasz": ho += 1
-deactivate "u: Utszakasz"
-deactivate "i: Idojaras"
-
+Kornyezet -> Idojaras: idoEltelt()
+activate Idojaras
+Idojaras -> Idojaras: snowfall()
+Idojaras -> Utszakasz: idojarasFrissites()
+activate Utszakasz
+deactivate Utszakasz
+deactivate Idojaras
 @enduml

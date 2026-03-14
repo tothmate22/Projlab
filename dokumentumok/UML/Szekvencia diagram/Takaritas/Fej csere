@@ -4,7 +4,5 @@ actor Takarito_aktor as "Takarító"
 
 Takarito_aktor -> Hokotro: cserelFej()
 activate Hokotro
-Hokotro -> Hokotro: aktivFej = fejek.next()
 deactivate Hokotro
-
 @enduml

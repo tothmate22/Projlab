@@ -4,14 +4,8 @@ actor Takarito_aktor as "Takarító"
 
 Takarito_aktor -> Takarito: vasarol(200)
 activate Takarito
-Takarito -> Jatekos: getEgyenleg()
-activate Jatekos
-Jatekos --> Takarito: egyenleg
-deactivate Jatekos
 alt egyenleg >= 200
-    Takarito -> Jatekos: penztKap(-200)
-    activate Jatekos
-    deactivate Jatekos
+    Takarito -> Takarito: penztKap(-200)
     Takarito -> Hokotro: addFej(ujFej)
     activate Hokotro
     deactivate Hokotro

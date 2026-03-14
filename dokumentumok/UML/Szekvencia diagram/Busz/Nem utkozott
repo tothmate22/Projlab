@@ -1,12 +1,18 @@
 @startuml
-title Takarítás
-actor Takarito_aktor as "Takarító"
-Takarito_aktor -> Hokotro: halad(cel)
-Hokotro -> Utszakasz: jarhatoE()
-Utszakasz --> Hokotro: true
-Hokotro -> Fej: takarit(utszakasz)
-Fej -> Utszakasz: idojarasFrissites()
-Hokotro -> Fej: kopas()
-Hokotro -> Takarito: penztKeres()
-Takarito -> Jatekos: penztKap(50)
+title Autó megcsúszik ütközés nélkül
+
+actor Kornyezet as "Környezet (Óra)"
+
+participant Auto
+participant Utszakasz
+
+Kornyezet -> Auto: idoEltelt()
+activate Auto
+Auto -> Auto: halad(cel)
+Auto -> Utszakasz: foglaltE()
+activate Utszakasz
+Utszakasz --> Auto: false
+deactivate Utszakasz
+Auto -> Auto: kicsuszik()
+deactivate Auto
 @enduml
