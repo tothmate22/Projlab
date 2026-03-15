@@ -21,8 +21,8 @@ activate Utszakasz
 Utszakasz --> Busz : true
 deactivate Utszakasz
 
-alt [szomszed.foglaltE() == true]
-    Busz -> Masik : utkozott(b)
+alt szomszed.foglaltE() == true
+    Busz -> Masik : utkozott(this)
     activate Masik
     note right of Busz
       A busz hátralévő javítási
@@ -30,7 +30,7 @@ alt [szomszed.foglaltE() == true]
     end note
     deactivate Masik
 
-else [szomszed.foglaltE() == false]
+else szomszed.foglaltE() == false
     Busz -> Utszakasz : belep(this)
     activate Utszakasz
     deactivate Utszakasz
