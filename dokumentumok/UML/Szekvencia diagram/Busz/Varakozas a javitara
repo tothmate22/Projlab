@@ -1,21 +1,28 @@
 @startuml
-skinparam monochrome true
+title Várakozás a javításra / Javítás vége (Busz ütközés után)
 
-title Várakozás a javításra (Use-case: Autó/Busz javítás)
-
-actor "Környezet (Óra)" as Idozito
+actor "Környezet\n(Óra)" as Ora
 participant "b: Busz" as Busz
+participant "cel: Utszakasz" as Utszakasz
 
-Idozito -> Busz : idoEltelt()
+Ora -> Busz: idoEltelt()
 activate Busz
 
-note right of Busz
-A busz javítás alatt áll,
-ezért ebben a tick-ben
-nem halad tovább.
-end note
-
-Busz -> Busz : hatralevoJavitasiIdoCsokkent()
+alt hatralevoJavitasiIdo > 0
+    note right of Busz: A busz javítás alatt áll,\nezért a belső állapota frissül\n(a számláló csökken), de külső\npublikus hívás nem történik.
+else hatralevoJavitasiIdo == 0
+    Busz -> Busz: halad(cel)
+    
+    Busz -> Utszakasz: foglaltE()
+    activate Utszakasz
+    Utszakasz --> Busz: false
+    deactivate Utszakasz
+    
+    Busz -> Utszakasz: belep(this)
+    activate Utszakasz
+    Utszakasz --> Busz
+    deactivate Utszakasz
+end
 
 deactivate Busz
 @enduml
