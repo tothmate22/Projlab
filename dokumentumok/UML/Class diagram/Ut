@@ -19,6 +19,7 @@ class Utszakasz {
     + jarmutElore(): boolean
     + jarmuSavotvalt_jobbra(): boolean
     + jarmuSavotvalt_balra(): boolean
+    + belep(Jarmu): void
     + idojarasFrissites(): void
     + foglaltE(): boolean
     + letakaritas(): void
