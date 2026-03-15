@@ -33,17 +33,22 @@ abstract class Jarmu {
 }
 
 class Utszakasz {
-    -ho : int
-    -jeg : int
-    -havonAthaladt : int
-    -kozlekedoJarmu : Jarmu
-    -felrehuzodottJarmu : Jarmu
-    -szakaszElore : Utszakasz
-    -szakaszBalra : Utszakasz
-    -szakaszJobbra : Utszakasz
-    +idojarasFrissites() : void
-    +foglaltE() : boolean
-    +foglaltSagValtoztatas(foglaltsag : boolean, jarmu : Jarmu) : void
+    - ho : int
+    - jeg : int
+    - havonAthaladt : int
+    - kozlekedoJarmu : Jarmu
+    - felrehuzodottJarmu : Jarmu
+    - szakaszElore : Utszakasz
+    - szakaszBalra : Utszakasz
+    - szakaszJobbra : Utszakasz
+    + idojarasFrissites() : void
+    + foglaltE() : boolean
+    + letakaritas() : void
+    + belep(jarmu: Jarmu) : void
+    + jarmuElore() : boolean
+    + jarmuSavotvalt_jobbra() : boolean
+    + jarmuSavotvalt_balra() : boolean
+    + getEpulet() : Epulet
 }
 
 Utszakasz o-- "1" UtTipus 
@@ -70,6 +75,7 @@ class Busz {
   + kicsuszik(): void
   + celbaErt(): void
   + idoEltelt(): void
+  + setCelAllomas(ujCel: Utszakasz): void
 }
 
 Jatekos <|-- Buszvezeto
