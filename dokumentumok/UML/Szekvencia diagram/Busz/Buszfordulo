@@ -1,30 +1,32 @@
 @startuml
 title Célba érés és jutalom (Busz forduló)
 
-actor "Környezet\n(Óra)" as Idozito
+actor "Környezet\n(Óra)" as Ora
 participant "b: Busz" as Busz
 participant "cel: Utszakasz" as Utszakasz
 participant "v: Buszvezeto" as Buszvezeto
 
-Idozito -> Busz : idoEltelt()
-
+Ora -> Busz: idoEltelt()
 activate Busz
 
-Busz -> Busz : halad(cel)
+Busz -> Busz: halad(cel)
 
-Busz -> Utszakasz : foglaltE()
+Busz -> Utszakasz: foglaltE()
 activate Utszakasz
-Utszakasz --> Busz : false
+Utszakasz --> Busz: false
 deactivate Utszakasz
 
-Busz -> Utszakasz : belep(this)
+Busz -> Utszakasz: belep(this)
+activate Utszakasz
+Utszakasz --> Busz
+deactivate Utszakasz
 
-alt cel == MEGALLO
-    Busz -> Busz : celbaErt()
+alt cel.epulet == Epulet.MEGALLO
+    Busz -> Busz: celbaErt()
     
-    Busz -> Buszvezeto : penztKap(100)
+    Busz -> Buszvezeto: penztKap(100)
     activate Buszvezeto
-    Buszvezeto -> Buszvezeto : egyenleg += 100
+    Buszvezeto --> Busz
     deactivate Buszvezeto
 end
 
