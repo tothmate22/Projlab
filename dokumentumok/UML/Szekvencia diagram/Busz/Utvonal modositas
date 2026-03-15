@@ -1,21 +1,18 @@
 @startuml
-skinparam monochrome true
+title Útvonal módosítása (Use-case: Közlekedés)
 
-title Utvonal modositasa (Use-case: Kozlekedes)
-
-actor "Jatekos" as Jatekos
-participant "v: Buszvezeto" as Vezeto
+actor Jatekos
+participant "v: Buszvezeto" as Buszvezeto
 participant "b: Busz" as Busz
 
-Jatekos -> Vezeto : utvonalatValtoztat(ujCel)
-activate Vezeto
+Jatekos -> Buszvezeto: utvonalatValtoztat(ujCel)
+activate Buszvezeto
 
-' A vezető közvetlenül frissíti a busz publikus állapotát (nincs kamu setter)
-Vezeto -> Busz : celAllomas = ujCel
+Buszvezeto -> Busz: setCelAllomas(ujCel)
 activate Busz
-Busz --> Vezeto :
+Busz --> Buszvezeto
 deactivate Busz
 
-Vezeto --> Jatekos :
-deactivate Vezeto
+Buszvezeto --> Jatekos
+deactivate Buszvezeto
 @enduml
