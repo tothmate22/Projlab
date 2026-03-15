@@ -21,7 +21,7 @@ activate Utszakasz
 Utszakasz --> Busz
 deactivate Utszakasz
 
-alt cel.epulet == Epulet.MEGALLO
+alt cel.getEpulet() == Epulet.MEGALLO
     Busz -> Busz: celbaErt()
     
     Busz -> Buszvezeto: penztKap(100)
