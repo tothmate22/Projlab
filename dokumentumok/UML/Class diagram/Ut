@@ -23,6 +23,7 @@ class Utszakasz {
     + idojarasFrissites(): void
     + foglaltE(): boolean
     + letakaritas(): void
+    + getEpulet(): Epulet
     
 }
 
