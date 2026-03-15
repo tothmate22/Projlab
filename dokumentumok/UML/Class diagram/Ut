@@ -1,13 +1,6 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-enum UtTipus {
-    NORMAL
-    ALAGUT
-    HID
-    KERESZTEZODES
-}
-
 enum Epulet {
     MEGALLO
     HAZ
@@ -22,11 +15,24 @@ class Utszakasz {
     - kozlekedoJarmu: Jarmu
     - felrehuzodottJarmu: Jarmu
     - szuloUttest: Uttest
-    
     --
-    + idojarasFrissites()
+    + jarmutElore(): boolean
+    + jarmuSavotvalt_jobbra(): boolean
+    + jarmuSavotvalt_balra(): boolean
+    + idojarasFrissites(): void
     + foglaltE(): boolean
-    + letakaritas()
+    + letakaritas(): void
+    
+}
+
+class Alagutszakasz extends Utszakasz {
+  --
+  +idojarasFrissites: void
+}
+
+class Hidszakasz extends Utszakasz {
+  --
+  +idojarasFrissites(): void
 }
 
 class Uttest {
@@ -39,6 +45,7 @@ class Uttest {
 class Keresztezodes {
     - kijaratok: List<Uttest>
     --
+    + Keresztezodes(type: UtTipus)
     + kijaratHozzaadas(uttest: Uttest)
 }
 
@@ -46,7 +53,6 @@ class Keresztezodes {
 ' Kapcsolatok
 Uttest *-- "1..*" Utszakasz : tartalmaz
 Keresztezodes --|> Uttest : öröklődik
-Utszakasz o-- UtTipus : típusa van
 Utszakasz o-- Epulet : ehhez tartozik
 
 
