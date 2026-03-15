@@ -2,14 +2,11 @@
 title Út jegesítése (Use-case: Út jegesítése)
 actor Kornyezet as "Környezet"
 
-Kornyezet -> "a: Auto": idoEltelt()
-activate "a: Auto"
-"a: Auto" -> "u: Utszakasz": belep(this)
-activate "u: Utszakasz"
-"u: Utszakasz" -> "u: Utszakasz": idojarasFrissites()
-deactivate "u: Utszakasz"
-deactivate "a: Auto"
+Kornyezet -> Auto: idoEltelt()
+activate Auto
+Auto -> Auto: halad(cel)
+Auto -> Utszakasz: idojarasFrissites()
+activate Utszakasz
+deactivate Utszakasz
+deactivate Auto
 @enduml
-
-//TODO bele kell tenni belep, kilep metodusokat 
-//     vagy autot valtoztatni.
