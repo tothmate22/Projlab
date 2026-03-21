@@ -1,0 +1,45 @@
+@startuml
+title: Sikeresen célba ért
+skinparam participant {
+    BackgroundColor White
+    BorderColor Black
+}
+
+participant "bv1: Buszvezeto" as bv1
+participant "b1: Busz" as b1
+participant "u_cel: Utszakasz" as u_cel
+
+' A buszvezető (mint belső aktor) indítja el a buszt
+bv1 -> b1 : halad(u_cel)
+activate b1
+
+' A busz lekérdezi a foglaltságot
+b1 -> u_cel : foglaltE()
+activate u_cel
+u_cel --> b1 : false
+deactivate u_cel
+
+' A busz rálép az útra
+b1 -> u_cel : belep(b1)
+activate u_cel
+u_cel --> b1
+deactivate u_cel
+
+' Önhívás: A busz megállapítja, hogy célba ért
+b1 -> b1 : celbaErt()
+activate b1
+
+' A busz visszaadja a pénzt a vezetőnek (pont mint a Takarítónál!)
+b1 -> bv1 : penztKap(100)
+activate bv1
+bv1 --> b1
+deactivate bv1
+
+' Önhívás lezárása
+deactivate b1
+
+' Haladás lezárása (visszatérés a vezetőhöz)
+b1 --> bv1
+deactivate b1
+
+@enduml
