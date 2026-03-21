@@ -1,0 +1,28 @@
+@startuml
+title Hókotró sárkányfejjel takarít, hó elolvad
+
+skinparam ParticipantFontSize 14
+skinparam ParticipantFontColor black
+skinparam ParticipantBackgroundColor white
+skinparam ParticipantBorderColor black
+skinparam sequenceArrowFontSize 12
+
+participant "t1: Takarito" as t1
+participant "h1: Hokotro" as h1
+participant "u1: Utszakasz" as u1
+participant "sf1: sarkanyFej" as sf1
+
+t1 -> h1 : iranyit(u1)
+activate h1
+h1 -> u1 : jarmuElore()
+activate u1
+u1 --> h1 : true
+deactivate u1
+h1 -> u1 : belep(h1)
+h1 -> sf1 : takarit(u1)
+activate sf1
+sf1 -> u1 : idojarasFrissites()
+deactivate sf1
+h1 -> t1 : penztKeres()
+deactivate h1
+@enduml
