@@ -1,25 +1,19 @@
 @startuml
-title: A busz sikeresen célba ér
-skinparam object {
+title: Busz sikeresen célba ér
+skinparam rectangle {
     BackgroundColor White
     BorderColor Black
 }
 
-object ":Skeleton" as skeleton
-object "u_cel: Utszakasz" as u_cel
-object "bv1: Buszvezeto" as bv1
-object "b1: Busz" as b1
+' Sima téglalapokat használunk, hogy ne legyen bennük elválasztó vonal
+rectangle ":Skeleton" as skeleton
+rectangle "u_cel: Utszakasz" as u_cel
+rectangle "bv1: Buszvezeto" as bv1
+rectangle "b1: Busz" as b1
 
-' 1. Célállomás létrehozása
-skeleton -up-> u_cel : 1: <<create>>
-
-' 2. Buszvezető létrehozása
-skeleton -left-> bv1 : 2: <<create>>
-
-' 3. Busz létrehozása: a konstruktorban adjuk át a célt és a vezetőt!
-skeleton -down-> b1 : 3: <<create>>(u_cel, bv1)
-
-' 4. Ha a buszvezetőnek van settere a buszra, akkor azt itt meghívjuk
-skeleton -right-> bv1 : 4: setSajatBusz(b1)
+' Sima vonalak (--), és a szöveg végén a > jel mutatja az üzenet irányát
+skeleton -- u_cel : 1: <<create>> >
+skeleton -- bv1 : 2: <<create>> >
+skeleton -- b1 : 3: <<create>>(u_cel, bv1) >
 
 @enduml
