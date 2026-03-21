@@ -4,6 +4,9 @@ Inicializálás:
   NEW b1: Busz (vezerlo=bv1, celAllomas=u_cel)
 
 Teszt futtatása:
-b1.celbaErt()
-    bv1.penztKap(100)
-    -> egyenleg=100
+b1.halad(u_cel)
+    u_cel.foglaltE()
+    -> false
+    u_cel.belep(b1)
+    b1.celbaErt()
+        bv1.penztKap(100)
