@@ -1,0 +1,24 @@
+@startuml
+skinparam rectangle {
+    BackgroundColor White
+    BorderColor Black
+}
+
+rectangle ":Skeleton" as skeleton
+rectangle "o1: Ora" as o1
+rectangle "bv1: Buszvezeto" as bv1
+rectangle "b1: Busz" as b1
+
+' 1. Az Óra létrehozása
+skeleton -- o1 : 1: <<create>> >
+
+' 2. A buszvezető létrehozása (hogy oda tudjuk adni a busznak)
+skeleton -- bv1 : 2: <<create>> >
+
+' 3. A busz létrehozása a vezetővel a konstruktorban
+skeleton -- b1 : 3: <<create>>(bv1) >
+
+' 4. A busz beregisztrálása az órához
+skeleton -- o1 : 4: addLepheto(b1) >
+
+@enduml
