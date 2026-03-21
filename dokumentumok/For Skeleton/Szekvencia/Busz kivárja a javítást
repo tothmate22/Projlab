@@ -1,4 +1,5 @@
 @startuml
+title: Busz várakozik a balest után
 skinparam rectangle {
     BackgroundColor White
     BorderColor Black
@@ -6,19 +7,23 @@ skinparam rectangle {
 
 rectangle ":Skeleton" as skeleton
 rectangle "o1: Ora" as o1
+rectangle "u1: Utszakasz" as u1
 rectangle "bv1: Buszvezeto" as bv1
 rectangle "b1: Busz" as b1
 
 ' 1. Az Óra létrehozása
 skeleton -- o1 : 1: <<create>> >
 
-' 2. A buszvezető létrehozása (hogy oda tudjuk adni a busznak)
-skeleton -- bv1 : 2: <<create>> >
+' 2. Az útszakasz létrehozása (amin a busz éppen áll vagy ahová tart)
+skeleton -- u1 : 2: <<create>> >
 
-' 3. A busz létrehozása a vezetővel a konstruktorban
-skeleton -- b1 : 3: <<create>>(bv1) >
+' 3. A buszvezető létrehozása
+skeleton -- bv1 : 3: <<create>> >
 
-' 4. A busz beregisztrálása az órához
-skeleton -- o1 : 4: addLepheto(b1) >
+' 4. A busz létrehozása: megkapja a vezetőt ÉS az utat is a konstruktorban
+skeleton -- b1 : 4: <<create>>(u_cel, bv1) >
+
+' 5. A busz beregisztrálása az órához
+skeleton -- o1 : 5: addLepheto(b1) >
 
 @enduml
