@@ -1,29 +1,27 @@
 @startuml
-title: Busz várakozik a balest után
-skinparam rectangle {
+title: Busz várakozik javítás közben
+skinparam participant {
     BackgroundColor White
     BorderColor Black
 }
 
-rectangle ":Skeleton" as skeleton
-rectangle "o1: Ora" as o1
-rectangle "u1: Utszakasz" as u1
-rectangle "bv1: Buszvezeto" as bv1
-rectangle "b1: Busz" as b1
+' A Skeleton (vagy Tesztelő) indítja a konkrét tesztlépést
+participant ":Skeleton" as skeleton
+participant "o1: Ora" as o1
+participant "b1: Busz" as b1
 
-' 1. Az Óra létrehozása
-skeleton -- o1 : 1: <<create>> >
+' A Skeleton kiadja a parancsot az órának
+skeleton -> o1 : tick()
+activate o1
 
-' 2. Az útszakasz létrehozása (amin a busz éppen áll vagy ahová tart)
-skeleton -- u1 : 2: <<create>> >
+' Az óra végzi a dolgát
+o1 -> b1 : idoEltelt()
+activate b1
 
-' 3. A buszvezető létrehozása
-skeleton -- bv1 : 3: <<create>> >
+b1 --> o1
+deactivate b1
 
-' 4. A busz létrehozása: megkapja a vezetőt ÉS az utat is a konstruktorban
-skeleton -- b1 : 4: <<create>>(u_cel, bv1) >
-
-' 5. A busz beregisztrálása az órához
-skeleton -- o1 : 5: addLepheto(b1) >
-
+' Visszatérünk a Skeletonhoz, a tesztlépés véget ért
+o1 --> skeleton
+deactivate o1
 @enduml
