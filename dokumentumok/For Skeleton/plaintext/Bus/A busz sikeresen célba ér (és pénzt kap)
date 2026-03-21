@@ -1,0 +1,9 @@
+Inicializálás:
+  NEW u_cel: Utszakasz (ho=0, jeg=0)
+  NEW bv1: Buszvezeto (egyenleg=0)
+  NEW b1: Busz (vezerlo=bv1, celAllomas=u_cel)
+
+Teszt futtatása:
+b1.celbaErt()
+    bv1.penztKap(100)
+    -> egyenleg=100
