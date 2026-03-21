@@ -1,0 +1,8 @@
+Inicializálás:
+  NEW u_ujcel: Utszakasz (ho=0, jeg=0)
+  NEW b1: Busz (hatralevoJavitasiIdo=0)
+  NEW bv1: Buszvezeto (egyenleg=0, sajatBusz=b1)
+
+Teszt futtatása:
+bv1.utvonalatValtoztat(u_ujcel)
+    -> void
