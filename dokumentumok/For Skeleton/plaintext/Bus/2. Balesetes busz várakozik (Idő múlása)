@@ -1,0 +1,8 @@
+Inicializálás:
+  NEW b1: Busz (hatralevoJavitasiIdo=1)
+  NEW o1: Ora ()
+
+Teszt futtatása:
+o1.tick()
+    b1.idoEltelt()
+        -> hatralevoJavitasiIdo=0
