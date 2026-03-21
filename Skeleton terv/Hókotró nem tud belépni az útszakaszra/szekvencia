@@ -1,0 +1,25 @@
+@startuml
+title Hókotró nem tud belépni az útszakaszra
+
+skinparam ParticipantFontSize 14
+skinparam ParticipantFontColor black
+skinparam ParticipantBackgroundColor white
+skinparam ParticipantBorderColor black
+
+participant "t1: Takarito" as t1
+participant "h1: Hokotro" as h1
+participant "u1: jelen Utszakasz" as u1
+participant "u2: cel Utszakasz" as u2
+
+t1 -> h1 : iranyit(u2)
+activate h1
+h1 -> u1 : jarmuElore()
+activate u1
+u1 -> u2 : foglaltE()
+activate u2
+u2 --> u1 : true
+deactivate u2
+u1 --> h1 : false
+deactivate u1
+deactivate h1
+@enduml
