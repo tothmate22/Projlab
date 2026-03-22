@@ -1,12 +1,20 @@
 Inicializálás:
-  NEW u_cel: Utszakasz (ho=0, jeg=0)
-  NEW bv1: Buszvezeto (egyenleg=0)
-  NEW b1: Busz (vezerlo=bv1, celAllomas=u_cel)
+NEW ut1: Uttest ()
+NEW t1: UtTipus (NORMAL)
+NEW e1: Epulet (HAZ)
+NEW e2: Epulet (MEGALLO)
+NEW u_jelen: Utszakasz (szuloUttest=ut1, tipus=t1, epulet=e1, ho=0, jeg=0)
+NEW u_cel: Utszakasz (szuloUttest=ut1, tipus=t1, epulet=e2, ho=0, jeg=0)
+NEW bv1: Buszvezeto (egyenleg=0)
+NEW b1: Busz (vezerlo=bv1, aktualisUt=u_jelen, celAllomas=u_cel)
+u_jelen.belep(b1)
 
 Teszt futtatása:
-b1.halad(u_cel)
+u_jelen.jarmuElore()
     u_cel.foglaltE()
-    -> false
+    Szabad-e a célútszakasz? (I/N) I
+    -> true
     u_cel.belep(b1)
     b1.celbaErt()
         bv1.penztKap(100)
+    -> true
