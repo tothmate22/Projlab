@@ -19,15 +19,21 @@ activate u1
 u1 --> h1 : true
 deactivate u1
 h1 -> u1 : belep(h1)
+activate u1
+u1-->h1
+deactivate u1
 h1 -> sf1 : takarit(u1)
 activate sf1
 sf1 -> sf1 : kopas()
 sf1 -> u1 : letakaritas()
+activate u1
+u1-->sf1
+deactivate u1
 sf1-->h1
 deactivate sf1
 h1 -> h1 : kopas()
 h1 -> h1 : penztKeres()
-h1 --> t1
+h1 --> t1 : penztKap(osszeg)
 deactivate h1
 t1 --> sk
 deactivate t1
