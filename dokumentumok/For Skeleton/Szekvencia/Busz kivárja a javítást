@@ -1,27 +1,36 @@
 @startuml
-title: Busz várakozik javítás közben
-skinparam participant {
-    BackgroundColor White
-    BorderColor Black
-}
+hide footbox
+skinparam sequenceMessageAlign center
+title: Várakozik a busz a javítás alatt
+actor "Felhasználó" as f
+participant "s: Skeleton" as sk
+participant "o: Ora" as o
+participant "b: Busz" as b
 
-' A Skeleton (vagy Tesztelő) indítja a konkrét tesztlépést
-participant ":Skeleton" as skeleton
-participant "o1: Ora" as o1
-participant "b1: Busz" as b1
+' 1. Aktor indítja a tesztet
+f -> sk : Balesetes busz várakozik (Idő múlása) teszt
+activate sk
 
-' A Skeleton kiadja a parancsot az órának
-skeleton -> o1 : tick()
-activate o1
+' 2. A szimuláció (Szkeleton) lépteti a globális órát (3.3.17)
+sk -> o : tick()
+activate o
 
-' Az óra végzi a dolgát
-o1 -> b1 : idoEltelt()
-activate b1
+' Belső állapot frissítés az Órában
+note over o : currentTime növelése
 
-b1 --> o1
-deactivate b1
+' 3. Az Óra végigmegy a lepheto listáján, és szól a Busznak (3.3.11 és 3.3.3)
+o -> b : idoEltelt()
+activate b
 
-' Visszatérünk a Skeletonhoz, a tesztlépés véget ért
-o1 --> skeleton
-deactivate o1
+' 4. A busz levonja a büntetésidőt
+note over b : hatralevoJavitasiIdo csökken
+
+b --> o
+deactivate b
+
+o --> sk
+deactivate o
+
+sk --> f : Teszt sikeres lefutott
+deactivate sk
 @enduml
