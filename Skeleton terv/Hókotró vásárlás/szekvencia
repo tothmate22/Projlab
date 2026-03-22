@@ -1,19 +1,21 @@
 @startuml
 title Hókotró vásárlás
 
-skinparam ParticipantFontSize 14
-skinparam ParticipantFontColor black
-skinparam ParticipantBackgroundColor white
-skinparam ParticipantBorderColor black
-
+actor Felhasználó as f
+participant "sk: Skeleton" as sk
 participant "t1: Takarito" as t1
 participant "h2: Hokotro" as h2
 
-t1 -> t1 : vasarol(2000)
+f -> sk : hokotroVasarlasTeszt()
+activate sk
+sk -> t1 : vasarol(2000)
 activate t1
 t1 -> t1 : penztKap(-2000)
 t1 -> h2 : <<create>>
 activate h2
 deactivate h2
+t1 --> sk
 deactivate t1
+sk --> f
+deactivate sk
 @enduml

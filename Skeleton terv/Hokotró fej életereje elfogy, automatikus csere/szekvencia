@@ -1,17 +1,18 @@
 @startuml
 title Fej életereje elfogy, automatikus csere
 
-skinparam ParticipantFontSize 14
-skinparam ParticipantFontColor black
-skinparam ParticipantBackgroundColor white
-skinparam ParticipantBorderColor black
-
+actor Felhasználó as f
+participant "sk: Skeleton" as sk
 participant "t1: Takarito" as t1
 participant "h1: Hokotro" as h1
 participant "u1: Utszakasz" as u1
 participant "sf1: sarkanyFej" as sf1
 
-t1 -> h1 : iranyit(u1)
+f -> sk : fejEleterejeElfogyTeszt()
+activate sk
+sk -> t1 : iranyit(u1)
+activate t1
+t1 -> h1 : halad(u1)
 activate h1
 h1 -> u1 : jarmuElore()
 activate u1
@@ -22,9 +23,15 @@ h1 -> sf1 : takarit(u1)
 activate sf1
 sf1 -> sf1 : kopas()
 sf1 -> u1 : letakaritas()
+sf1 --> h1
 deactivate sf1
 h1 -> h1 : removeFej(sf1)
 h1 -> h1 : cserelFej()
-h1 -> t1 : penztKeres()
+h1 -> h1 : penztKeres()
+h1 --> t1
 deactivate h1
+t1 --> sk
+deactivate t1
+sk --> f
+deactivate sk
 @enduml
