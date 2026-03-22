@@ -1,19 +1,27 @@
 @startuml
-title: Busz sikeresen célba ér
+title Busz célba ér sikeresen
+
 skinparam rectangle {
     BackgroundColor White
     BorderColor Black
 }
 
-' Sima téglalapokat használunk, hogy ne legyen bennük elválasztó vonal
+' Objektumok definíciója
 rectangle ":Skeleton" as skeleton
+rectangle "ut1: Uttest" as ut1
+rectangle "u_jelen: Utszakasz" as u_jelen
 rectangle "u_cel: Utszakasz" as u_cel
 rectangle "bv1: Buszvezeto" as bv1
 rectangle "b1: Busz" as b1
 
-' Sima vonalak (--), és a szöveg végén a > jel mutatja az üzenet irányát
-skeleton -- u_cel : 1: <<create>> >
-skeleton -- bv1 : 2: <<create>> >
-skeleton -- b1 : 3: <<create>>(u_cel, bv1) >
+' Kapcsolatok és üzenetek a kép alapján
+skeleton -up-> ut1 : 1: <<create>>
+skeleton -up-> u_jelen : 2: <<create>>(ut1, NORMAL, HAZ)
+skeleton -down-> u_cel : 3: <<create>>(ut1, NORMAL, MEGALLO)
+skeleton -down-> bv1 : 4: <<create>>(b1)
+skeleton -down-> b1 : 5: <<create>>(u_cel, 0, bv1)
+
+' A 6-os üzenet a Skeleton és az u_jelen között
+skeleton -left-> u_jelen : 6: belep(b1)
 
 @enduml
