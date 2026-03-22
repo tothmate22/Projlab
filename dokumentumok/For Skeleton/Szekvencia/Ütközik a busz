@@ -1,0 +1,62 @@
+@startuml
+hide footbox
+skinparam sequenceMessageAlign center
+title: Busz kicsúszik
+actor "Felhasználó" as f
+participant "s: Skeleton" as sk
+participant "u0: Utszakasz" as u0
+participant "b2: Busz" as b2
+participant "u1: Utszakasz" as u1
+participant "b1: Busz" as b1
+
+f -> sk : "Busz megcsúszik és ütközik"
+activate sk
+
+' A Skeleton az u0-nak szól (3.3.23)
+sk -> u0 : jarmuElore()
+activate u0
+
+' Az u0 szól a rajta lévő b2-nek (3.3.3)
+u0 -> b2 : halad(u1)
+activate b2
+
+' b2 ellenőrzi a célt (3.3.23)
+b2 -> u1 : fogaltE()
+activate u1
+u1 --> b2 : true
+deactivate u1
+
+' b2 észleli a jeget (3.3.9 ICsuszhat)
+b2 -> b2 : kicsuszik()
+activate b2
+
+' b2 elkéri az akadályt az u1-től (Attribútum elérés)
+b2 -> u1 : getKozlekedoJarmu()
+activate u1
+u1 --> b2 : b1
+deactivate u1
+
+' b2 lekezeli a saját ütközését (3.3.3)
+b2 -> b2 : utkozott(b1)
+activate b2
+note over b2 : hatralevoJavitasiIdo = 60
+deactivate b2
+
+' b2 értesíti b1-et, mert őt találták el (3.3.3)
+b2 -> b1 : utkozott(b2)
+activate b1
+note over b1 : hatralevoJavitasiIdo = 60
+b1 --> b2
+deactivate b1
+
+' Szabályos visszatérések
+deactivate b2 
+b2 --> u0
+deactivate b2
+
+u0 --> sk : false
+deactivate u0
+
+sk --> f : Teszt sikeres lefutott
+deactivate sk
+@enduml
