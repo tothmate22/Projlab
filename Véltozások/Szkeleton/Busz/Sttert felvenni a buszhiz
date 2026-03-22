@@ -1,8 +1,21 @@
 felkell majd venni az osztályleírásnál egy settert a buszhoz, mert nem lehet a busznak is megadni a buszsofőrt,
 és a buszsöfőrnek a buszt, egyiknek elsőnek lére kell jönnie.
 
-+ felszall(bv: Buszvezeto) : void
+Busz:
+- kovetkezoLepes: Utszakasz
 
++ setKovetkezoLepes(ujLepes: Utszakasz): void: Beállítja a busz következő lépését. 
+A Buszvezeto a saját utvonalatValtoztat() metódusán belül ezt a függvényt hívja meg a buszon, hogy átadja neki az új irányt.
+
++ felszall(bv: Buszvezeto) : void
 Leírás:
 Hozzárendeli a buszhoz az őt irányító buszvezetőt.
 A játék/teszt inicializálási fázisában hívódik meg, hogy kialakuljon a kapcsolat a jármű és a vezetője között.
+
++ getKovetkezoLepes(): Utszakasz: Visszaadja a busz számára kijelölt soron következő útszakaszt.
+(Ezt a metódust hívhatja meg például a Skeleton vagy a nézet, ha tudni szeretné, merre indexel/készül lépni a busz).
+
+Buszsofőr:
+
++ utvonalatValtoztat(ujCel: Utszakasz): void: A külső "Játékos" aktor ezen a metóduson keresztül adja ki a parancsot a busz útvonalának módosítására. 
+A metódus meghívja a játékoshoz tartozó buszon (sajatBusz) a setKovetkezoLepes(ujCel) függvényt, amivel frissíti annak haladási irányát.
