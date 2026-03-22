@@ -1,2 +1,8 @@
 felkell majd venni az osztályleírásnál egy settert a buszhoz, mert nem lehet a busznak is megadni a buszsofőrt,
 és a buszsöfőrnek a buszt, egyiknek elsőnek lére kell jönnie.
+
++ felszall(bv: Buszvezeto) : void
+
+Leírás:
+Hozzárendeli a buszhoz az őt irányító buszvezetőt.
+A játék/teszt inicializálási fázisában hívódik meg, hogy kialakuljon a kapcsolat a jármű és a vezetője között.
