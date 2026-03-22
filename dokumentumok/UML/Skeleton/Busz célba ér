@@ -14,14 +14,20 @@ rectangle "u_cel: Utszakasz" as u_cel
 rectangle "bv1: Buszvezeto" as bv1
 rectangle "b1: Busz" as b1
 
-' Kapcsolatok és üzenetek a kép alapján
+' 1. Infrastruktúra
 skeleton -up-> ut1 : 1: <<create>>
 skeleton -up-> u_jelen : 2: <<create>>(ut1, NORMAL, HAZ)
 skeleton -down-> u_cel : 3: <<create>>(ut1, NORMAL, MEGALLO)
-skeleton -down-> bv1 : 4: <<create>>(b1)
+
+' 2. Szereplők (Itt van a javítás: a Buszvezető üres kézzel jön létre)
+skeleton -down-> bv1 : 4: <<create>>
+' A Busz megkapja a vezetőt a konstruktorban
 skeleton -down-> b1 : 5: <<create>>(u_cel, 0, bv1)
 
-' A 6-os üzenet a Skeleton és az u_jelen között
+' 3. Kezdőállapot felépítése
 skeleton -left-> u_jelen : 6: belep(b1)
+
+' 4. Körkörös függőség feloldása (Álcázott szetter a pályaépítés végén)
+skeleton -down-> bv1 : 7: felszall(b1)
 
 @enduml
