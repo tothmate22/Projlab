@@ -1,0 +1,33 @@
+@startuml
+hide footbox
+skinparam sequenceMessageAlign center
+title: Útszakasz módosítás a busznak
+actor "Felhasználó" as f
+participant "s: Skeleton" as sk
+participant "bv: Buszvezeto" as bv
+participant "b: Busz" as b
+
+' Indítás a Use-case nevével
+f -> sk : A buszvezető módosítja a következő útszakaszt
+activate sk
+
+' 1. A Szkeleton a sofőrnek adja ki a parancsot az új szakasszal
+sk -> bv : utvonalatValtoztat(u_uj)
+activate bv
+
+' 2. A sofőr továbbítja a busznak, hogy jegyezze meg
+bv -> b : setKovetkezoLepes(u_uj)
+activate b
+
+' A busz elmenti az attribútumot
+note over b : kovetkezoLepes = u_uj
+
+b --> bv
+deactivate b
+
+bv --> sk
+deactivate bv
+
+sk --> f : Teszt sikeres lefutott
+deactivate sk
+@enduml
