@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:148.0) Gecko/20100101 Firefox/148.0" version="29.6.4">
+  <diagram name="Page-1" id="oArWinKH148IQPIM2Mwq">
+    <mxGraphModel dx="586" dy="669" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value=":Hokotro" vertex="1">
+          <mxGeometry height="60" width="120" x="425" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value=": Takarito" vertex="1">
+          <mxGeometry height="60" width="120" x="345" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;h1&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Kommunikációs diagram – Hókotró vásárlás&lt;/font&gt;&lt;/h1&gt;" vertex="1">
+          <mxGeometry height="40" width="500" x="120" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-38" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value=": Skeleton" vertex="1">
+          <mxGeometry height="60" width="120" x="185" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-44" edge="1" parent="1" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=12;curved=1;entryX=-0.013;entryY=0.339;entryDx=0;entryDy=0;entryPerimeter=0;" target="VPD0zlEu_jg8YPP2nACh-2" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="305" y="320.42" as="sourcePoint" />
+            <mxPoint x="375" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-45" edge="1" parent="1" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=12;curved=1;entryX=1;entryY=1;entryDx=0;entryDy=0;" target="VPD0zlEu_jg8YPP2nACh-73" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="305" y="260.42" as="sourcePoint" />
+            <mxPoint x="375" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-68" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;3: setHokotro()&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="90" x="465" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-69" edge="1" parent="1" source="VPD0zlEu_jg8YPP2nACh-17" style="endArrow=none;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=1;exitY=0.66;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="505" y="300" as="sourcePoint" />
+            <mxPoint x="535" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-71" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="535" y="260" as="sourcePoint" />
+            <mxPoint x="535" y="297" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-73" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;1: new Takarito()&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="100" x="245" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="VPD0zlEu_jg8YPP2nACh-74" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;2: new Hokotro()&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="100" x="315" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="sq6yNStl2ufAZpeURAoA-11" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="455" y="200" as="sourcePoint" />
+            <mxPoint x="455" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sq6yNStl2ufAZpeURAoA-12" edge="1" parent="1" source="VPD0zlEu_jg8YPP2nACh-17" style="endArrow=none;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.165;exitY=-0.005;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="475" y="310" as="sourcePoint" />
+            <mxPoint x="365" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sq6yNStl2ufAZpeURAoA-13" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="365" y="200" as="sourcePoint" />
+            <mxPoint x="455" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sq6yNStl2ufAZpeURAoA-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;4. penztKap(2000)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="355" y="170" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
