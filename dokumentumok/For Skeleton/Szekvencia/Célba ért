@@ -1,45 +1,50 @@
 @startuml
-title: Célba ér a busz
-skinparam participant {
-    BackgroundColor White
-    BorderColor Black
-}
+hide footbox
+skinparam sequenceMessageAlign center
+title: "Sikeresn célba ér a busz"
+actor "Aktor" as actor
+participant ":Skeleton" as skel
+participant "b1:Busz" as b1
+participant "u_megallo:Utszakasz" as u_megallo
+participant "bv1:Buszvezeto" as bv1
 
-participant ":Skeleton" as skeleton
-participant "u_jelen: Utszakasz" as u1
-participant "u_cel: Utszakasz" as u2
-participant "b1: Busz" as b1
-participant "bv1: Buszvezeto" as bv1
+note over u_megallo : Ez az útszakasz fixen a \nbusz végállomása (MEGALLO).
 
-' 1. A Skeleton indít (mert ez egy teszteset)
-skeleton -> u1 : jarmuElore()
-activate u1
+actor -> skel : 1: Busz célba ér teszt
+activate skel
 
-' 2. Az út ellenőrzi a szomszédját (Analízis metódus!)
-u1 -> u2 : foglaltE()
-activate u2
-u2 --> u1 : false
-deactivate u2
-
-' 3. Az út átteszi a buszt az új szakaszra
-u1 -> u2 : belep(b1)
-activate u2
-u2 --> u1
-deactivate u2
-
-' 4. A busz észleli, hogy célba ért
-u1 -> b1 : celbaErt()
+' A tesztben fixen a megállót adjuk át, nem kérdezünk vissza
+skel -> b1 : halad(u_megallo)
 activate b1
 
-' 5. Jutalomosztás (ahogy a képeden is volt, nagyon helyesen!)
+' A busz konzultál az úttal (ami fixen szabad)
+b1 -> u_megallo : fogaltE()
+activate u_megallo
+u_megallo --> b1 : false
+deactivate u_megallo
+
+' Belépés
+b1 -> u_megallo : belep(b1)
+activate u_megallo
+u_megallo --> b1
+deactivate u_megallo
+
+' FIX ELLENŐRZÉS: Mivel tudjuk, hogy célba értünk, fut a logika
+note over b1 : belső ellenőrzés:\npozicio == celAllomas ? IGEN
+b1 -> b1 : celbaErt()
+activate b1
+
 b1 -> bv1 : penztKap(100)
 activate bv1
 bv1 --> b1
 deactivate bv1
 
-b1 --> u1
 deactivate b1
 
-u1 --> skeleton : true
-deactivate u1
+b1 --> skel : true
+deactivate b1
+
+skel --> actor : Teszt sikeres
+deactivate skel
+
 @enduml
