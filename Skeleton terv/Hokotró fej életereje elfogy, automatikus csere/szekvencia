@@ -1,5 +1,5 @@
 @startuml
-title Hókotró sárkányfejjel takarít hó elolvad
+title Fej életereje elfogy, automatikus csere
 
 skinparam ParticipantFontSize 14
 skinparam ParticipantFontColor black
@@ -23,6 +23,8 @@ activate sf1
 sf1 -> sf1 : kopas()
 sf1 -> u1 : letakaritas()
 deactivate sf1
+h1 -> h1 : removeFej(sf1)
+h1 -> h1 : cserelFej()
 h1 -> t1 : penztKeres()
 deactivate h1
 @enduml
