@@ -1,0 +1,69 @@
+@startuml
+hide footbox
+skinparam sequenceMessageAlign center
+title: Busz sikeres sávváltása teszt
+actor "Felhasznalo" as f
+participant "s: Skeleton" as s
+participant "bv: Buszvezeto" as bv
+participant "b: Busz" as b
+participant "u_jelen: Utszakasz" as u_jelen
+participant "u: Uttest" as u
+participant "u_cel: Utszakasz" as u_cel
+
+f -> s : Busz sikeres sávváltása teszt
+activate s
+
+' 1. Szándék beállítása (A szkeleton ismeri a sofőrt)
+s -> bv : utvonalatValtoztat(u_cel)
+activate bv
+
+' A sofőr ismeri a buszt (sajatBusz attribútum)
+bv -> b : setKovetkezoLepes(u_cel)
+activate b
+b --> bv
+deactivate b
+
+bv --> s
+deactivate bv
+
+' 2. A szkeleton ismeri a buszt, átadja neki az u_cel-t paraméterben!
+' INNENTŐL A BUSZ ISMERI AZ u_cel OBJEKTUMOT!
+s -> b : halad(u_cel)
+activate b
+
+' 3. A busz ismeri az u_jelen-t (pozicio attribútum)
+b -> u_jelen : jarmuSavotvalt_balra()
+activate u_jelen
+
+' 4. Az u_jelen ismeri az u-t (szuloUttest attribútum)
+u_jelen -> u : balraSorolasLehetseges(u_jelen)
+activate u
+u --> u_jelen : true
+deactivate u
+
+u_jelen --> b : true
+deactivate u_jelen
+
+' 5. Mivel engedélyt kapott, a Busz használja a paraméterként kapott u_cel-t!
+b -> u_cel : fogaltE()
+activate u_cel
+u_cel --> b : false
+deactivate u_cel
+
+' 6. A Busz belép az új szakaszra
+b -> u_cel : belep(b)
+activate u_cel
+note right of u_cel : kozlekedoJarmu = b
+u_cel --> b
+deactivate u_cel
+
+' 7. A busz frissíti a saját belső állapotát
+note over b : pozicio = u_cel
+
+b --> s
+deactivate b
+
+s --> f : Teszt sikeres lefutott
+deactivate s
+
+@enduml
