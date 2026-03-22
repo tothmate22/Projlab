@@ -1,45 +1,45 @@
 @startuml
-title: Sikeresen célba ért
+title: Célba ér a busz
 skinparam participant {
     BackgroundColor White
     BorderColor Black
 }
 
-participant "bv1: Buszvezeto" as bv1
+participant ":Skeleton" as skeleton
+participant "u_jelen: Utszakasz" as u1
+participant "u_cel: Utszakasz" as u2
 participant "b1: Busz" as b1
-participant "u_cel: Utszakasz" as u_cel
+participant "bv1: Buszvezeto" as bv1
 
-' A buszvezető (mint belső aktor) indítja el a buszt
-bv1 -> b1 : halad(u_cel)
+' 1. A Skeleton indít (mert ez egy teszteset)
+skeleton -> u1 : jarmuElore()
+activate u1
+
+' 2. Az út ellenőrzi a szomszédját (Analízis metódus!)
+u1 -> u2 : foglaltE()
+activate u2
+u2 --> u1 : false
+deactivate u2
+
+' 3. Az út átteszi a buszt az új szakaszra
+u1 -> u2 : belep(b1)
+activate u2
+u2 --> u1
+deactivate u2
+
+' 4. A busz észleli, hogy célba ért
+u1 -> b1 : celbaErt()
 activate b1
 
-' A busz lekérdezi a foglaltságot
-b1 -> u_cel : foglaltE()
-activate u_cel
-u_cel --> b1 : false
-deactivate u_cel
-
-' A busz rálép az útra
-b1 -> u_cel : belep(b1)
-activate u_cel
-u_cel --> b1
-deactivate u_cel
-
-' Önhívás: A busz megállapítja, hogy célba ért
-b1 -> b1 : celbaErt()
-activate b1
-
-' A busz visszaadja a pénzt a vezetőnek (pont mint a Takarítónál!)
+' 5. Jutalomosztás (ahogy a képeden is volt, nagyon helyesen!)
 b1 -> bv1 : penztKap(100)
 activate bv1
 bv1 --> b1
 deactivate bv1
 
-' Önhívás lezárása
+b1 --> u1
 deactivate b1
 
-' Haladás lezárása (visszatérés a vezetőhöz)
-b1 --> bv1
-deactivate b1
-
+u1 --> skeleton : true
+deactivate u1
 @enduml
