@@ -1,0 +1,28 @@
+@startuml
+skinparam rectangle {
+    BackgroundColor White
+    BorderColor Black
+}
+
+rectangle ":Skeleton" as skeleton
+rectangle "u1: Utszakasz" as u1
+rectangle "bv1: Buszvezeto" as bv1
+rectangle "b1: Busz" as b1
+rectangle "bv2: Buszvezeto" as bv2
+rectangle "b2: Busz" as b2
+
+' 1. Az út létrehozása
+skeleton -- u1 : 1: <<create>> >
+
+' 2. Első busz és vezetője
+skeleton -- bv1 : 2: <<create>> (b1)>
+skeleton -- b1 : 3: <<create>>(u_cel1, bv1) >
+
+' 3. Második busz és vezetője (ő fog nekimenni az elsőnek)
+skeleton -- bv2 : 4: <<create>> (b2)>
+skeleton -- b2 : 5: <<create>>(u_cel2, bv2) >
+
+' 4. Az első busz már rajta áll az úton (ezt inicializáláskor beállítjuk)
+skeleton -- u1 : 6: belep(b1) >
+
+@enduml
