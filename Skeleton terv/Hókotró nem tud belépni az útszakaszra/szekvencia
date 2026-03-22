@@ -8,7 +8,7 @@ participant "u1: Utszakasz" as u1
 participant "u2: Utszakasz" as u2
 
 jatekos -> sk : hokotroNemTudBeplepniTeszt()
-sk -> h1 : iranyit(u2)
+sk -> h1 : halad(u2)
 activate h1
 h1 -> u1 : jarmuElore()
 activate u1
