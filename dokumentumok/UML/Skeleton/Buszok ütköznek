@@ -1,28 +1,35 @@
 @startuml
+title: "Buszok ütköznek az útszakaszon"
+
 skinparam rectangle {
     BackgroundColor White
     BorderColor Black
 }
 
 rectangle ":Skeleton" as skeleton
+rectangle "ut1: Uttest" as ut1
+rectangle "u0: Utszakasz" as u0
 rectangle "u1: Utszakasz" as u1
 rectangle "bv1: Buszvezeto" as bv1
 rectangle "b1: Busz" as b1
 rectangle "bv2: Buszvezeto" as bv2
 rectangle "b2: Busz" as b2
 
-' 1. Az út létrehozása
-skeleton -- u1 : 1: <<create>> >
+' 1. Infrastruktúra
+skeleton -up-> ut1 : 1: <<create>>
+skeleton -up-> u0 : 2: <<create>>(ut1, NORMAL, HAZ)
+skeleton -up-> u1 : 3: <<create>>(ut1, NORMAL, HAZ)
 
-' 2. Első busz és vezetője
-skeleton -- bv1 : 2: <<create>> (b1)>
-skeleton -- b1 : 3: <<create>>(u_cel1, bv1) >
+' 2. Szereplők létrehozása
+skeleton -down-> bv1 : 4: <<create>>(b1)
+skeleton -down-> b1 : 5: <<create>>(u1, 0, bv1)
+skeleton -down-> bv2 : 6: <<create>>(b2)
+skeleton -down-> b2 : 7: <<create>>(u1, 0, bv2)
 
-' 3. Második busz és vezetője (ő fog nekimenni az elsőnek)
-skeleton -- bv2 : 4: <<create>> (b2)>
-skeleton -- b2 : 5: <<create>>(u_cel2, bv2) >
-
-' 4. Az első busz már rajta áll az úton (ezt inicializáláskor beállítjuk)
-skeleton -- u1 : 6: belep(b1) >
+' 3. Spawnolás (Kezdőhelyzetek beállítása)
+' b1 már az u1-en áll (őt ütik el)
+skeleton -right-> u1 : 8: belep(b1)
+' b2 az u0-n áll (ő fog elindulni u1 felé)
+skeleton -left-> u0 : 9: belep(b2)
 
 @enduml
