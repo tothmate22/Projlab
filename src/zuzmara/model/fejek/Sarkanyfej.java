@@ -7,7 +7,7 @@ import zuzmara.model.Utszakasz;
  * Biokerozin használatával felolvasztja az összes havat és jeget azonnal
  * A Fej osztályból származik
  */
-public class Sarkanyfej extends Fej {
+public class SarkanyFej extends Fej {
     private int kerozintartaly; //a biokerozin mennyiségét tárolja
 
     /**
