@@ -34,13 +34,21 @@ public class Hokotro extends Jarmu{
      * fejvásárlás után ez adja hozzá a listához a fejet
      * @param fej a hozzáadni kívánt fej
      */
-    public void addFej(Fej fej){}
+    public void addFej(Fej fej){
+        if(fej!=null && fejek.contains(fej)){
+            fejek.addLast(fej);
+        }
+    }
 
     /**
      * ha elfogyott egy fej életereje, ezzel a metódussal távolítja el a listából
      * @param fej a eltávolítani kívánt fej
      */
-    public void removeFej(Fej fej){}
+    public void removeFej(Fej fej){
+        if(fejek.contains(fej)){
+            fejek.remove(fej);
+        }
+    }
 
     /**
      * A hókotró kopását megvalósító metódus
@@ -60,5 +68,7 @@ public class Hokotro extends Jarmu{
     /**
      * vált a listában következő fejre
      */
-    public void cserelFej(){}
+    public void cserelFej(){
+        aktualisFej = fejek.get(fejek.indexOf(aktualisFej)+1);
+    }
 }
