@@ -2,7 +2,7 @@ package zuzmara.model;
 
 import zuzmara.enums.Epulet;
 import zuzmara.model.fejek.Sarkanyfej;
-
+import java.util.Scanner;
 /**
  * Szkeleton osztály, a tesztesetekhez tartozó függvényeket tartalmazza, irányítja a tesztelést
  */
@@ -17,6 +17,8 @@ public class Skeleton {
     /** Az aktuális hívási mélység, a behúzás meghatározásához. */
     private static int depth = 0;
 
+    private static Scanner scanner = new Scanner(System.in);
+    
     private static class SkeletonHelper{
         private static final Skeleton INSTANCE = new Skeleton();
     }
