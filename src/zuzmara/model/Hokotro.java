@@ -5,6 +5,7 @@ import java.util.LinkedList;
 //import zuzmara.model.fejek.*;
 import java.util.List;
 
+import zuzmara.model.fejek.Sarkanyfej;
 import zuzmara.model.fejek.SoproFej;
 
 /**
@@ -71,5 +72,13 @@ public class Hokotro extends Jarmu{
      */
     public void cserelFej(){
         aktualisFej = fejek.get(fejek.indexOf(aktualisFej)+1);
+    }
+
+    /**
+     * jelenlegi fej beállítása
+     * @param sf1
+     */
+    public void setAktualisFej(Sarkanyfej sf1) {
+        this.aktualisFej = sf1;
     }
 }

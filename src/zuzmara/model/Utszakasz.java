@@ -62,6 +62,14 @@ public class Utszakasz {
 
     public void setHo(int ho) {
         this.ho = ho;
-    }   
+    }
+
+    /**
+     * Beállítja a közlekedő járművet az utszakaszra.
+     * @param kozlekedoJarmu a közlekedő jármű
+     */
+    public void setKozlekedoJarmu(Jarmu kozlekedoJarmu) {
+        this.kozlekedoJarmu = kozlekedoJarmu;
+    }
 }
 

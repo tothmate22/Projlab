@@ -16,5 +16,15 @@ public abstract class Fej {
     /**
      * A kopas megvalosítasa, a takaritas következtében
      */
-    public void kopas(){}
+    public void kopas(){
+        this.eletero--;
+    }
+
+    /**
+     * beállítja a fej életerejét
+     * @param i
+     */
+    public void setEletero(int i) {
+        this.eletero = i;
+    }
 }
