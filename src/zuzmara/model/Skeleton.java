@@ -25,11 +25,11 @@ public class Skeleton {
     public static void nyit(String metodusNev) {
         nyomtatIndent();
         System.out.println("--> " + metodusNev);
-        indentLevel++; 
+        depth++; 
     }
 
     public static void zar(String visszateres) {
-        indentLevel--; 
+        depth--; 
         nyomtatIndent();
         System.out.println("<-- " + visszateres);
     }
@@ -57,7 +57,7 @@ public class Skeleton {
     }
 
     private static void nyomtatIndent() {
-        for (int i = 0; i < indentLevel; i++) {
+        for (int i = 0; i < depth; i++) {
             System.out.print("    "); 
         }
     }
