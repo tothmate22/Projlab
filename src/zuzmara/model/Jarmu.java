@@ -1,6 +1,4 @@
 package zuzmara.model;
-package zuzmara.model;
-
 /**
  * Absztrakt ősosztály a város úthálózatán mozgó objektumok (Auto, Busz, Hokotro) számára. 
  * Felelős a jármű aktuális pozíciójának nyilvántartásáért, és kikényszeríti a haladás 
