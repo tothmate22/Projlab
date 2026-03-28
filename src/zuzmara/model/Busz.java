@@ -1,4 +1,6 @@
 package zuzmara.model;
+import zuzmara.interfaces.ILepheto;
+import zuzmara.interfaces.ICsuszhat;
 /**
  * Ősosztály: Jarmu (absztrakt ősosztály).
  * Megvalósított interfészek: ILepheto, ICsuszhat.
