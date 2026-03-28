@@ -6,9 +6,12 @@ public class Auto extends Jarmu implements Icsuszhat, ILepheto{
   private Utszakasz cel;
   private AutoAllapot allapot;
 
-  public Auto(Utszakasz cel, Autoallapot ap){
+  public Auto(Utszakasz poz,Utszakasz cel, Autoallapot ap){
+    super(poz);
     this.cel = cel;
     this.allapot = ap;
+    Skeleton.nyit("Auto <<create>>");
+    Skeleton.zar("Auto letrejott.");
   }
   
   public void halad(Utszakasz cel) {
