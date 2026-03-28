@@ -18,7 +18,7 @@ public class Main {
             System.out.println(" 7. fejEleterejeElfogyTeszt");
             System.out.println(" 8. hokotroVasarlasTeszt");
             System.out.println(" 9. buszCelbaErTeszt");
-            System.out.println("10. bbalesetesBuszVarakozikTeszt");
+            System.out.println("10. balesetesBuszVarakozikTeszt");
             System.out.println("11. utszakaszModositasTeszt");
             System.out.println("12. buszSikeresSavvaltasaTeszt");
             System.out.println("13. buszMegcsuszikEsUtkozikTeszt");
@@ -51,10 +51,10 @@ public class Main {
                 case 7  -> sk.fejEleterejeElfogyTeszt();
                 case 8  -> sk.hokotroVasarlasTeszt();
                 case 9  -> sk.buszCelbaErTeszt();
-                case 10 -> sk.buszBalesetTeszt();
-                case 11 -> sk.buszUtvonalmodositasTeszt();
-                case 12 -> sk.buszSikeresSavvaltasTeszt();
-                case 13 -> sk.buszCsuszasUtkozesTeszt();
+                case 10 -> sk.balesetesBuszVarakozikTeszt();
+                case 11 -> sk.utszakaszModositasTeszt();
+                case 12 -> sk.buszSikeresSavvaltasaTeszt();
+                case 13 -> sk.buszMegcsuszikEsUtkozikTeszt();
                 case 14 -> sk.sikeresVasarlasTeszt();
                 case 15 -> sk.sikertelenVasarlasTeszt();
                 case 16 -> sk.urestakaritasTeszt();
