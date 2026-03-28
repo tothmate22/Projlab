@@ -7,6 +7,8 @@ public class Uttest {
     public Uttest() {
     }
 
+    // uthossz: egy savban hány szakasz legyen generálva
+    // savszam: hány sav legyen generálva
     public Uttest(int uthossz, int savszam) {
         for (int i = 0; i < savszam; i++) {
             List<Utszakasz> sav = new ArrayList<>();

@@ -250,9 +250,9 @@ public class Skeleton {
         u0.belep(b2);
 
         System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
-        // A szekvenciadiagram alapján léptetjük a buszt a jarmuElore() metódussal
+        // A szekvenciadiagram alapján léptetjük a buszt a jarmutElore() metódussal
         // Az u0-n lévő jármű (b2) megpróbál haladni az u1 felé.
-        u0.jarmuElore();
+        u0.jarmutElore();
 
         System.out.println("\n--- [ TESZT VEGE ] ---");
     }
@@ -280,7 +280,9 @@ public class Skeleton {
     /**
      * Utszakasz allapotvaltozasanak tesztelese
      */
-    public void utszakaszIdojarasFrissitesTeszt(){}
+    public void utszakaszIdojarasFrissitesTeszt(){
+        
+    }
 
     /**
      * Hidszakasz allapotvaltozasanak tesztelese
