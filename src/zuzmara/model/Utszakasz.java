@@ -21,14 +21,14 @@ public class Utszakasz {
         epulet = null;
     }
     
-    public Utszakasz(Uttest szuloUttest, Epulet epulet) {
+    public Utszakasz(Uttest szuloUttest, String epuletTipus) {
         ho = 0;
         jeg = 0;
         havonAthaladt = 0;
         kozlekedoJarmu = null;
         felrehuzodottJarmu = null;
         this.szuloUttest = szuloUttest;
-        this.epulet = epulet;
+        this.epulet = Epulet.valueOf(epuletTipus);
     }
 
     public boolean jarmutElore() {

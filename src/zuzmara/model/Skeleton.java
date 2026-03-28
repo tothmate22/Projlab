@@ -115,9 +115,9 @@ public class Skeleton {
         // 1: <<create>>
         Uttest ut1 = new Uttest(); 
         // 2: <<create>>Utszakasz(ut1, NORMAL, HAZ)
-        Utszakasz u_jelen = new Utszakasz(ut1, "NORMAL", "HAZ");
+        Utszakasz u_jelen = new Utszakasz(ut1, "HAZ");
         // 3: <<create>>Utszakasz(ut1, NORMAL, MEGALLO)
-        Utszakasz u_cel = new Utszakasz(ut1, "NORMAL", "MEGALLO");
+        Utszakasz u_cel = new Utszakasz(ut1, "MEGALLO");
         
         // 4: <<create>> (Buszvezeto - de a konstruktorban kapja a buszt, így a sorrend picit igazítva)
         // 5: Busz(u_jelen, 0, b1) -> Busz letrehozasa pozicioval es buntetesidovel
@@ -149,7 +149,7 @@ public class Skeleton {
         // 2: <<create>> Uttest
         Uttest ut = new Uttest();
         // 3: <<create>> Utszakasz(ut, NORMAL, HAZ)
-        Utszakasz u = new Utszakasz(ut, "NORMAL", "HAZ");
+        Utszakasz u = new Utszakasz(ut, "HAZ");
         
         // 4: <<create>> Busz(u, 60) -> 60 tick = 1 óra büntetés
         Busz b = new Busz(u, 60);
@@ -176,8 +176,8 @@ public class Skeleton {
         System.out.println("\n--- [ TESZT INDUL: 2. Utszakasz modositas a busznak ] ---");
         
         Uttest u = new Uttest();
-        Utszakasz u_jelen = new Utszakasz(u, "NORMAL", "HAZ");
-        Utszakasz u_cel = new Utszakasz(u, "NORMAL", "HAZ");
+        Utszakasz u_jelen = new Utszakasz(u, "HAZ");
+        Utszakasz u_cel = new Utszakasz(u, "HAZ");
         
         Busz b = new Busz(u_jelen, 0);
         Buszvezeto bv = new Buszvezeto(b);
@@ -197,8 +197,8 @@ public class Skeleton {
         System.out.println("\n--- [ TESZT INDUL: 3. Busz sikeres savvaltasa ] ---");
         
         Uttest ut = new Uttest();
-        Utszakasz u_jelen = new Utszakasz(ut, "NORMAL", "HAZ");
-        Utszakasz u_cel = new Utszakasz(ut, "NORMAL", "HAZ");
+        Utszakasz u_jelen = new Utszakasz(ut,  "HAZ");
+        Utszakasz u_cel = new Utszakasz(ut, "HAZ");
         
         Busz b = new Busz(u_jelen, 0);
         Buszvezeto bv = new Buszvezeto(b);
@@ -225,9 +225,9 @@ public class Skeleton {
         // 1: <<create>> Uttest
         Uttest ut1 = new Uttest();
         // 2: <<create>>(ut1, NORMAL, HAZ) -> u0
-        Utszakasz u0 = new Utszakasz(ut1, "NORMAL", "HAZ");
+        Utszakasz u0 = new Utszakasz(ut1, "HAZ");
         // 3: <<create>>(ut1, NORMAL, HAZ) -> u1
-        Utszakasz u1 = new Utszakasz(ut1, "NORMAL", "HAZ");
+        Utszakasz u1 = new Utszakasz(ut1, "HAZ");
         
         // 4: <<create>>(u1, 0) -> b1 (A szenvedő busz)
         Busz b1 = new Busz(u1, 0);
