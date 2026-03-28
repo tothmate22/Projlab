@@ -108,7 +108,7 @@ public class Skeleton {
     /**
      * Busz celba eresenek a tesztje
      */
-    public static void buszCelbaErTeszt() {
+    public void buszCelbaErTeszt() {
         System.out.println("\n--- [ TESZT INDUL: 1. Busz celba er ] ---");
         System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
         
@@ -140,7 +140,7 @@ public class Skeleton {
     /**
      * Busz baleset utáni várakozás
      */
-    public static void balesetesBuszVarakozikTeszt() {
+    public void balesetesBuszVarakozikTeszt() {
         System.out.println("\n--- [ TESZT INDUL: 3. Balesetes busz varakozik (Ido mulasa) ] ---");
         System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
         
@@ -172,7 +172,7 @@ public class Skeleton {
     /**
      * Busz utvonalat modositja a buszvezeto teszt
      */
-    public static void utszakaszModositasTeszt() {
+    public void utszakaszModositasTeszt() {
         System.out.println("\n--- [ TESZT INDUL: 2. Utszakasz modositas a busznak ] ---");
         
         Uttest u = new Uttest();
@@ -193,7 +193,7 @@ public class Skeleton {
     /**
      * Busz savvaltasanak a tesztelese
      */
-    public static void buszSikeresSavvaltasaTeszt() {
+    public void buszSikeresSavvaltasaTeszt() {
         System.out.println("\n--- [ TESZT INDUL: 3. Busz sikeres savvaltasa ] ---");
         
         Uttest ut = new Uttest();
@@ -218,7 +218,7 @@ public class Skeleton {
     /**
      * Busz megcsuszik es utkozik teszteles
      */
-   public static void buszMegcsuszikEsUtkozikTeszt() {
+   public void buszMegcsuszikEsUtkozikTeszt() {
         System.out.println("\n--- [ TESZT INDUL: 4. Busz utkozik ] ---");
         System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
         
