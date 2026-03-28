@@ -1,5 +1,7 @@
 package zuzmara.model;
 
+import zuzmara.enums.Epulet;
+
 public class Utszakasz {
     private int ho;
     private int jeg;
@@ -57,5 +59,9 @@ public class Utszakasz {
     public Epulet getEpulet() {
         return epulet;
     }
+
+    public void setHo(int ho) {
+        this.ho = ho;
+    }   
 }
 

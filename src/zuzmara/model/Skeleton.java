@@ -1,5 +1,8 @@
 package zuzmara.model;
 
+import zuzmara.enums.Epulet;
+import zuzmara.model.fejek.Sarkanyfej;
+
 /**
  * Szkeleton osztály, a tesztesetekhez tartozó függvényeket tartalmazza, irányítja a tesztelést
  */
@@ -10,6 +13,10 @@ public class Skeleton {
      * getInstance, hogy megkapjuk
      */
     private Skeleton(){}
+    
+    /** Az aktuális hívási mélység, a behúzás meghatározásához. */
+    private static int depth = 0;
+
     private static class SkeletonHelper{
         private static final Skeleton INSTANCE = new Skeleton();
     }
@@ -43,7 +50,9 @@ public class Skeleton {
     /**
      * Hokotro sarkanyfejjel takarit teszt
      */
-    public void hokotroSarkanyFejTeszt(){}
+    public void hokotroSarkanyFejTeszt(){
+        System.out.println("Hokotrón sárkányfej tesztelése...");
+    }
 
     /**
      * Egy fej eleterej elfogy, ezutan elveszik teszteles

@@ -1,6 +1,7 @@
 package zuzmara.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 //import zuzmara.model.fejek.*;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import zuzmara.model.fejek.SoproFej;
  * Tartoznak hozzá fejek, pénzt keres és vásárolni tud, valamint ezeket a fejeket használni
  */
 public class Hokotro extends Jarmu{
-    private List<Fej> fejek; //A hókotróhoz tartozó fejek listája
+    private LinkedList<Fej> fejek; //A hókotróhoz tartozó fejek listája
     private int eletero;    //A hókotró életereje
     private Fej aktualisFej; //Az aktuálisan használt fej
 
@@ -24,7 +25,7 @@ public class Hokotro extends Jarmu{
      * a fejek listáját is létrehozza és hozzáadja az első fejet
      */
     public Hokotro() {
-        this.fejek = new ArrayList<>();
+        this.fejek = new LinkedList<>();
         fejek.add(new SoproFej());
         this.eletero = 300;
         this.aktualisFej = fejek.get(0);
@@ -35,7 +36,7 @@ public class Hokotro extends Jarmu{
      * @param fej a hozzáadni kívánt fej
      */
     public void addFej(Fej fej){
-        if(fej!=null && fejek.contains(fej)){
+        if(fej!=null && !fejek.contains(fej)){
             fejek.addLast(fej);
         }
     }
