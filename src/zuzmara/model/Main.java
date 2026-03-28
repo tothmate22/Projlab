@@ -18,10 +18,10 @@ public class Main {
             System.out.println(" 7. fejEleterejeElfogyTeszt");
             System.out.println(" 8. hokotroVasarlasTeszt");
             System.out.println(" 9. buszCelbaErTeszt");
-            System.out.println("10. buszBalesetTeszt");
-            System.out.println("11. buszUtvonalmodositasTeszt");
-            System.out.println("12. buszSikeresSavvaltasTeszt");
-            System.out.println("13. buszCsuszasUtkozesTeszt");
+            System.out.println("10. bbalesetesBuszVarakozikTeszt");
+            System.out.println("11. utszakaszModositasTeszt");
+            System.out.println("12. buszSikeresSavvaltasaTeszt");
+            System.out.println("13. buszMegcsuszikEsUtkozikTeszt");
             System.out.println("14. sikeresVasarlasTeszt");
             System.out.println("15. sikertelenVasarlasTeszt");
             System.out.println("16. urestakaritasTeszt");
