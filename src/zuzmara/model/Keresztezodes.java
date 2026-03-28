@@ -6,5 +6,7 @@ public class Keresztezodes extends Uttest {
 
     public void kijaratHozzaadas(Uttest uttest) {
         this.kijaratok.add(uttest);
+        Skeleton.nyit("Keresztezodes.kijaratHozzaadas(Uttest)");
+        Skeleton.zar("Keresztezodes.kijaratHozzaadas() végrehajtva");
     }
 }

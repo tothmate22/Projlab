@@ -2,6 +2,8 @@ package zuzmara.model;
 
 import zuzmara.enums.Epulet;
 import zuzmara.model.fejek.Sarkanyfej;
+
+import java.time.Clock;
 import java.util.Scanner;
 /**
  * Szkeleton osztály, a tesztesetekhez tartozó függvényeket tartalmazza, irányítja a tesztelést
@@ -281,18 +283,46 @@ public class Skeleton {
      * Utszakasz allapotvaltozasanak tesztelese
      */
     public void utszakaszIdojarasFrissitesTeszt(){
-        
+        System.out.println("\n--- [ TESZT INDUL: 18. utszakaszIdojarasFrissitesTeszt ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+        Ora o = new Ora(1);
+        Uttest ut = new Uttest();
+        Utszakasz u = new Utszakasz(ut, "HAZ");
+        o.addMegfigyeltUtszakasz(u);
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+        o.tick();
+        System.out.println("\n--- [ TESZT VEGE ] ---");
     }
 
     /**
      * Hidszakasz allapotvaltozasanak tesztelese
      */
-    public void hidszakaszIdojarasFrissitesTeszt(){}
+    public void hidszakaszIdojarasFrissitesTeszt(){
+        System.out.println("\n--- [ TESZT INDUL: 19. hidszakaszIdojarasFrissitesTeszt ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+        Ora o = new Ora(1);
+        Uttest ut = new Uttest();
+        Hidszakasz u = new Hidszakasz(ut);
+        o.addMegfigyeltUtszakasz(u);
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+        o.tick();
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Alagutszakasz allapotvaltozasanak tesztelese
      */
-    public void alagutSzakaszIdojarasFrissitesTeszt(){}
+    public void alagutSzakaszIdojarasFrissitesTeszt(){
+        System.out.println("\n--- [ TESZT INDUL: 20. alagutSzakaszIdojarasFrissitesTeszt ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+        Ora o = new Ora(1);
+        Uttest ut = new Uttest();
+        Alagutszakasz u = new Alagutszakasz(ut);
+        o.addMegfigyeltUtszakasz(u);
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+        o.tick();
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Hokotro soszorassal takarit teszt

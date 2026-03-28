@@ -28,6 +28,18 @@ public class Ora {
     private List<ILepheto> lepheto;
 
     /**
+     *  Itt tárolja az útszakaszokat, hogy az időjárás frissítésekor értesíteni tudja őket.
+     */ 
+    private List<Utszakasz> megfigyeltUtszakaszok = new ArrayList<>();
+
+    /**
+     *  Feliratkozás: A Skeleton hívja meg létrehozáskor
+     */
+    public void addMegfigyeltUtszakasz(Utszakasz u) {
+        megfigyeltUtszakaszok.add(u);
+    }
+
+    /**
      * Konstruktor.
      * @param ticksPerSnowCm ennyi tick szükséges 1 cm hó lehullásához
      */
@@ -43,6 +55,9 @@ public class Ora {
      * regisztrált ILepheto objektum idoEltelt() metódusát.
      */
     public void tick() {
+        for (Utszakasz u : megfigyeltUtszakaszok) {
+            u.idojarasFrissites();
+        }
 
     }
 

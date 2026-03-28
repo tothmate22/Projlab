@@ -17,18 +17,26 @@ public class Uttest {
             }
             savok.add(sav);
         }
+        Skeleton.nyit("Uttest <<create>>");
+        Skeleton.zar("Uttest létrehozva");
     }
 
     public Uttest(List<List<Utszakasz>> savok) {
         this.savok = savok;
+        Skeleton.nyit("Uttest <<create>>");
+        Skeleton.zar("Uttest létrehozva");
     }
 
 
     public boolean balraSorolasLehetseges(Utszakasz jelenlegi) {
-        return false;
+        Skeleton.nyit("Uttest.balraSorolasLehetseges()");
+        Skeleton.zar("Uttest.balraSorolasLehetseges() visszater: " + true);
+        return true;
     }
 
     public boolean jobbraSorolasLehetseges(Utszakasz jelenlegi) {
-        return false;
+        Skeleton.nyit("Uttest.jobbraSorolasLehetseges()");
+        Skeleton.zar("Uttest.jobbraSorolasLehetseges() visszater: " + true);
+        return true;
     }
 }
