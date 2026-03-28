@@ -50,4 +50,12 @@ public abstract class Jatekos {
         Skeleton.getInstance().zar("Jatekos.getEgyenleg() -> " + this.egyenleg);
         return this.egyenleg;
     }
+
+    /**
+     * Beallitja a jatekos egyenleget a megadott ertekre. Ez a metodus elsosorban tesztelesi celokra szolgalt, hogy egy adott helyzetet szimulaljunk.
+     * @param i
+     */
+    public void setEgyenleg(int i) {
+        this.egyenleg = i;
+    }
 }

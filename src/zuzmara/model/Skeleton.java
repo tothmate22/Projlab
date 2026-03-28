@@ -1,5 +1,6 @@
 package zuzmara.model;
 
+import zuzmara.enums.AutoAllapot;
 import zuzmara.enums.Epulet;
 import zuzmara.model.fejek.Sarkanyfej;
 
@@ -86,26 +87,139 @@ public class Skeleton {
     public void autoElszallitasTeszt(){}
 
     /**
-     * Hokotro nem tud belepni egy mezore teszteles
+     * Hokotro nem tud belepni egy mezore teszteles.
+     * A celutszakasz (u2) foglalt, mert egy Auto all rajta.
+     * A hokotro megprobálja a lepetest, de jarmutElore() false-t ad vissza.
      */
-    public void hokotroNemTudBelepniTeszt(){}
+    public void hokotroNemTudBelepniTeszt() {
+        System.out.println("\n--- [ TESZT INDUL: Hokotro nem tud belepni az utszakaszra ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
 
-    /**
-     * Hokotro sarkanyfejjel takarit teszt
-     */
-    public void hokotroSarkanyFejTeszt(){
-        System.out.println("Hokotrón sárkányfej tesztelése...");
+        // 1: new Hokotro()
+        Hokotro h1 = new Hokotro();
+
+        // 2: new Utszakasz() - jelenlegi pozicio, itt all a hokotro
+        Uttest ut = new Uttest();
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+
+        // 3: new Utszakasz() - kovetkezo utszakasz (ez lesz foglalt)
+        Utszakasz u2 = new Utszakasz(ut, "HAZ");
+
+        // 4: new Auto() - ez foglalja el u2-t
+        Auto a = new Auto(u2, AutoAllapot.HALAD);
+
+        // 5-6: poziciok beallitasa
+        u1.setKozlekedoJarmu(h1);  // h1 all u1-en
+        u2.setKozlekedoJarmu(a);   // u2 foglalt -> foglaltE() = true
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        // u1.jarmutElore() belsejeben megnezi h1-nek hova lephet,
+        // u2.foglaltE() = true, ezert nem tud belepni, false-t ad vissza
+        u1.jarmutElore();
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
     }
 
     /**
-     * Egy fej eleterej elfogy, ezutan elveszik teszteles
+     * Hokotro sarkanyfejjel takarit teszt.
+     * A takarito iranyitja a hokotrót egy havas utszakaszra,
+     * a sarkanyfej azonnal felolvasztja a havat, a hokotro pénzt keres.
      */
-    public void fejEleterejeElfogyTeszt(){}
+    public void hokotroSarkanyFejTeszt() {
+        System.out.println("\n--- [ TESZT INDUL: Hokotro sarkányfejjel takarít, hó elolvad ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+
+        // 1: new Takarito()
+        Takarito t1 = new Takarito("Teszt takarito");
+
+        // 2: new Hokotro()
+        Hokotro h1 = new Hokotro();
+
+        // 3: new Sarkanyfej(kerozintartaly=100)
+        Sarkanyfej sf1 = new Sarkanyfej(100);
+
+        // 4: new Utszakasz() - havas utszakasz
+        Uttest ut = new Uttest();
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+
+        // kapcsolatok beallitasa
+        t1.setHokotro(h1);
+        h1.addFej(sf1);
+        h1.setAktualisFej(sf1);
+        u1.setKozlekedoJarmu(h1);
+        u1.setHo(10);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        t1.iranyit(u1);
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
-     * Uj hokotro vasarlasanak a tesztje
+     * Egy fej eleterej elfogy, ezutan elveszik teszteles.
+     * Takaritas kozben sf1 eletereje nullara csokken,
+     * a hokotro eltavolitja (removeFej) es a kovetkezo fejre valt (cserelFej).
      */
-    public void hokotroVasarlasTeszt(){}
+    public void fejEleterejeElfogyTeszt() {
+        System.out.println("\n--- [ TESZT INDUL: Fej eletereje elfogy, automatikus csere ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+
+        // 1: new Takarito()
+        Takarito t1 = new Takarito("Teszt takarito");
+
+        // 2: new Hokotro()
+        Hokotro h1 = new Hokotro();
+
+        // 3: new Sarkanyfej - eletero=1, hogy biztosan elfogyjon takaritaskor
+        Sarkanyfej sf1 = new Sarkanyfej(100);
+        sf1.setEletero(1);
+
+        // 4: new Utszakasz() - havas utszakasz
+        Uttest ut = new Uttest();
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+
+        // kapcsolatok beallitasa
+        t1.setHokotro(h1);
+        h1.addFej(sf1);
+        h1.setAktualisFej(sf1);
+        u1.setKozlekedoJarmu(h1);
+        u1.setHo(10);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        // iranyit -> halad -> takarit -> sf1.kopas (eletero=0)
+        // -> letakaritas -> removeFej(sf1) -> cserelFej() -> penztKeres
+        t1.iranyit(u1);
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
+
+    /**
+     * Uj hokotro vasarlasanak a tesztje.
+     * A takarito egyenlege elegendo (>= 2000), ezert
+     * levonodik az ar (penztKap(-2000)) es letrejon az uj Hokotro peldany.
+     */
+    public void hokotroVasarlasTeszt() {
+        System.out.println("\n--- [ TESZT INDUL: Hokotro vasarlas ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+
+        // 1: new Takarito() - elegendo egyenleggel
+        Takarito t1 = new Takarito("Teszt takarito");
+        t1.setEgyenleg(3000);
+
+        // a takarito mar rendelkezik egy elromlott hokotróval
+        Hokotro h1 = new Hokotro();
+        t1.setHokotro(h1);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        // vasarol(2000): egyenleg >= 2000 -> penztKap(-2000) -> «create» h2: Hokotro
+        t1.vasarol(2000);
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Busz celba eresenek a tesztje
@@ -147,7 +261,7 @@ public class Skeleton {
         System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
         
         // 1: <<create>> Ora
-        Ora o = new Ora();
+        Ora o = new Ora(0);
         // 2: <<create>> Uttest
         Uttest ut = new Uttest();
         // 3: <<create>> Utszakasz(ut, NORMAL, HAZ)
