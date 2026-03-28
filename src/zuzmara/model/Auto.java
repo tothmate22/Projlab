@@ -1,23 +1,24 @@
-package zuzmara.model;
-import zuzmara.enums;
+package zuzmara.model.*;
+import zuzmara.enums.AutoAllapot;
+import zuzmara.interfaces.ICsuzshat;
+import zuzmara.interfaces.Ilepheto;
 
-
-public class Auto extends Jarmu implements Icsuszhat, ILepheto{
+public class Auto extends Jarmu implements ICsuszhat, ILepheto{
   private Utszakasz cel;
   private AutoAllapot allapot;
 
-  public Auto(Utszakasz poz,Utszakasz cel, Autoallapot ap){
+  public Auto(Utszakasz poz,AutoAllapot ap){
     super(poz);
-    this.cel = cel;
-    this.allapot = ap;
     Skeleton.nyit("Auto <<create>>");
+    this.allapot = ap;
     Skeleton.zar("Auto letrejott.");
   }
-  
+  @Override
   public void halad(Utszakasz cel) {
     Skeleton.nyit("Auto.halad(Utszakasz)");
-
-    if (!cel.foglaltE()) {
+    this.cel = cel;
+    boolean foglalt = Skeleton.kerdez("Foglalt a cel utszakasz? (i/n)");
+    if (!foglalt) {
         cel.belep(this);
         celbaErt();
     } else {
@@ -26,7 +27,12 @@ public class Auto extends Jarmu implements Icsuszhat, ILepheto{
 
     Skeleton.zar("Auto.halad() visszater");
   }
-  
+  @Override
+  public void idoEltelt(){
+    Skeleton.nyit("Auto.idoEltelt()");
+    Skeleton.zar("Auto.idoEltelt() visszater");
+  }
+
   public void celbaErt() {
     Skeleton.nyit("Auto.celbaErt()");
     allapotValtoztat(AutoAllapot.VARAKOZIK);
@@ -38,9 +44,15 @@ public class Auto extends Jarmu implements Icsuszhat, ILepheto{
     allapotValtoztat(AutoAllapot.ELAKADT);
     Skeleton.zar("Auto.elakad() visszater");
   }
-
+  @Override
   public void kicsuszik() {
     Skeleton.nyit("Auto.kicsuszik()");
+
+    boolean vanElotteJarmu = Skeleton.kerdez("Van az auto elott jarmu, amivel utkozik?(i/n)");
+    if (vanElotteJarmu) {
+        this.utkozott(null);
+    }
+
     Skeleton.zar("Auto.kicsuszik() visszater");
   }
   
@@ -56,6 +68,6 @@ public class Auto extends Jarmu implements Icsuszhat, ILepheto{
     this.allapot = uj;
     Skeleton.zar("Auto.allapotValtoztat() visszater");
   }
-
   
 }
+
