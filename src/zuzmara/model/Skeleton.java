@@ -66,26 +66,103 @@ public class Skeleton {
             System.out.print("    "); 
         }
     }
+
     /**
      * Autó normal haladasanak a tesztelese
      */
-    public void autoNormalHaladasTeszt(){}
+    public void autoNormalHaladasTeszt() {
+        System.out.println("\n--- [ TESZT INDUL: Auto normal haladas ] ---");
+        System.out.println("--- [ INICIALIZALAS ] ---");
+        // 1: new Utszakasz()
+        Uttest ut = new Uttest();
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+        Utszakasz u2 = new Utszakasz(ut, "MUNKAHELY");
+        // 2: new Auto()
+        Auto a1 = new Auto(u1, AutoAllapot.HALAD);
+
+        // 3: pozíciók beállítása
+        a1.setPozicio(u1);
+        u1.setKozlekedoJarmu(a1);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        a1.halad(u2);
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Auto elakadasanak a tesztelese
+     * Az autó új útszakaszra lép rá, amin ha legalább 20cm hó van, elakad
      */
-    public void autoElakadasTeszt(){}
+    public void autoElakadasTeszt() {
+        System.out.println("\n--- [ TESZT INDUL: Auto elakad ] ---");
+        System.out.println("--- [ INICIALIZALAS ] ---");
+        // 1: new Utszakasz()
+        Uttest ut = new Uttest();
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+        Utszakasz u2 = new Utszakasz(ut, "MUNKAHELY");
+        // 2: new Auto()
+        Auto a1 = new Auto(u1, AutoAllapot.HALAD);
+        // 3: pozíciók beállítása
+        a1.setPozicio(u1);
+        u1.setKozlekedoJarmu(a1);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+        //ha 25 cm hó van legalább a sávon, akkor elakad
+        a1.halad(u2); // itt a kerdez() dönti el
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Auto megcsuszik es utkozik teszteles
+     * Felhasználótól megkérdezi van-e előtte autó aminek nekiütközne
      */
-    public void autoCsuszasUtkozesTeszt(){}
+    public void autoCsuszasUtkozesTeszt() {
+        System.out.println("\n--- [ TESZT INDUL: Auto csuszas es utkozes ] ---");
+        System.out.println("--- [ INICIALIZALAS ] ---");
+        // 1: new Utszakasz()
+        Uttest ut = new Uttest();
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+        // 2: new Auto()
+        Auto a1 = new Auto(u1, AutoAllapot.HALAD);
+        // 3: pozíciók beállítása
+        a1.setPozicio(u1);
+        u1.setKozlekedoJarmu(a1);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+        //Ha van előtte autó akkor megváltozik az állapota, ha nincs akkor nincs gond.
+        a1.kicsuszik(); // itt kérdez: van-e előtte autó
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Auto elszallitasanak a tesztelese
+     * Már mentésre váró autó létrehozása
+     * Az autómentő elszállítja az autót, amitől az állapota megváltozik várakozikra
      */
-    public void autoElszallitasTeszt(){}
+    public void autoElszallitasTeszt() {
+        System.out.println("\n--- [ TESZT INDUL: Auto elszallitasa ] ---");
+        System.out.println("--- [ INICIALIZALAS ] ---");
+        // 1: new Utszakasz()
+        Uttest ut = new Uttest();
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+        // 2: new Auto()-mentésre vár
+        Auto a1 = new Auto(u1, AutoAllapot.MENTESRE_VAR);
+        // 3: new automento()
+        Automento am = new Automento();
+        // 4: pozíciók beállítása
+        a1.setPozicio(u1);
+        u1.setKozlekedoJarmu(a1);
 
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        am.elszallit(a1);
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
     /**
      * Hokotro nem tud belepni egy mezore teszteles.
      * A celutszakasz (u2) foglalt, mert egy Auto all rajta.
