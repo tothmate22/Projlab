@@ -109,6 +109,7 @@ public class Skeleton {
         Auto a = new Auto(u2, AutoAllapot.HALAD);
 
         // 5-6: poziciok beallitasa
+        h1.setPozicio(u1);
         u1.setKozlekedoJarmu(h1);  // h1 all u1-en
         u2.setKozlekedoJarmu(a);   // u2 foglalt -> foglaltE() = true
 
@@ -116,7 +117,7 @@ public class Skeleton {
 
         // u1.jarmutElore() belsejeben megnezi h1-nek hova lephet,
         // u2.foglaltE() = true, ezert nem tud belepni, false-t ad vissza
-        u1.jarmutElore();
+        h1.halad(u2);
 
         System.out.println("\n--- [ TESZT VEGE ] ---");
     }
@@ -138,16 +139,16 @@ public class Skeleton {
 
         // 3: new Sarkanyfej(kerozintartaly=100)
         Sarkanyfej sf1 = new Sarkanyfej(100);
+        sf1.setEletero(100); // Beállítjuk a sárkányfej életerejét, hogy legyen mit csökkenteni
 
         // 4: new Utszakasz() - havas utszakasz
         Uttest ut = new Uttest();
         Utszakasz u1 = new Utszakasz(ut, "HAZ");
 
         // kapcsolatok beallitasa
-        t1.setHokotro(h1);
         h1.addFej(sf1);
         h1.setAktualisFej(sf1);
-        u1.setKozlekedoJarmu(h1);
+        t1.setHokotro(h1);
         u1.setHo(10);
 
         System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
@@ -178,13 +179,14 @@ public class Skeleton {
 
         // 4: new Utszakasz() - havas utszakasz
         Uttest ut = new Uttest();
+        Utszakasz u0 = new Utszakasz(ut, "HAZ");
         Utszakasz u1 = new Utszakasz(ut, "HAZ");
 
         // kapcsolatok beallitasa
         t1.setHokotro(h1);
         h1.addFej(sf1);
         h1.setAktualisFej(sf1);
-        u1.setKozlekedoJarmu(h1);
+        u0.setKozlekedoJarmu(h1);
         u1.setHo(10);
 
         System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");

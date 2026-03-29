@@ -52,12 +52,12 @@ public class Utszakasz {
      * Megpróbálja az előtte lévő útszakaszra vinni a járművet az útszakaszon.
      * @return true, ha a jármű sikeresen előre haladt, false egyébként
      */
-    public boolean jarmutElore() {
+    public boolean jarmutElore(Utszakasz kovetkezo) {
         Skeleton.nyit("Utszakasz.jarmutElore()");
-        // Jármű előre haladása logikája
-        Skeleton.zar("Utszakasz.jarmutElore() visszater: " + true);
+        boolean foglalt = kovetkezo.foglaltE();
+        Skeleton.zar("Utszakasz.jarmutElore() visszater: " + String.valueOf(!foglalt));
 
-        return true;
+        return !foglalt;
     }
 
     /**

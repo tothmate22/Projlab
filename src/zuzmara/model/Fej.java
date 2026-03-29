@@ -17,7 +17,9 @@ public abstract class Fej {
      * A kopas megvalosítasa, a takaritas következtében
      */
     public void kopas(){
+        Skeleton.getInstance().nyit("Fej.kopas()");
         this.eletero--;
+        Skeleton.getInstance().zar("Fej.kopas() visszater");
     }
 
     /**
@@ -26,5 +28,9 @@ public abstract class Fej {
      */
     public void setEletero(int i) {
         this.eletero = i;
+    }
+
+    public int getEletero() {
+        return eletero;
     }
 }

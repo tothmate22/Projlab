@@ -2,7 +2,7 @@ package zuzmara.model.fejek;
 
 import zuzmara.model.Fej;
 import zuzmara.model.Utszakasz;
-
+import zuzmara.model.Skeleton;
 /**
  * Biokerozin használatával felolvasztja az összes havat és jeget azonnal
  * A Fej osztályból származik
@@ -18,6 +18,10 @@ public class Sarkanyfej extends Fej {
      */
     @Override
     public void takarit(Utszakasz u){
-        return;
+        Skeleton.getInstance().nyit("SarkanyFej.takarit(u1)");
+        kopas();
+        u.letakaritas();
+        kerozintartaly--;
+        Skeleton.getInstance().zar("SarkanyFej.takarit() visszater");
     }
 }

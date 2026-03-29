@@ -1,7 +1,8 @@
-package zuzmara.model.*;
+package zuzmara.model;
+
 import zuzmara.enums.AutoAllapot;
-import zuzmara.interfaces.ICsuzshat;
-import zuzmara.interfaces.Ilepheto;
+import zuzmara.interfaces.ICsuszhat;
+import zuzmara.interfaces.ILepheto;
 
 public class Auto extends Jarmu implements ICsuszhat, ILepheto{
   private Utszakasz cel;
