@@ -447,7 +447,7 @@ public class Skeleton {
         System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
         // A szekvenciadiagram alapján léptetjük a buszt a jarmutElore() metódussal
         // Az u0-n lévő jármű (b2) megpróbál haladni az u1 felé.
-        u0.jarmutElore();
+        u0.jarmutElore(u1);
 
         System.out.println("\n--- [ TESZT VEGE ] ---");
     }
