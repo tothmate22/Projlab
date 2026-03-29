@@ -17,6 +17,26 @@ public class Takarito extends Jatekos{
     }
 
     /**
+     * Fejvasarlas a mar meglevo hokotrohoz.
+     */
+    public void vasarol(int osszeg, Fej f) {
+        Skeleton.getInstance().nyit("Takarito.vasarol(" + osszeg + ", f: fej)");
+        if (!hokotrok.isEmpty()) {
+            hokotrok.get(0).vasarol(f, osszeg);
+        }
+        Skeleton.getInstance().zar("Takarito.vasarol() visszater");
+    }
+
+    /**
+     * Fejvasarlaskor csokkenti az egyenleget a megadott osszeggel.
+     */
+    public void csokkentEgyenlegVasarlaskor(int osszeg) {
+        Skeleton.getInstance().nyit("Takarito.setEgyenleg(egyenleg-osszeg)");
+        setEgyenleg(this.egyenleg - osszeg);
+        Skeleton.getInstance().zar("Takarito.setEgyenleg() visszater");
+    }
+
+    /**
      * A hókotró irányítását végző függvény amellyel megadja a játékos hogy merre szeretne menni
      */
     public void iranyit(Utszakasz kovetkezo){

@@ -41,9 +41,11 @@ public class Hokotro extends Jarmu{
      * @param fej a hozzáadni kívánt fej
      */
     public void addFej(Fej fej){
+        Skeleton.nyit("Hokotro.addFej(f)");
         if(fej!=null && !fejek.contains(fej)){
             fejek.addLast(fej);
         }
+        Skeleton.zar("Hokotro.addFej() visszater");
     }
 
     /**
@@ -79,7 +81,22 @@ public class Hokotro extends Jarmu{
     /**
      * Vásárlást megvalósító metódus
      */
-    public void vasarol(){}
+    public void vasarol(){
+        Skeleton.nyit("Hokotro.vasarol()");
+        Skeleton.zar("Hokotro.vasarol() visszater");
+    }
+
+    /**
+     * Fejvasarlas vegrehajtasa a hokotron.
+     */
+    public void vasarol(Fej f, int osszeg) {
+        Skeleton.nyit("Hokotro.vasarol()");
+        addFej(f);
+        if (takarito != null) {
+            takarito.csokkentEgyenlegVasarlaskor(osszeg);
+        }
+        Skeleton.zar("Hokotro.vasarol() visszater");
+    }
 
     /**
      * vált a listában következő fejre
@@ -94,7 +111,7 @@ public class Hokotro extends Jarmu{
      * jelenlegi fej beállítása
      * @param sf1
      */
-    public void setAktualisFej(Sarkanyfej sf1) {
+    public void setAktualisFej(Fej sf1) {
         this.aktualisFej = sf1;
     }
 
@@ -119,12 +136,15 @@ public class Hokotro extends Jarmu{
         Skeleton.getInstance().nyit("Hokotro.halad(u1)");
         boolean belephet = this.pozicio.jarmutElore(cel);
         if (belephet) {
+            boolean voltSzennyezodes = cel.ho > 0 || cel.jeg > 0;
             cel.belep(this);
             if (aktualisFej != null) {
                 takarit(cel);
             }
             kopas();
-            penztKeres();
+            if (voltSzennyezodes) {
+                penztKeres();
+            }
         }
         Skeleton.getInstance().zar("Hokotro.halad() visszater");
     }

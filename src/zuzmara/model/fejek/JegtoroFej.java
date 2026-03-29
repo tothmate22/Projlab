@@ -1,6 +1,7 @@
 package zuzmara.model.fejek;
 
 import zuzmara.model.Fej;
+import zuzmara.model.Skeleton;
 import zuzmara.model.Utszakasz;
 
 /**
@@ -9,6 +10,10 @@ import zuzmara.model.Utszakasz;
  */
 public class JegtoroFej extends Fej {
     
+    public JegtoroFej() {
+        this.eletero = 50;
+    }
+    
     /**
      * Az adott útszakaszon, ha jég van azt feltöri és feltört jégként ott hagyja az úton. 
      * Az út csúszóssága ezzel eltűnik. 
@@ -16,6 +21,9 @@ public class JegtoroFej extends Fej {
      */
     @Override
         public void takarit(Utszakasz u){
-            return;
+            Skeleton.getInstance().nyit("JegtoroFej.takarit(u1)");
+            kopas();
+            u.letakaritas();
+            Skeleton.getInstance().zar("JegtoroFej.takarit() visszater");
         }
 }

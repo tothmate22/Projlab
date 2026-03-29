@@ -1,6 +1,7 @@
 package zuzmara.model.fejek;
 
 import zuzmara.model.Fej;
+import zuzmara.model.Skeleton;
 import zuzmara.model.Utszakasz;
 
 /** 
@@ -10,12 +11,19 @@ import zuzmara.model.Utszakasz;
  */
 public class HanyoFej extends Fej {
     
+    public HanyoFej() {
+        this.eletero = 50;
+    }
+    
     /**
      * Az adott útszakaszon, ha hó vagy feltört jég van azt kilöki egyenesen az út szélére. 
      * Ha nem hó vagy feltört jég van, akkor nem csinál semmit.
      */
     @Override
     public void takarit(Utszakasz u){
-        return;
+        Skeleton.getInstance().nyit("HanyoFej.takarit(u1)");
+        kopas();
+        u.letakaritas();
+        Skeleton.getInstance().zar("HanyoFej.takarit() visszater");
     } 
 }

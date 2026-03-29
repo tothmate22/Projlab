@@ -2,7 +2,9 @@ package zuzmara.model;
 
 import zuzmara.enums.AutoAllapot;
 import zuzmara.enums.Epulet;
+import zuzmara.model.fejek.JegtoroFej;
 import zuzmara.model.fejek.Sarkanyfej;
+import zuzmara.model.fejek.SoszoroFej;
 
 import java.time.Clock;
 import java.util.Scanner;
@@ -216,16 +218,18 @@ public class Skeleton {
 
         // 3: new Sarkanyfej(kerozintartaly=100)
         Sarkanyfej sf1 = new Sarkanyfej(100);
-        sf1.setEletero(100); // Beállítjuk a sárkányfej életerejét, hogy legyen mit csökkenteni
 
-        // 4: new Utszakasz() - havas utszakasz
+        // 4: new Utszakasz() - kezdo es cel utszakasz
         Uttest ut = new Uttest();
+        Utszakasz u0 = new Utszakasz(ut, "HAZ");
         Utszakasz u1 = new Utszakasz(ut, "HAZ");
 
         // kapcsolatok beallitasa
         h1.addFej(sf1);
         h1.setAktualisFej(sf1);
         t1.setHokotro(h1);
+        h1.setPozicio(u0);
+        u0.setKozlekedoJarmu(h1);
         u1.setHo(10);
 
         System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
@@ -263,6 +267,7 @@ public class Skeleton {
         t1.setHokotro(h1);
         h1.addFej(sf1);
         h1.setAktualisFej(sf1);
+        h1.setPozicio(u0);
         u0.setKozlekedoJarmu(h1);
         u1.setHo(10);
 
@@ -455,22 +460,131 @@ public class Skeleton {
     /**
      * Fejvasarlas tesztelese, ami sikeres
      */
-    public void sikeresVasarlasTeszt(){}
+    public void sikeresVasarlasTeszt(){
+        System.out.println("\n--- [ TESZT INDUL: Sikeres fej vasarlas ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+
+        // 1: new Takarito() - elegendo egyenleggel
+        Takarito t1 = new Takarito("Teszt takarito");
+        t1.setEgyenleg(3000);
+
+        // 2: new Hokotro()
+        Hokotro h1 = new Hokotro();
+
+        // 3: new Fej()
+        Fej f = new Sarkanyfej(100);
+
+        // 4: kapcsolatok beallitasa
+        t1.setHokotro(h1);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        // t1.vasarol(osszeg, f) -> h1.vasarol() -> h1.addFej(f) -> t1.setEgyenleg(...)
+        int osszeg = 100;
+        t1.vasarol(osszeg, f);
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Sikertelen fejvasarlas tesztelese
      */
-    public void sikertelenVasarlasTeszt(){}
+    public void sikertelenVasarlasTeszt(){
+        System.out.println("\n--- [ TESZT INDUL: Sikertelen fej vasarlas (mar letezo fej) ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+
+        // 1: new Takarito() - elegendo egyenleggel
+        Takarito t1 = new Takarito("Teszt takarito");
+        t1.setEgyenleg(3000);
+
+        // 2: new Hokotro()
+        Hokotro h1 = new Hokotro();
+
+        // 4: kapcsolatok beallitasa
+        t1.setHokotro(h1);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        // t1.vasarol(osszeg, soproFej) -> h1.vasarol()
+        // duplikalt fej eseten nincs penzlevonas
+        int osszeg = 100;
+        Skeleton.nyit("Takarito.vasarol(" + osszeg + ", soproFej)");
+        h1.vasarol();
+        Skeleton.zar("Takarito.vasarol() visszater");
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Nem szennyezet út takaritasanak tesztelese
     */
-    public void urestakaritasTeszt(){}
+    public void urestakaritasTeszt(){
+        System.out.println("\n--- [ TESZT INDUL: Hokotro nem szennyezett utszakaszra lep ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+
+        // 1: new Takarito()
+        Takarito t1 = new Takarito("Teszt takarito");
+
+        // 2: new Hokotro()
+        Hokotro h1 = new Hokotro();
+
+        // 3: new Utszakasz() - jelenlegi es kovetkezo pozicio
+        Uttest ut = new Uttest();
+        Utszakasz u0 = new Utszakasz(ut, "HAZ");
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+
+        // kapcsolatok beallitasa
+        t1.setHokotro(h1);
+        h1.setPozicio(u0);
+        u0.setKozlekedoJarmu(h1);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        // sk.Skeleton -> t1.Takarito: iranyit(u1)
+        // t1.Takarito -> h1.Hokotro: halad(u1)
+        // h1.Hokotro -> u1.Utszakasz: jarmutElore() -> true
+        // h1.Hokotro -> u1.Utszakasz: belep(this)
+        t1.iranyit(u1);
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Jeges ut takaritasanak tesztelese
      */
-    public void jegtakaritasTeszt(){}
+    public void jegtakaritasTeszt(){
+        System.out.println("\n--- [ TESZT INDUL: Hokotro jégtörőfejjel takarít ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+
+        // 1: new Takarito()
+        Takarito t1 = new Takarito("Teszt takarito");
+
+        // 2: new Hokotro()
+        Hokotro h1 = new Hokotro();
+
+        // 3: new JegtoroFej(sotartaly=100)
+        JegtoroFej sf1 = new JegtoroFej();
+    
+
+        // 4: new Utszakasz() - kezdo es cel utszakasz
+        Uttest ut = new Uttest();
+        Utszakasz u0 = new Utszakasz(ut, "HAZ");
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+
+        // kapcsolatok beallitasa
+        h1.addFej(sf1);
+        h1.setAktualisFej(sf1);
+        t1.setHokotro(h1);
+        h1.setPozicio(u0);
+        u0.setKozlekedoJarmu(h1);
+        u1.setHo(10);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        t1.iranyit(u1);
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 
     /**
      * Utszakasz allapotvaltozasanak tesztelese
@@ -520,5 +634,37 @@ public class Skeleton {
     /**
      * Hokotro soszorassal takarit teszt
      */
-    public void soSzorasTeszt(){}
+    public void soSzorasTeszt(){
+        System.out.println("\n--- [ TESZT INDUL: Hokotro sószórófejjel takarít, hó elolvad ] ---");
+        System.out.println("--- [ INICIALIZALAS (Kommunikacios diagram alapjan) ] ---");
+
+        // 1: new Takarito()
+        Takarito t1 = new Takarito("Teszt takarito");
+
+        // 2: new Hokotro()
+        Hokotro h1 = new Hokotro();
+
+        // 3: new SoszoroFej(sotartaly=100)
+        SoszoroFej sf1 = new SoszoroFej(100);
+    
+
+        // 4: new Utszakasz() - kezdo es cel utszakasz
+        Uttest ut = new Uttest();
+        Utszakasz u0 = new Utszakasz(ut, "HAZ");
+        Utszakasz u1 = new Utszakasz(ut, "HAZ");
+
+        // kapcsolatok beallitasa
+        h1.addFej(sf1);
+        h1.setAktualisFej(sf1);
+        t1.setHokotro(h1);
+        h1.setPozicio(u0);
+        u0.setKozlekedoJarmu(h1);
+        u1.setHo(10);
+
+        System.out.println("\n--- [ SZEKVENCIA KEZDODIK ] ---");
+
+        t1.iranyit(u1);
+
+        System.out.println("\n--- [ TESZT VEGE ] ---");
+    }
 }
