@@ -11,6 +11,7 @@ enum Epulet {
 class Utszakasz {
     - ho: int
     - jeg: int
+    - zuzottKo: boolean
     - havonAthaladt: int
     - kozlekedoJarmu: Jarmu
     - felrehuzodottJarmu: Jarmu
@@ -19,6 +20,7 @@ class Utszakasz {
     + jarmutElore(): boolean
     + jarmuSavotvalt_jobbra(): boolean
     + jarmuSavotvalt_balra(): boolean
+    + jarmutElore(): boolean
     + belep(Jarmu): void
     + idojarasFrissites(): void
     + foglaltE(): boolean
@@ -42,7 +44,9 @@ class Uttest {
     --
     + balraSorolasLehetseges(jelenlegi: Utszakasz): boolean
     + jobbraSorolasLehetseges(jelenlegi: Utszakasz): boolean
+    + jarmutElore(jelenlegi: Utszakasz): boolean
 }
+
 
 class Keresztezodes {
     - kijaratok: List<Uttest>
