@@ -70,12 +70,16 @@ class Busz {
   - celAllomas: Utszakasz
   - hatralevoJavitasiIdo: int
   - vezerlo: Buszvezeto
+  - kovetkezoLepes: Utszakasz
   + halad(cel: Utszakasz): void
   + utkozott(masik: Jarmu): void
   + kicsuszik(): void
   + celbaErt(): void
   + idoEltelt(): void
   + setCelAllomas(ujCel: Utszakasz): void
+  + setKovetkezoLepes(ujLepes: Utszakasz): void
+  + getKovetkezoLepes(): Utszakasz
+  + felszall(bv: Buszvezeto)
 }
 
 Jatekos <|-- Buszvezeto
