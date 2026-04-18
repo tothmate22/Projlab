@@ -1,0 +1,47 @@
+@startuml
+title GPS.kovetkezoLepes(kezdo, cel)
+
+start
+
+:Létrehoz egy üres sort;
+:Létrehoz egy üres meglátogatott halmazt;
+:Létrehoz egy üres szülő leképezést;
+:A kezdő útszakaszt a sorba helyezi;
+:A kezdő útszakaszt meglátogatottként megjelöli;
+:A célElerve értékét hamisra állítja;
+
+while (Van elem a sorban\nés a cél nincs elérve?) is (igen)
+  :Kiveszi a sor elejéről az aktuális útszakaszt;
+
+  if (Az aktuális útszakasz a cél?) then (igen)
+    :A célElerve értékét igazra állítja;
+  else (nem)
+    :Lekéri az aktuális útszakasz szomszédait;
+
+    while (Van még vizsgálandó szomszéd?) is (igen)
+      :Kiválaszt egy szomszédot;
+
+      if (Még nem meglátogatott\nés járható?) then (igen)
+        :Beállítja a szülőjét az aktuális útszakaszra;
+        :A szomszédot a sorba helyezi;
+        :A szomszédot meglátogatottként megjelöli;
+      else (nem)
+      endif
+
+    endwhile (nem)
+  endif
+
+endwhile (nem)
+
+if (A célElerve hamis?) then (igen)
+  :Null értékkel tér vissza;
+  stop
+else (nem)
+endif
+
+:Visszafejti az útvonalat a célból a kezdőig;
+:Meghatározza az útvonal első lépését;
+:Visszaadja az első lépést;
+
+stop
+@enduml
