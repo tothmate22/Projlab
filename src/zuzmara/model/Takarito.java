@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Takarito extends Jatekos{
     ArrayList<Hokotro> hokotrok;
+    private Hokotro aktualisHokotro;
 
     /**
      * A hókotró és a hókotró fejek vásárlása esetén a játékos pénze az adott összeggel csökken

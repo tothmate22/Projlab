@@ -35,6 +35,13 @@ public class Idojaras implements ILepheto{
     }
 
     /**
+     *  Feliratkozás: A Skeleton hívja meg létrehozáskor
+     */
+    public void addUtszakasz(Utszakasz u) {
+        utszakaszok.add(u);
+    }
+
+    /**
      * Meghívja az összes ismert Útszakasz idojarasFrissites() 
      * metódusát. Az egyes szakaszok maguk döntik el típusuk 
      * alapján, hogy kell-e havat kapniuk.

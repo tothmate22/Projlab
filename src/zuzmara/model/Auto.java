@@ -25,11 +25,13 @@ public class Auto extends Jarmu implements ICsuszhat, ILepheto {
      *
      * @param poz az autó kezdeti pozíciója
      * @param ap az autó kezdeti állapota
+     * @param cel az autó cél útszakasza
      */
-    public Auto(Utszakasz poz, AutoAllapot ap) {
+    public Auto(Utszakasz poz, AutoAllapot ap, Utszakasz cel) {
         super(poz);
         Skeleton.nyit("Auto <<create>>");
         this.allapot = ap;
+        this.cel = cel;
         Skeleton.zar("Auto letrejott.");
     }
 
