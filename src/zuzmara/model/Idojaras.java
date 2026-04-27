@@ -23,15 +23,18 @@ public class Idojaras implements ILepheto{
      * idojarasFrissites() metódust.
      */
     private List<Utszakasz> utszakaszok;
+    private String name;
 
     /**
      * Konstruktor.
      * @param utszakaszok az összes útszakasz listája
      * @param maxIntersectionSnow maximális hó kereszteződésekben
+     * @param name az időjárás neve
      */
-    public Idojaras(List<Utszakasz> utszakaszok, int maxIntersectionSnow) {
+    public Idojaras(List<Utszakasz> utszakaszok, int maxIntersectionSnow, String name) {
         this.utszakaszok = utszakaszok;
         this.maxIntersectionSnow = maxIntersectionSnow;
+        this.name = name;
     }
 
     /**
@@ -47,7 +50,9 @@ public class Idojaras implements ILepheto{
      * alapján, hogy kell-e havat kapniuk.
      */
     public void snowfall() {
-        
+        for (Utszakasz u : utszakaszok) {
+            u.idojarasFrissites();
+        }
     }
 
     /**
@@ -57,6 +62,12 @@ public class Idojaras implements ILepheto{
      */
     @Override
     public void idoEltelt() {
-        
+        snowfall();
+    }
+
+    public String getInfo() {
+        return "info " + name + " (Időjárás):\n" + 
+            "maxIntersectionSnow: " + maxIntersectionSnow + "\n" +
+            "utszakaszokSzama: " + utszakaszok.size();
     }
 }

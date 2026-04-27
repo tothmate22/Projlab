@@ -20,6 +20,7 @@ public class Ora {
      * Ennyi tick szükséges 1 cm hó lehullásához.
      */
     private int ticksPerSnowCm;
+    private String name;
 
     /**
      * Az összes időre érzékeny objektum listája.
@@ -30,11 +31,13 @@ public class Ora {
     /**
      * Konstruktor.
      * @param ticksPerSnowCm ennyi tick szükséges 1 cm hó lehullásához
+     * @param name az óra neve
      */
-    public Ora(int ticksPerSnowCm) {
+    public Ora(int ticksPerSnowCm, String name) {
         this.currentTime = 0;
         this.ticksPerSnowCm = ticksPerSnowCm;
         this.lepheto = new ArrayList<>();
+        this.name = name;
     }
 
     /**
@@ -54,6 +57,21 @@ public class Ora {
      * @param l a regisztrálandó ILepheto objektum
      */
     public void addLepheto(ILepheto l) {
-        
+        lepheto.add(l);
+    }
+
+    public String getInfo() {
+        return "info " + name + " (Óra):\n" +
+            "currentTime: " + currentTime + "\n" +
+            "ticksPerSnowCm: " + ticksPerSnowCm + "\n" + 
+            "lephetokSzama: " + lepheto.size();
+    }
+
+    public int getCurrentTime() {
+        return currentTime;
+    }
+
+    public int getTicksPerSnowCm() {
+        return ticksPerSnowCm;
     }
 }
