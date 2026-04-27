@@ -7,71 +7,80 @@ import java.util.*;
  */
 public class Uttest {
     private List<List<Utszakasz>> savok = new ArrayList<>();
+    private String id;
+    private Keresztezodes celKeresztezodes;
 
-    /**
-     * Alapértelmezett konstruktor, amely létrehozza az üres úttestet.
-     */
-    public Uttest() {
-        Skeleton.nyit("Uttest <<create>>");
-        Skeleton.zar("Uttest létrehozva");
-    }
-    /**
-     * Konstruktor, amely létrehozza az úttestet a megadott paraméterek alapján.
-     * @param uthossz egy savban hány szakasz legyen generálva
-     * @param savszam hány sav legyen generálva
-     */
-    public Uttest(int uthossz, int savszam) {
-        for (int i = 0; i < savszam; i++) {
-            List<Utszakasz> sav = new ArrayList<>();
-            for (int j = 0; j < uthossz; j++) {
-                sav.add(new Utszakasz(this, null));
-            }
-            savok.add(sav);
-        }
-        Skeleton.nyit("Uttest <<create>>");
-        Skeleton.zar("Uttest létrehozva");
-    }
 
     /**
      * Konstruktor, amely létrehozza az úttestet a megadott szakaszokkal.
      * @param savok az úttest szakaszait tartalmazó lista, ahol minden belső lista egy savot reprezentál
      */
-    public Uttest(List<List<Utszakasz>> savok) {
+    public Uttest(List<List<Utszakasz>> savok, String id) {
         this.savok = savok;
-        Skeleton.nyit("Uttest <<create>>");
-        Skeleton.zar("Uttest létrehozva");
+        this.id = id;
     }
 
     /**
-     * Megpróbálja a járművet jobbra vinni az útszakaszon.
-     * @param jelenlegi az a Utszakasz, amelyen a jármű jelenleg tartózkodik
-     * @return true, ha a jármű sikeresen jobbra haladt, false egyébként
+     * Visszaadja az úttest célkereszteződését.
+     * @return a célkereszteződés
      */
-    public boolean balraSorolasLehetseges(Utszakasz jelenlegi) {
-        Skeleton.nyit("Uttest.balraSorolasLehetseges()");
-        Skeleton.zar("Uttest.balraSorolasLehetseges() visszater: " + true);
-        return true;
+    public Keresztezodes getCelKeresztezodes() {
+        return celKeresztezodes;
     }
 
     /**
-     * Megpróbálja a járművet jobbra vinni az útszakaszon.
-     * @param jelenlegi az a Utszakasz, amelyen a jármű jelenleg tartózkodik
-     * @return true, ha a jármű sikeresen jobbra haladt, false egyébként
+     * Beállítja az úttest célkereszteződését.
+     * @param celKeresztezodes a beállítandó célkereszteződés
      */
-    public boolean jobbraSorolasLehetseges(Utszakasz jelenlegi) {
-        Skeleton.nyit("Uttest.jobbraSorolasLehetseges()");
-        Skeleton.zar("Uttest.jobbraSorolasLehetseges() visszater: " + true);
-        return true;
+    public void setCelKeresztezodes(Keresztezodes celKeresztezodes) {
+        this.celKeresztezodes = celKeresztezodes;
     }
 
     /**
-     * Megpróbálja a járművet előre vinni az útszakaszon.
-     * @param jelenlegi az az Utszakasz, amelyen a jármű jelenleg tartózkodik
-     * @return true, ha a jármű sikeresen előre haladt, false egyébként
+     * Visszaadja az úttest sávjait.
+     * @return
      */
-    public boolean jarmutElore(Utszakasz jelenlegi) {
-        Skeleton.nyit("Uttest.jarmutElore()");
-        Skeleton.zar("Uttest.jarmutElore() visszater: " + true);
-        return true;
+    public List<List<Utszakasz>> getSavok() {
+        return savok;
     }
+
+    /**
+     * Visszaadja a megadott útszakaszhoz tartozó sávot.
+     * @param szakasz
+     * @return
+     */
+    List<Utszakasz> getSzakaszSavja(Utszakasz szakasz) {
+        for (List<Utszakasz> sav : savok) {
+            if (sav.contains(szakasz)) {
+                return sav;
+            }
+        }
+        return null;
+    }
+
+    /**
+    * Hozzáad egy útszakaszt az úttest adott sávjához.
+    * @param szakasz az útszakasz, amelyet hozzá kell adni
+    * @param savIndex a sáv indexe, amelyhez a szakaszt hozzá kell adni
+    */
+    public void addUtszakasz(Utszakasz szakasz, int savIndex) {
+        if (savIndex < savok.size() && savIndex >= 0) {
+            savok.get(savIndex).add(szakasz);            
+        }
+    }
+
+    public Utszakasz getUtszakasz(int savIndex, int szakaszIndex) {
+        if (savIndex < savok.size() && savIndex >= 0) {
+            List<Utszakasz> sav = savok.get(savIndex);
+            if (szakaszIndex < sav.size() && szakaszIndex >= 0) {
+                return sav.get(szakaszIndex);
+            }
+        }
+        return null;
+    }
+
+    public String getId() {
+        return id;
+    }
+    
 }

@@ -7,23 +7,14 @@ package zuzmara.model;
  */
 public class Alagutszakasz extends Utszakasz {
 
-    /**
-     * Alapértelmezett konstruktor.
-     */
-    public Alagutszakasz() {
-        super();
-        Skeleton.nyit("Alagutszakasz <<create>>");
-        Skeleton.zar("Alagutszakasz létrehozva");   
-    }
-
-    /**
-     * Konstruktor.
-     * @param szuloUttest az a Uttest, amelyhez ez az Utszakasz tartozik
-     */
-    public Alagutszakasz(Uttest szuloUttest) {
-        super(szuloUttest, "URES");
-        Skeleton.nyit("Alagutszakasz <<create>>");
-        Skeleton.zar("Alagutszakasz létrehozva");
+        /**
+        * Konstruktor.
+        * @param szuloUttest az a Uttest, amelyhez ez az Utszakasz tartozik
+        * @param epuletTipus az épület típusa, amely az útszakasz mentén van ("MEGALLO", "HAZ", "MUNKAHELY", "BAZIS", "URES")  
+        * @param id az útszakasz egyedi azonosítója
+        */
+    public Alagutszakasz(Uttest szuloUttest, String epuletTipus, String id) {
+        super(szuloUttest, epuletTipus, id); 
     }
 
     /**
@@ -31,10 +22,7 @@ public class Alagutszakasz extends Utszakasz {
      */
     @Override
     public void idojarasFrissites() {
-        Skeleton.nyit("Alagutszakasz.idojarasFrissites()");
         super.ho = 0;
         super.jeg = 0;
-        super.havonAthaladt = 0;
-        Skeleton.zar("Alagutszakasz.idojarasFrissites() visszater (ho: " + ho + ", jeg: " + jeg + ", havonAthaladt: " + havonAthaladt + ")");
     }
 }

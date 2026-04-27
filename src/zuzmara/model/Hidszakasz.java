@@ -6,22 +6,14 @@ package zuzmara.model;
 public class Hidszakasz extends Utszakasz {
 
     /**
-     * Alapértelmezett konstruktor.
-     */
-    public Hidszakasz() {
-        super();
-        Skeleton.nyit("Hidszakasz <<create>>");
-        Skeleton.zar("Hidszakasz létrehozva");  
-    }
-
-    /**
      * Konstruktor.
-     * @param szuloUttest az a Uttest, amelyhez ez az Utszakasz tartozik
+     * @param szuloUttest
+     * @param epuletTipus
+     * @param id
      */
-    public Hidszakasz(Uttest szuloUttest) {
-        super(szuloUttest, "URES");
-        Skeleton.nyit("Hidszakasz <<create>>");
-        Skeleton.zar("Hidszakasz létrehozva");
+    public Hidszakasz(Uttest szuloUttest, String epuletTipus, String id) {
+        super(szuloUttest, epuletTipus, id);
+        
     }
 
 

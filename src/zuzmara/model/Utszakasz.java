@@ -1,5 +1,7 @@
 package zuzmara.model;
 
+import java.util.List;
+
 import zuzmara.enums.Epulet;
 
 /**
@@ -8,37 +10,27 @@ import zuzmara.enums.Epulet;
  * Az Utszakasz osztály felelős a járművek mozgatásáért és az időjárási viszonyok frissítéséért is.
  */
 public class Utszakasz {
+    protected String id;
     protected int ho;
     protected int jeg;
+    protected boolean zuzottKo;
     protected int havonAthaladt;
     protected Jarmu kozlekedoJarmu;
     protected Jarmu felrehuzodottJarmu;
     protected Uttest szuloUttest;
     protected Epulet epulet;
-
-    /**
-     * Alapértelmezett konstruktor.
-     */
-    public Utszakasz() {
-        ho = 0;
-        jeg = 0;
-        havonAthaladt = 0;
-        kozlekedoJarmu = null;
-        felrehuzodottJarmu = null;
-        szuloUttest = null;
-        epulet = null;
-        Skeleton.nyit("Utszakasz <<create>>");
-        Skeleton.zar("Utszakasz létrehozva");
-    }
     
     /**
      * Konstruktor.
      * @param szuloUttest az a Uttest, amelyhez ez az Utszakasz tartozik
-     * @param epuletTipus az épület típusa, amely az útszakasz mentén van ("MEGALLO", "HAZ", "MUNKAHELY", "BAZIS", "URES")    
+     * @param epuletTipus az épület típusa, amely az útszakasz mentén van ("MEGALLO", "HAZ", "MUNKAHELY", "BAZIS", "URES")  
+     * @param id az útszakasz egyedi azonosítója
     */
-    public Utszakasz(Uttest szuloUttest, String epuletTipus) {
+    public Utszakasz(Uttest szuloUttest, String epuletTipus, String id) {
+        this.id = id;
         ho = 0;
         jeg = 0;
+        zuzottKo = false;
         havonAthaladt = 0;
         kozlekedoJarmu = null;
         felrehuzodottJarmu = null;
@@ -48,28 +40,37 @@ public class Utszakasz {
         Skeleton.zar("Utszakasz létrehozva");
     }
 
+        /**
+     * Egy jármű belép az útszakaszra.
+     * @param jarmu a jármű, amely belep az útszakaszra
+     */
+    public void belep(Jarmu jarmu) {
+        kozlekedoJarmu = jarmu;
+        if (ho > 0) {
+            havonAthaladt++;
+        }
+    }
+
     /**
      * Megpróbálja az előtte lévő útszakaszra vinni a járművet az útszakaszon.
      * @return true, ha a jármű sikeresen előre haladt, false egyébként
      */
     public boolean jarmutElore(Utszakasz kovetkezo) {
-        Skeleton.nyit("Utszakasz.jarmutElore()");
-        boolean foglalt = kovetkezo.foglaltE();
-        Skeleton.zar("Utszakasz.jarmutElore() visszater: " + String.valueOf(!foglalt));
-
-        return !foglalt;
+        if (kovetkezo != null && !kovetkezo.foglaltE()) {
+            kovetkezo.belep(kozlekedoJarmu);
+            kozlekedoJarmu = null;
+            return true;
+        }
+        return false;
     }
+
 
     /**
      * Megpróbálja a járművet jobbra vinni az útszakaszon.
      * @return true, ha a jármű sikeresen jobbra változott, false egyébként
      */
     public boolean jarmuSavotvalt_jobbra() {
-        Skeleton.nyit("Utszakasz.jarmuSavotvalt_jobbra()");
-        // Jármű savváltása jobbra logikája
-        Skeleton.zar("Utszakasz.jarmuSavotvalt_jobbra() visszater: " + false);
-
-        return false;
+        return jarmutElore(getSzakaszJobbbra());
     }
 
     /**
@@ -77,41 +78,35 @@ public class Utszakasz {
      * @return true, ha a jármű sikeresen balra változott, false egyébként
      */
     public boolean jarmuSavotvalt_balra() {
-        Skeleton.nyit("Utszakasz.jarmuSavotvalt_balra()");
-        // Jármű savváltása balra logikája
-        Skeleton.zar("Utszakasz.jarmuSavotvalt_balra() visszater: " + false);
-
-        return false;
+        return jarmutElore(getSzakaszBalra());
     }
 
-    /**
-     * Egy jármű belép az útszakaszra.
-     * @param jarmu a jármű, amely belep az útszakaszra
-     */
-    public void belep(Jarmu jarmu) {
-        Skeleton.nyit("Utszakasz.belep()");
-        kozlekedoJarmu = jarmu;
-        if (ho > 0) {
-            havonAthaladt++;
+    private Utszakasz getSzakaszJobbbra() {
+        List<Utszakasz> jelenlegiSav = szuloUttest.getSzakaszSavja(this);
+        int szakaszIndex = jelenlegiSav.indexOf(this);
+        
+        List<List<Utszakasz>> savok = szuloUttest.getSavok();
+        int jelenlegiSavIndex = savok.indexOf(jelenlegiSav);
+
+        if (jelenlegiSavIndex < savok.size() - 1) {
+            List<Utszakasz> jobbSav = savok.get(jelenlegiSavIndex + 1);
+            return jobbSav.get(szakaszIndex);            
         }
-        Skeleton.zar("Utszakasz.belep() végrehajtva");
+        return null;
     }
 
-    /**
-     * Frissíti az időjárási viszonyokat az útszakaszon.
-     */
-    public void idojarasFrissites() {
-        Skeleton.nyit("Utszakasz.idojarasFrissites()");
+    private Utszakasz getSzakaszBalra() {
+        List<Utszakasz> jelenlegiSav = szuloUttest.getSzakaszSavja(this);
+        int szakaszIndex = jelenlegiSav.indexOf(this);
+        
+        List<List<Utszakasz>> savok = szuloUttest.getSavok();
+        int jelenlegiSavIndex = savok.indexOf(jelenlegiSav);
 
-        ho += 10;
-        if (havonAthaladt >= 15) {
-            jeg += (int) Math.floor(ho / 5);
-            havonAthaladt = 0;
-            ho = 0;
+        if (jelenlegiSavIndex > 0) {
+            List<Utszakasz> balSav = savok.get(jelenlegiSavIndex - 1);
+            return balSav.get(szakaszIndex);            
         }
-                
-        Skeleton.zar("Utszakasz.idojarasFrissites() visszater (ho: " + ho + ", jeg: " + jeg + ", havonAthaladt: " + havonAthaladt + ")");
-
+        return null;
     }
 
     /**
@@ -119,18 +114,58 @@ public class Utszakasz {
      * @return true, ha van jármű az útszakaszon, false egyébként
      */
     public boolean foglaltE() {
-        Skeleton.nyit("Utszakasz.foglaltE()");
-        Skeleton.zar("Utszakasz.foglaltE() visszater: " + (kozlekedoJarmu != null));
         return kozlekedoJarmu != null;
     }
 
     /**
+     * Megpróbálja a járművet félrehúzni az útszakaszon, ha az meghibásodott.
+     * @return true, ha a jármű sikeresen félrehúzva, false egyébként
+     */
+    public boolean jarmuFelrehuzodik() {
+        if (felrehuzodottJarmu == null) {
+            felrehuzodottJarmu = kozlekedoJarmu;
+            kozlekedoJarmu = null;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Visszaadja az előtte lévő útszakaszt.
+     * @return az előtte lévő útszakasz, vagy null, ha nincs
+     */
+    public Utszakasz getSzakaszElore() {
+        List<Utszakasz> jelenlegiSav = szuloUttest.getSzakaszSavja(this);
+        int szakaszIndex = jelenlegiSav.indexOf(this);
+        
+        if (szakaszIndex < jelenlegiSav.size() - 1) {
+            return jelenlegiSav.get(szakaszIndex + 1);            
+        }
+        return null;
+    }
+
+    /**
+     * Frissíti az időjárási viszonyokat az útszakaszon.
+     */
+    public void idojarasFrissites() {
+        ho += 10;
+        zuzottKo = false;
+        if (havonAthaladt >= 15) {
+            jeg += (int) Math.floor(ho / 5);
+            havonAthaladt = 0;
+            ho = 0;
+        }
+    }
+
+
+
+    /**
      * Letakarítja az útszakaszt, eltávolítva a havat és a jeget.
      */
-    public void letakaritas() {
-        Skeleton.nyit("Utszakasz.letakaritas()");
-        // Letakarítás logikája
-        Skeleton.zar("Utszakasz.letakaritas() végrehajtva");
+    public void letakaritas(Fej f) {
+        
+
+
     }
 
     /**
@@ -138,9 +173,15 @@ public class Utszakasz {
      * @return az épület típusa
      */
     public Epulet getEpulet() {
-        Skeleton.nyit("Utszakasz.getEpulet()");
-        Skeleton.zar("Utszakasz.getEpulet() visszater: " + epulet);
         return epulet;
+    }
+
+    /**
+     * Beállítja az épület típusát az útszakasz mentén.
+     * @param epulet az épület típusa
+     */
+    public void setEpulet(Epulet epulet) {
+        this.epulet = epulet;
     }
 
     /**
@@ -148,8 +189,6 @@ public class Utszakasz {
      * @return a hó mennyisége centiméterben
      */
     public int getHo() {
-        Skeleton.nyit("Utszakasz.getHo()");
-        Skeleton.zar("Utszakasz.getHo() visszater: " + ho);
         return ho;
     }
 
@@ -158,18 +197,42 @@ public class Utszakasz {
      * @param ho a hó mennyisége centiméterben
      */
     public void setHo(int ho) {
-        Skeleton.nyit("Utszakasz.setHo()");
-        Skeleton.zar("Utszakasz.setHo() végrehajtva");
         this.ho = ho;
-    }   
+    }
+
+    /**
+     * Megnézi, hogy mennyi jég van az útszakaszon.
+     * @return a jég mennyisége centiméterben
+     */    public int getJeg() {
+        return jeg;
+     }
+
+    /**
+     * Beállítja a jég mennyiségét az útszakaszon.
+     * @param jeg a jég mennyisége centiméterben
+     */    
+    public void setJeg(int jeg) {
+        this.jeg = jeg;
+    }
+
+    public boolean zuzottKovesE() {
+        return zuzottKo;
+    }
+
+    public void setZuzottKovesE(boolean zuzottKo) {
+        this.zuzottKo = zuzottKo;
+    }
+    
+
+    public Jarmu getFelrehuzodottJarmu() {
+        return felrehuzodottJarmu;
+    }
 
     /**
      * Megnézi, hogy melyik jármű közlekedik az útszakaszon.
      * @return a jármű, amely közlekedik az útszakaszon, vagy null, ha nincs jármű
      */
     public Jarmu getKozlekedoJarmu() {
-        Skeleton.nyit("Utszakasz.getKozlekedoJarmu()");
-        Skeleton.zar("Utszakasz.getKozlekedoJarmu() visszater: " + kozlekedoJarmu);
         return kozlekedoJarmu;
     }
 
@@ -178,9 +241,19 @@ public class Utszakasz {
      * @param kozlekedoJarmu a jármű, amely közlekedik az útszakaszon
      */
     public void setKozlekedoJarmu(Jarmu kozlekedoJarmu) {
-        Skeleton.nyit("Utszakasz.setKozlekedoJarmu()");
-        Skeleton.zar("Utszakasz.setKozlekedoJarmu() végrehajtva");
         this.kozlekedoJarmu = kozlekedoJarmu;
+    }
+
+    /**
+     * Visszaadja az útszakasz egyedi azonosítóját.
+     * @return az útszakasz egyedi azonosítója
+     */
+    public String getId() {
+        return id;
+    }
+
+    public String getInfo() {
+        return (id + " útszakasz adatai: " + "hó=" + ho + " jég=" + jeg + " zúzottköves=" + zuzottKo + " havon áthaladt=" + havonAthaladt + " közlekedő jármű=" + "kozlekedoJarmu.getId()" + " félrehúzódott jármű=" + "felrehuzodottJarmu.getId()" + "szülő úttest=" + szuloUttest.getId() + " épület=" + epulet.toString());
     }
 }
 
