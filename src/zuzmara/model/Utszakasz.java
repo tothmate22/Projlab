@@ -3,6 +3,11 @@ package zuzmara.model;
 import java.util.List;
 
 import zuzmara.enums.Epulet;
+import zuzmara.model.fejek.HanyoFej;
+import zuzmara.model.fejek.JegtoroFej;
+import zuzmara.model.fejek.Sarkanyfej;
+import zuzmara.model.fejek.SoproFej;
+import zuzmara.model.fejek.ZuzalekFej;
 
 /**
  * Az Utszakasz osztály egy útszakaszt reprezentál az úttesten, amelyen járművek közlekedhetnek. 
@@ -160,12 +165,57 @@ public class Utszakasz {
 
 
     /**
-     * Letakarítja az útszakaszt, eltávolítva a havat és a jeget.
+     * Letakarítja az útszakaszt a hókotró takarító fejének megfelelően.
+     * @param f a hókotró éppen használt takarító feje
+     * @return true, ha történt takarítás, false egyébként
      */
     public boolean letakaritas(Fej f) {
-        return true;
-        //*** */
+        // 1. SarkanyFej: Felolvasztja a havat és a jeget
+        if (f instanceof Sarkanyfej) {
+            if (ho > 0 || jeg > 0) {
+                ho = 0;
+                jeg = 0;
+                return true;
+            }
+        }
 
+        // 3. JegtoroFej: A jeget feltöri, ami hóként marad az úton
+        if (f instanceof JegtoroFej) {
+            if (jeg > 0) {
+                ho = ho + jeg;
+                jeg = 0;
+                return true;
+            }
+        }
+
+        // 4. SoproFej: Áttolja a havat a szomszédos sávba
+        if (f instanceof SoproFej) {
+            if (ho > 0) {
+                Utszakasz szomszedJobbra = getSzakaszJobbbra();
+                if (szomszedJobbra != null) {
+                    szomszedJobbra.addHo(ho); // Áttolja a havat a szomszéd sávba 
+                }
+                ho = 0;
+                return true;
+            }
+        }
+
+        // 5. HanyoFej: Az út szélére dobja a havat
+        if (f instanceof HanyoFej) {
+            if (ho > 0) {
+                ho = 0;
+                return true;
+            }
+        }
+
+        // 6. ZuzalekFej: Csúszásmentesítő réteget hoz létre
+        if (f instanceof ZuzalekFej) {
+            if (!zuzottKo) {
+                zuzottKo = true;
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -254,6 +304,14 @@ public class Utszakasz {
 
     public String getInfo() {
         return (id + " útszakasz adatai: " + "hó=" + ho + " jég=" + jeg + " zúzottköves=" + zuzottKo + " havon áthaladt=" + havonAthaladt + " közlekedő jármű=" + "kozlekedoJarmu.getId()" + " félrehúzódott jármű=" + "felrehuzodottJarmu.getId()" + "szülő úttest=" + szuloUttest.getId() + " épület=" + epulet.toString());
+    }
+
+    /**
+     * Hó hozzáadása az útszakaszhoz (pl. söprésnél használatos).
+     * @param hoMennyiseg a hozzáadandó hó mennyisége
+     */
+    public void addHo(int hoMennyiseg) {
+        this.ho += hoMennyiseg;
     }
 }
 
