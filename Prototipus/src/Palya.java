@@ -10,6 +10,12 @@ import java.util.Map;
  */
 public class Palya {
 
+    /** A kereszteződések azonosító szerinti tárolása*/
+    private Map<String, Keresztezodes> keresztezodesek;
+
+    /** Az úttestek azonosító szerinti tárolása*/
+    private Map<String, Uttest> uttestek;
+
     /** Az útszakaszok azonosító szerinti tárolása. */
     private Map<String, Utszakasz> utszakaszok;
 
@@ -22,6 +28,8 @@ public class Palya {
     public Palya() {
         this.utszakaszok = new HashMap<>();
         this.jarmuvek = new HashMap<>();
+        this.keresztezodesek = new HashMap<>();
+        this.uttestek = new HashMap<>();
     }
 
     /**
