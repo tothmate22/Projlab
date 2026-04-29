@@ -11,19 +11,19 @@ import zuzmara.model.Utszakasz;
  */
 public class HanyoFej extends Fej {
     
+    /**
+     * Konstruktor, beállítja a fej életerejét 50-re
+     */
     public HanyoFej() {
         this.eletero = 50;
     }
     
     /**
-     * Az adott útszakaszon, ha hó vagy feltört jég van azt kilöki egyenesen az út szélére. 
-     * Ha nem hó vagy feltört jég van, akkor nem csinál semmit.
+     * Meghívja az útszakasz letakarítás metódusát saját magát megadva paraméterként.
+     * @param u Az érintett útszakasz.
      */
     @Override
-    public void takarit(Utszakasz u){
-        Skeleton.getInstance().nyit("HanyoFej.takarit(u1)");
-        kopas();
-        u.letakaritas();
-        Skeleton.getInstance().zar("HanyoFej.takarit() visszater");
-    } 
+    public void takarit(Utszakasz u) {
+        u.letakaritas(this);
+    }
 }

@@ -10,19 +10,19 @@ import zuzmara.model.Utszakasz;
  */
 public class SoproFej extends Fej {
     
+    /**
+     * Konstruktor, beállítja a fej életerejét 50-re
+     */
     public SoproFej() {
         this.eletero = 50;
     }
     
     /**
-     * Az adott útszakaszon, ha hó vagy feltört jég van arrébb tolja azt jobbra a szomszédos sávba, ha van, ha nincs akkor az út szélére. 
-     * Ha nem hó vagy feltört jég van, akkor nem csinál semmit.
+     * Meghívja az útszakasz letakarítás metódusát saját magát megadva paraméterként
+     * @param u Az érintett útszakasz
      */
     @Override
     public void takarit(Utszakasz u){
-        Skeleton.getInstance().nyit("SoproFej.takarit(u1)");
-        kopas();
-        u.letakaritas();
-        Skeleton.getInstance().zar("SoproFej.takarit() visszater");
+        u.letakaritas(this);
     }
 }

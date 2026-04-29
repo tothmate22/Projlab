@@ -10,20 +10,19 @@ import zuzmara.model.Utszakasz;
  */
 public class JegtoroFej extends Fej {
     
+    /**
+     * Konstruktor, beállítja a fej életerejét 50-re
+     */
     public JegtoroFej() {
         this.eletero = 50;
     }
     
     /**
-     * Az adott útszakaszon, ha jég van azt feltöri és feltört jégként ott hagyja az úton. 
-     * Az út csúszóssága ezzel eltűnik. 
-     * A feltört jég mivel nem csúszik gyakorlatilag hóvá alakul, ezt az alakítást továbbítja az útszakasz felé
+     * Meghívja az útszakasz letakarítási logikáját, átadva saját magát.
+     * @param u Az érintett útszakasz.  
      */
     @Override
         public void takarit(Utszakasz u){
-            Skeleton.getInstance().nyit("JegtoroFej.takarit(u1)");
-            kopas();
-            u.letakaritas();
-            Skeleton.getInstance().zar("JegtoroFej.takarit() visszater");
+            u.letakaritas(this);
         }
 }

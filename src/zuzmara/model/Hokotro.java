@@ -28,12 +28,10 @@ public class Hokotro extends Jarmu{
      */
     public Hokotro() {
         super(null);
-        Skeleton.getInstance().nyit("Hokotro <<create>>");
         this.fejek = new LinkedList<>();
         fejek.add(new SoproFej());
         this.eletero = 300;
         this.aktualisFej = fejek.get(0);
-        Skeleton.getInstance().zar("Hokotro letrejott.");
     }
 
     /**
@@ -41,11 +39,12 @@ public class Hokotro extends Jarmu{
      * @param fej a hozzáadni kívánt fej
      */
     public void addFej(Fej fej){
-        Skeleton.nyit("Hokotro.addFej(f)");
         if(fej!=null && !fejek.contains(fej)){
             fejek.addLast(fej);
+            if(aktualisFej == null){
+                aktualisFej = fej;
+            }
         }
-        Skeleton.zar("Hokotro.addFej() visszater");
     }
 
     /**
@@ -53,59 +52,61 @@ public class Hokotro extends Jarmu{
      * @param fej a eltávolítani kívánt fej
      */
     public void removeFej(Fej fej){
-        Skeleton.nyit("Hokotro.removeFej(sf1)");
         if(fejek.contains(fej)){
             fejek.remove(fej);
+            if(aktualisFej == fej){
+                aktualisFej = fejek.isEmpty() ? null : fejek.getFirst();
+            }
         }
-        Skeleton.zar("Hokotro.removeFej() visszater");
+    }
+
+
+    /**
+     * vált a listában következő fejre
+     */
+    public void cserelFej(){
+        if(fejek.isEmpty()){
+            aktualisFej = null;
+            return;
+        }
+        int currentIndex = fejek.indexOf(aktualisFej);
+        int nextIndex = (currentIndex + 1) % fejek.size();
+        aktualisFej = fejek.get(nextIndex);
     }
 
     /**
      * A hókotró kopását megvalósító metódus
      */
     public void kopas(){
-        Skeleton.nyit("Hokotro.kopas()");
         this.eletero--;
-        Skeleton.zar("Hokotro.kopas() visszater");
+        if(aktualisFej != null){
+            aktualisFej.kopas();
+        }
     }
 
     /**
      * minden letakarított útszakaszra az adott pénzmennyiséget rendel a játékoshoz
      */
     public void penztKeres(){
-        Skeleton.nyit("Hokotro.penztKeres()");
-        takarito.penztKap(50);
-        Skeleton.zar("Hokotro.penztKeres() visszater");
-    }
-
-    /**
-     * Vásárlást megvalósító metódus
-     */
-    public void vasarol(){
-        Skeleton.nyit("Hokotro.vasarol()");
-        Skeleton.zar("Hokotro.vasarol() visszater");
-    }
-
-    /**
-     * Fejvasarlas vegrehajtasa a hokotron.
-     */
-    public void vasarol(Fej f, int osszeg) {
-        Skeleton.nyit("Hokotro.vasarol()");
-        addFej(f);
-        if (takarito != null) {
-            takarito.csokkentEgyenlegVasarlaskor(osszeg);
+        if(takarito != null){
+            takarito.penztKap(50);
         }
-        Skeleton.zar("Hokotro.vasarol() visszater");
     }
 
     /**
-     * vált a listában következő fejre
+     * Meghívja az aktualis fej takarito metodusat
+     * @param cel a letakaritando utszakasz
      */
-    public void cserelFej(){
-        Skeleton.nyit("Hokotro.cserelFej()");
-        aktualisFej = fejek.get(fejek.indexOf(aktualisFej)+1);
-        Skeleton.zar("Hokotro.cserelFej() visszater");
+    public void takarit(Utszakasz cel) {
+        if (aktualisFej != null) {
+            aktualisFej.takarit(cel);
+            if (aktualisFej.getEletero() <= 0) {
+                removeFej(aktualisFej);
+                cserelFej();
+            }
+        }
     }
+
 
     /**
      * jelenlegi fej beállítása
@@ -115,17 +116,7 @@ public class Hokotro extends Jarmu{
         this.aktualisFej = sf1;
     }
 
-    public void takarit(Utszakasz cel) {
-        Skeleton.nyit("Hokotro.takarit(Utszakasz)");
-        if (aktualisFej != null) {
-            aktualisFej.takarit(cel);
-            if (aktualisFej.getEletero() <= 0) {
-                removeFej(aktualisFej);
-                cserelFej();
-            }
-        }
-        Skeleton.zar("Hokotro.takarit() visszater");
-    }
+    
 
     /**
      * A hokotro halad a megadott utszakasz fele.
@@ -133,7 +124,7 @@ public class Hokotro extends Jarmu{
      */
     @Override
     public void halad(Utszakasz cel) {
-        Skeleton.getInstance().nyit("Hokotro.halad(u1)");
+        
         boolean belephet = this.pozicio.jarmutElore(cel);
         if (belephet) {
             boolean voltSzennyezodes = cel.ho > 0 || cel.jeg > 0;
@@ -146,7 +137,14 @@ public class Hokotro extends Jarmu{
                 penztKeres();
             }
         }
-        Skeleton.getInstance().zar("Hokotro.halad() visszater");
+    }
+
+    public String getInfo(){
+        String fejNev = (aktualisFej != null) ? aktualisFej.getClass().getSimpleName() : "Nincs fej";
+        return "Hókotró adatai: pozicio=" + (pozicio != null ? pozicio.getId() : "null") +
+               ", eletero=" + eletero +
+               ", aktualisFej=" + fejNev +
+               ", fejek szama=" + fejek.size();
     }
 
     public void setTakarito(Takarito takarito) {

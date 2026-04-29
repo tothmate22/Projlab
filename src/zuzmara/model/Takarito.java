@@ -3,64 +3,81 @@ package zuzmara.model;
 import java.util.ArrayList;
 
 public class Takarito extends Jatekos{
-    ArrayList<Hokotro> hokotrok;
-    private Hokotro aktualisHokotro;
+    private Hokotro hokotro;
 
     /**
-     * A hókotró és a hókotró fejek vásárlása esetén a játékos pénze az adott összeggel csökken
+     * A Takarító konstruktora.
+     * @param nev A játékos egyedi azonosítója
+     * @param kezdoEgyenleg A kezdő pénzösszeg
      */
-    public void vasarol(int osszeg){
-        Skeleton.getInstance().nyit("Takarito.vasarol(" + osszeg + ")");
-        penztKap(-osszeg);          // penztKap(-2000)
-        Hokotro ujHokotro = new Hokotro();  // «create» h2: Hokotro
-        this.hokotrok.add(ujHokotro);
-        Skeleton.getInstance().zar("Takarito.vasarol() visszater");
-    }
-
-    /**
-     * Fejvasarlas a mar meglevo hokotrohoz.
-     */
-    public void vasarol(int osszeg, Fej f) {
-        Skeleton.getInstance().nyit("Takarito.vasarol(" + osszeg + ", f: fej)");
-        if (!hokotrok.isEmpty()) {
-            hokotrok.get(0).vasarol(f, osszeg);
-        }
-        Skeleton.getInstance().zar("Takarito.vasarol() visszater");
-    }
-
-    /**
-     * Fejvasarlaskor csokkenti az egyenleget a megadott osszeggel.
-     */
-    public void csokkentEgyenlegVasarlaskor(int osszeg) {
-        Skeleton.getInstance().nyit("Takarito.setEgyenleg(egyenleg-osszeg)");
-        setEgyenleg(this.egyenleg - osszeg);
-        Skeleton.getInstance().zar("Takarito.setEgyenleg() visszater");
-    }
-
-    /**
-     * A hókotró irányítását végző függvény amellyel megadja a játékos hogy merre szeretne menni
-     */
-    public void iranyit(Utszakasz kovetkezo){
-        Skeleton.getInstance().nyit("Takarito.iranyit(u1)");
-        hokotrok.get(0).halad(kovetkezo);
-        Skeleton.getInstance().zar("Takarito.iranyit() visszater");
-    }
-
-    /**
-     * A hókotró hozzáadása a takarítóhoz
-     * @param h1
-     */
-    public void setHokotro(Hokotro h1) {
-        hokotrok.add(h1);
-        h1.setTakarito(this);
-    }
-
-    /**
-     * A Takarító konstruktora, amely meghívja a Jatekos konstruktorát a név átadásával, és inicializálja a hókotró listát.
-     * @param nev
-     */
-    public Takarito(String nev) {
+    public Takarito(String nev, int kezdoEgyenleg) {
         super(nev);
-        this.hokotrok = new ArrayList<>();
-    } 
+        this.egyenleg = kezdoEgyenleg;
+    }
+    
+    
+    /**
+     * Új hókotró vásárlása.
+     * Csak akkor sikeres, ha van elegendő pénz és nincs aktív hókotrója
+     */
+    public void vasarolHokotro() {
+        if (this.egyenleg >= 1000 && this.hokotro == null) {
+            this.hokotro = new Hokotro();
+            this.hokotro.setTakarito(this);
+            this.egyenleg -= 1000;
+        }
+    }
+
+    /**
+     * Megadott típusú takarítófej vásárlása a hókotró számára.
+     * Ellenőrzi az egyenleget és azt, hogy a hókotrónak van-e már ilyen feje
+     * @param tipus A vásárolni kívánt fej típusa
+     * @param ar A fej ára.
+     */
+    public void vasarolFej(Fej ujFej, int ar) {
+        if (this.hokotro != null && this.egyenleg >= ar) {
+            this.hokotro.addFej(ujFej); 
+            this.egyenleg -= ar;
+        }
+    }
+
+/**
+     * A hókotró irányítása a megadott útszakaszra.
+     * @param kovetkezo A cél útszakasz.
+     */
+    public void iranyit(Utszakasz kovetkezo) {
+        if (this.hokotro != null) {
+            this.hokotro.halad(kovetkezo);
+        }
+    }
+
+    /**
+     * Váltás a hókotró következő elérhető fejére
+     */
+    public void switchHead() {
+        if (this.hokotro != null) {
+            this.hokotro.cserelFej();
+        }
+    }
+
+    /**
+     * Állapotjelentést ad a teszteléshez
+     * @return Szöveges formátum: név, egyenleg és a hókotró adatai
+     */
+    public String getInfo() {
+        return "Takarító adatai: nev=" + nev + 
+               ", egyenleg=" + egyenleg + 
+               ", hokotro=" + (hokotro != null ? "van" : "nincs");
+    }
+
+    public void setHokotro(Hokotro h) {
+        this.hokotro = h;
+        if (h != null) {
+            h.setTakarito(this);
+        }
+    }
+
+    public Hokotro getHokotro() {
+        return this.hokotro;
+    }
 }

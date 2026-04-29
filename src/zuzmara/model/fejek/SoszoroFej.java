@@ -11,21 +11,40 @@ import zuzmara.model.Utszakasz;
 public class SoszoroFej extends Fej{
     private int sotartaly; //a só mennyiségét tárolja
 
+    /**
+     * Konstruktor a sószórós fejhez.
+     * @param sotartaly A tartály induló sómennyisége.
+     */
     public SoszoroFej(int sotartaly) {
         this.sotartaly = sotartaly;
         this.eletero = 50;
     }
     
     /**
-     * Az adott útszakaszra sót szór, annak az olvadását elindítja, innentől az útszakasz kezeli az olvadást. 
-     * Útszakaszonként a tartályban lévő só mennyiségét csökkenti.
+    * Sót szór az útszakaszra, elindítva annak olvadási folyamatát
+     * Ha a szórás sikeres, csökkenti a tartály tartalmát.
+     * @param u Az érintett útszakasz
      */
     @Override
     public void takarit(Utszakasz u){
-        Skeleton.getInstance().nyit("SoszoroFej.takarit(u1)");
-        kopas();
-        u.letakaritas();
-        sotartaly--;
-        Skeleton.getInstance().zar("SoszoroFej.takarit() visszater");
+        u.letakaritas(this);
+        this.sotartaly-=5;
+    }
+
+    /**
+     * Állapotjelentés a teszteléshez.
+     * @return A fej adatai kiegészítve a sómennyiséggel.
+     */
+    @Override
+    public String getInfo() {
+        return super.getInfo() + ", so=" + sotartaly;
+    }
+
+    public int getSotartaly() {
+        return sotartaly;
+    }
+
+    public void setSotartaly(int sotartaly) {
+        this.sotartaly = sotartaly;
     }
 }

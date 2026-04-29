@@ -162,9 +162,9 @@ public class Utszakasz {
     /**
      * Letakarítja az útszakaszt, eltávolítva a havat és a jeget.
      */
-    public void letakaritas(Fej f) {
-        
-
+    public boolean letakaritas(Fej f) {
+        return true;
+        //*** */
 
     }
 

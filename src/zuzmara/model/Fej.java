@@ -9,22 +9,26 @@ public abstract class Fej {
     /**
      * Minden fej felüldefiniálja a saját módjára
      */
-    public void takarit(Utszakasz u){
-        return;
-    }
+    public abstract void takarit(Utszakasz u);
 
     /**
      * A kopas megvalosítasa, a takaritas következtében
      */
     public void kopas(){
-        Skeleton.getInstance().nyit("Fej.kopas()");
         this.eletero--;
-        Skeleton.getInstance().zar("Fej.kopas() visszater");
+    }
+
+    /**
+     * Szöveges állapotjelentést ad a teszteléshez.
+     * @return A fej típusa és aktuális életereje.
+     */
+    public String getInfo() {
+        return this.getClass().getSimpleName() + ": eletero=" + eletero;
     }
 
     /**
      * beállítja a fej életerejét
-     * @param i
+     * @param i az eletero uj erteke
      */
     public void setEletero(int i) {
         this.eletero = i;

@@ -10,19 +10,39 @@ import zuzmara.model.Skeleton;
 public class Sarkanyfej extends Fej {
     private int kerozintartaly; //a biokerozin mennyiségét tárolja
 
+    /**
+     * Konstruktor a sárkányfejhez.
+     * @param kerozintartaly A tartály induló kapacitása.
+     */
     public Sarkanyfej(int kerozintartaly) {
         this.kerozintartaly = kerozintartaly;
         this.eletero = 50;
     }
+    
     /**
-     * Az adott útszakaszon lévő jeget és havat azonnal felégeti, ezzel az egyből el is tűnik onnan, ennek az állítását továbbítja az útszakasz felé
+     * Meghívja az útszakasz letakarítás metódusát, és ha a takarítás sikeres volt,
+     * csökkenti a kerozin mennyiségét.
+     * @param u Az érintett útszakasz.
      */
     @Override
-    public void takarit(Utszakasz u){
-        Skeleton.getInstance().nyit("SarkanyFej.takarit(u1)");
-        kopas();
-        u.letakaritas();
-        kerozintartaly--;
-        Skeleton.getInstance().zar("SarkanyFej.takarit() visszater");
+    public void takarit(Utszakasz u) {
+        if (u.letakaritas(this)) {
+            this.kerozintartaly -= 10;
+        }
+    }
+
+    /**
+     * Visszaadja a kerozintartály aktuális állapotát.
+     */
+    public int getKerozintartaly() {
+        return kerozintartaly;
+    }
+
+    /**
+     * Állapotjelentés a teszteléshez.
+     */
+    @Override
+    public String getInfo() {
+        return super.getInfo() + ", kerozin=" + kerozintartaly;
     }
 }
