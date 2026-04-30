@@ -9,7 +9,7 @@ import zuzmara.enums.Epulet;
  * Felelősség: az osztály tárolja a hó és jég mennyiségét, a rajta közlekedő járművet, valamint az épület típusát, amely az útszakasz mentén található. 
  * Az Utszakasz osztály felelős a járművek mozgatásáért és az időjárási viszonyok frissítéséért is.
  */
-public class Utszakasz {
+public class Utszakasz implements IInfo {
     protected String id;
     protected int ho;
     protected int jeg;
