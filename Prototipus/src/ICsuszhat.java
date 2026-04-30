@@ -1,4 +1,4 @@
-package interfaces;
+
 
 /**
  * Az ICsuszhat interfész azokat a járműveket jelöli,

@@ -1,7 +1,4 @@
-package fejek;
 
-import zuzmara.model.Fej;
-import zuzmara.model.Utszakasz;
 
 public class ZuzalekFej extends Fej {
     private int zuzottkoTartaly;

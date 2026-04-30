@@ -1,8 +1,4 @@
-package fejek;
 
-import zuzmara.model.Fej;
-import zuzmara.model.Utszakasz;
-import zuzmara.model.Skeleton;
 /**
  * Biokerozin használatával felolvasztja az összes havat és jeget azonnal
  * A Fej osztályból származik

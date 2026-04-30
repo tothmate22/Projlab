@@ -1,4 +1,4 @@
-package interfaces;
+
 /**
  * Az IInfo interfész azokat az objektumokat jelöli,
  * amelyekről információ kérdezhető le a cmd-ből
@@ -8,5 +8,5 @@ public interface IInfo {
     /**
      * Lekérdezi egy objektumról tárolt információkat, majd kiírja a konzolra
      */
-    void getInfo(){};
+    String getInfo();
 }

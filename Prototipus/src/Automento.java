@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import Prototipus.enums.AutoAllapot;
-import Prototipus.interfaces.ILepheto;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -21,12 +19,12 @@ public class Automento implements ILepheto {
      */
     private Map<Auto, Integer> mentendoAutok;
     //Automente neve, ami által lehet keresni
-    private string nev;
+    private String nev;
 
     /**
      * Létrehoz egy üres autómentő objektumot.
      */
-    public Automento(string name) {
+    public Automento(String name) {
         this.mentendoAutok = new HashMap<>();
         this.nev = name;
     }

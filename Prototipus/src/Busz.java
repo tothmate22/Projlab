@@ -1,10 +1,5 @@
 import java.util.Random;
 
-import enums.BuszAllapot;
-import enums.Epulet;
-import interfaces.ICsuszhat;
-import interfaces.ILepheto;
-
 /**
  * A tömegközlekedési eszköz fizikai megvalósítása a pályán.
  * Felelős a mozgásért, az ütközések kezeléséért és a saját állapotának (elakadás, javítás) nyilvántartásáért.

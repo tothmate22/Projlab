@@ -11,8 +11,8 @@ public class Takarito extends Jatekos{
      * @param kezdoEgyenleg A kezdő pénzösszeg
      */
     public Takarito(String nev, int kezdoEgyenleg) {
-        super(nev);
-        this.egyenleg = kezdoEgyenleg;
+        super(nev, kezdoEgyenleg);
+        this.hokotro = null; // Kezdetben nincs hókotrója
     }
     
     

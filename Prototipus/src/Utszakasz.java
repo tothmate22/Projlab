@@ -2,7 +2,6 @@
 
 import java.util.List;
 
-import zuzmara.enums.Epulet;
 
 /**
  * Az Utszakasz osztály egy útszakaszt reprezentál az úttesten, amelyen járművek közlekedhetnek. 
@@ -36,8 +35,6 @@ public class Utszakasz implements IInfo {
         felrehuzodottJarmu = null;
         this.szuloUttest = szuloUttest;
         this.epulet = Epulet.valueOf(epuletTipus);
-        Skeleton.nyit("Utszakasz <<create>>");
-        Skeleton.zar("Utszakasz létrehozva");
     }
 
         /**

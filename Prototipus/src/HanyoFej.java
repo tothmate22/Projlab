@@ -1,7 +1,4 @@
-package fejek;
-import zuzmara.model.Fej;
-import zuzmara.model.Skeleton;
-import zuzmara.model.Utszakasz;
+
 
 /** 
  * A HanyoFej osztaly a hó elhányását végzi, egyenesen az út szélére.

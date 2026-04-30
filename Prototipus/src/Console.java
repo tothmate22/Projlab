@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import fejek.*;
 
 public class Console {
 
@@ -104,7 +105,7 @@ public class Console {
     private void cmdInfo(String[] szavak) throws Hiba {
         ellen(szavak, 2, "info <objektum_neve>");
         String nev = szavak[1];
-        IInfos obj = palya.getInfos(nev);
+        IInfo obj = palya.getInfos(nev);
         if (obj == null) throw new Hiba("Ismeretlen objektum: " + nev);
         System.out.println(obj.getInfo());
     }
