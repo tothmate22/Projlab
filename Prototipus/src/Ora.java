@@ -1,4 +1,4 @@
-import zuzmara.interfaces.ILepheto;
+import interfaces.ILepheto;
 import java.util.List;
 import java.util.ArrayList;
 

@@ -5,9 +5,8 @@ import java.util.LinkedList;
 //import zuzmara.model.fejek.*;
 import java.util.List;
 
-import zuzmara.model.fejek.Sarkanyfej;
-import zuzmara.model.fejek.SoproFej;
-import zuzmara.model.Takarito;
+import fejek.Sarkanyfej;
+import fejek.SoproFej;
 
 /**
  * A hókotró osztály felelős a hókotró megvalósításáért

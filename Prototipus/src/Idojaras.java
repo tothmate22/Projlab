@@ -1,4 +1,4 @@
-import Prototipus.src.interfaces.ILepheto;
+import interfaces.ILepheto;
 import java.util.List;
 
 /**

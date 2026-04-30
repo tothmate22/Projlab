@@ -8,7 +8,7 @@ public class Main {
             Tesztfuttato.main(new String[]{});
             return;
         }
-        futtаt(System.in, System.out);
+        futtat(System.in, System.out);
     }
 
     public static void futtat(InputStream input, PrintStream output) {
@@ -16,7 +16,7 @@ public class Main {
         System.setOut(output);
 
         Palya palya = new Palya();
-        Ora ora = new Ora();
+        Ora ora = new Ora(1, "Alapóra");
         Console console = new Console(palya, ora);
 
         Scanner scanner = new Scanner(input);
