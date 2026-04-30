@@ -99,4 +99,11 @@ public class GPS {
     private boolean jarhato(Utszakasz szakasz) {
         return !szakasz.foglaltE() && szakasz.getHo() <= 25;
     }
+    /**
+    *
+    *@return Automentok listája első automentoje
+    */
+    public Automento getElsoAutomento() {
+        return palya.getElsoAutomento();
+    }
 }
