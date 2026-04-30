@@ -255,5 +255,8 @@ public class Palya {
         Hokotro h = getHokotro(nev);
         if (h != null && h instanceof IInfos) return (IInfos) h;
 
+        Automento am = getAutomento(nev);
+        if (am != null && am instanceof IInfos) return (IInfos) am;
+
         return null;
     }
