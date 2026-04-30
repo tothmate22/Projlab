@@ -11,9 +11,9 @@ public class SoszoroFej extends Fej{
      * Konstruktor a sószórós fejhez.
      * @param sotartaly A tartály induló sómennyisége.
      */
-    public SoszoroFej(int sotartaly) {
+    public SoszoroFej(String nev, int sotartaly) {
+        super(nev, 50);
         this.sotartaly = sotartaly;
-        this.eletero = 50;
     }
     
     /**

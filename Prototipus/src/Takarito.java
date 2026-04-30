@@ -80,4 +80,16 @@ public class Takarito extends Jatekos{
     public Hokotro getHokotro() {
         return this.hokotro;
     }
+
+
+    public void vasarolHokotro(String hokotroNev, Takarito takarito, Utszakasz kezdo, Palya palya) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'vasarolHokotro'");
+    }
+
+
+    public void vasarolFej(String fejNev, String fejTipus, Hokotro hokotro2, Palya palya) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'vasarolFej'");
+    }
 }

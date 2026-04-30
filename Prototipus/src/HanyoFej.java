@@ -9,9 +9,10 @@ public class HanyoFej extends Fej {
     
     /**
      * Konstruktor, beállítja a fej életerejét 50-re
+     * @param nev 
      */
-    public HanyoFej() {
-        this.eletero = 50;
+    public HanyoFej(String nev) {
+        super(nev, 50);
     }
     
     /**

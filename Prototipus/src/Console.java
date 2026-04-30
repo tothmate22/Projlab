@@ -121,7 +121,7 @@ public class Console {
         Utszakasz kezdo = palya.getUtszakasz(utszakaszNev);
         if (kezdo == null) throw new Hiba("Ismeretlen útszakasz: " + utszakaszNev);
 
-        takarito.vasarolHokotro(hokotroNev, kezdo, palya);
+        takarito.vasarolHokotro(hokotroNev, takarito, kezdo, palya);
     }
 
     private void cmdBuyFej(String[] szavak) throws Hiba {
@@ -345,7 +345,7 @@ public class Console {
         ellen(szavak, 3, "setZuzalek <utszakasz_neve> <true|false>");
         Utszakasz u = getUtszakaszOrHiba(szavak[1]);
         boolean ertek = Boolean.parseBoolean(szavak[2]);
-        u.setZuzottKo(ertek);
+        u.setZuzottKovesE(ertek);
     }
 
     private void cmdExit() {
@@ -378,9 +378,9 @@ public class Console {
             case "soprofej" -> new SoproFej(nev);
             case "hanyofej" -> new HanyoFej(nev);
             case "jegtoro" -> new JegtoroFej(nev);
-            case "soszoro", "soszorofej" -> new SoszoroFej(nev);
-            case "sarkany", "sarkanyfej" -> new SarkanyFej(nev);
-            case "zuzottkofej", "zuzalekfej" -> new ZuzalekFej(nev);
+            case "soszoro", "soszorofej" -> new SoszoroFej(nev, 50);
+            case "sarkany", "sarkanyfej" -> new Sarkanyfej(nev, 50);
+            case "zuzottkofej", "zuzalekfej" -> new ZuzalekFej(nev, 50);
             default -> throw new Hiba("Ismeretlen fejtípus: " + tipus + " (soprofej / hanyofej / jegtoro / soszoro / sarkany / zuzottkofej)");
         };
     }

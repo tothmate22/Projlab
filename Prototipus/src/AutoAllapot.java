@@ -23,5 +23,20 @@ public enum AutoAllapot {
     /**
      * Az autó ütközés után autómentőre vár.
      */
-    MENTESRE_VAR
+    MENTESRE_VAR;
+
+    static AutoAllapot fromString(String allapotStr) {
+        switch (allapotStr) {
+            case "HALAD":
+                return HALAD;
+            case "VARAKOZIK":
+                return VARAKOZIK;
+            case "ELAKADT":
+                return ELAKADT;
+            case "MENTESRE_VAR":
+                return MENTESRE_VAR;
+            default:
+                throw new IllegalArgumentException("Ismeretlen autóállapot: " + allapotStr);
+        }
+    }
 }

@@ -10,9 +10,9 @@ public class Sarkanyfej extends Fej {
      * Konstruktor a sárkányfejhez.
      * @param kerozintartaly A tartály induló kapacitása.
      */
-    public Sarkanyfej(int kerozintartaly) {
+    public Sarkanyfej(String nev, int kerozintartaly) {
+        super(nev, 50);
         this.kerozintartaly = kerozintartaly;
-        this.eletero = 50;
     }
     
     /**

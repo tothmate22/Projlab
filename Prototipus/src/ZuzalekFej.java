@@ -7,9 +7,9 @@ public class ZuzalekFej extends Fej {
      * Konstruktor a zúzalékszóró fejhez.
      * @param tartalyKapacitas A tartály kezdeti tartalma.
      */
-    public ZuzalekFej(int tartalyKapacitas) {
+    public ZuzalekFej(String nev, int tartalyKapacitas) {
+        super(nev, 50);
         this.zuzottkoTartaly = tartalyKapacitas;
-        this.eletero = 50; // Alapértelmezett életerő
     }
 
     /**

@@ -11,7 +11,7 @@ import java.util.List;
  * A Jarmu osztályból származik, így a Jarmu osztályban megvalósított metódusokat használja
  * Tartoznak hozzá fejek, pénzt keres és vásárolni tud, valamint ezeket a fejeket használni
  */
-public class Hokotro extends Jarmu{
+public class Hokotro extends Jarmu implements ILepheto{
     private LinkedList<Fej> fejek; //A hókotróhoz tartozó fejek listája
     private int eletero;    //A hókotró életereje
     private Fej aktualisFej; //Az aktuálisan használt fej
@@ -25,7 +25,7 @@ public class Hokotro extends Jarmu{
     public Hokotro() {
         super(null);
         this.fejek = new LinkedList<>();
-        fejek.add(new SoproFej());
+        fejek.add(new SoproFej("Alap SoproFej"));
         this.eletero = 300;
         this.aktualisFej = fejek.get(0);
     }
@@ -145,5 +145,11 @@ public class Hokotro extends Jarmu{
 
     public void setTakarito(Takarito takarito) {
         this.takarito = takarito;
+    }
+
+    @Override
+    public void idoEltelt() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'idoEltelt'");
     }
 }

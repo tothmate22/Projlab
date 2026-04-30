@@ -248,25 +248,25 @@ public class Palya {
      * @param nev az objektum neve
      * @return az IInfos interfészt implementáló objektum, vagy null, ha nincs ilyen
      */
-    public IInfos getInfos(String nev) {
+    public IInfo getInfos(String nev) {
         // Próbáljuk meg úszakaszként keresni
         Utszakasz u = getUtszakasz(nev);
         if (u != null) return u;
 
         // Próbáljuk meg járműként keresni
         Jarmu j = getJarmu(nev);
-        if (j != null && j instanceof IInfos) return (IInfos) j;
+        if (j != null && j instanceof IInfo) return (IInfo) j;
 
         // Próbáljuk meg játékosként keresni
         Jatekos jat = getJatekos(nev);
-        if (jat != null && jat instanceof IInfos) return (IInfos) jat;
+        if (jat != null && jat instanceof IInfo) return (IInfo) jat;
 
         // Próbáljuk meg hókotróként keresni
         Hokotro h = getHokotro(nev);
-        if (h != null && h instanceof IInfos) return (IInfos) h;
+        if (h != null && h instanceof IInfo) return (IInfo) h;
 
         Automento am = getAutomento(nev);
-        if (am != null && am instanceof IInfos) return (IInfos) am;
+        if (am != null && am instanceof IInfo) return (IInfo) am;
 
         return null;
     }

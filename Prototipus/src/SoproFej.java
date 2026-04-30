@@ -8,11 +8,12 @@ public class SoproFej extends Fej {
     
     /**
      * Konstruktor, beállítja a fej életerejét 50-re
+     * @param nev 
      */
-    public SoproFej() {
-        this.eletero = 50;
+    public SoproFej(String nev) {
+        super(nev, 50);
     }
-    
+
     /**
      * Meghívja az útszakasz letakarítás metódusát saját magát megadva paraméterként
      * @param u Az érintett útszakasz

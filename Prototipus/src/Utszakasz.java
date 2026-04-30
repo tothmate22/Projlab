@@ -67,7 +67,7 @@ public class Utszakasz implements IInfo {
      * @return true, ha a jármű sikeresen jobbra változott, false egyébként
      */
     public boolean jarmuSavotvalt_jobbra() {
-        return jarmutElore(getSzakaszJobbbra());
+        return jarmutElore(getSzakaszJobbra());
     }
 
     /**
