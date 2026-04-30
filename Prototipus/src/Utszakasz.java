@@ -81,7 +81,7 @@ public class Utszakasz implements IInfo {
         return jarmutElore(getSzakaszBalra());
     }
 
-    private Utszakasz getSzakaszJobbra() {
+    public Utszakasz getSzakaszJobbra() {
         List<Utszakasz> jelenlegiSav = szuloUttest.getSzakaszSavja(this);
         int szakaszIndex = jelenlegiSav.indexOf(this);
         
@@ -95,7 +95,7 @@ public class Utszakasz implements IInfo {
         return null;
     }
 
-    private Utszakasz getSzakaszBalra() {
+    public Utszakasz getSzakaszBalra() {
         List<Utszakasz> jelenlegiSav = szuloUttest.getSzakaszSavja(this);
         int szakaszIndex = jelenlegiSav.indexOf(this);
         
