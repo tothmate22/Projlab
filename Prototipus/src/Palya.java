@@ -230,7 +230,18 @@ public class Palya {
     public Random getRandom() {
         return random;
     }
-
+    /**
+    *
+    *visszaadja a pályán jelen lévő automentőt
+    *
+    */
+    public Automento getElsoAutomento() {
+    if (automatentok.isEmpty()) {
+        return null;
+    }
+    return automatentok.values().iterator().next();
+    }
+    
     /**
      * Visszaad egy objektumot név alapján, amely implementálja az IInfos interfészt.
      * Ez lehet útszakasz, jármű, játékos, vagy más info-szolgáltató objektum.
