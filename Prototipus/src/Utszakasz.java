@@ -81,7 +81,7 @@ public class Utszakasz {
         return jarmutElore(getSzakaszBalra());
     }
 
-    private Utszakasz getSzakaszJobbbra() {
+    private Utszakasz getSzakaszJobbra() {
         List<Utszakasz> jelenlegiSav = szuloUttest.getSzakaszSavja(this);
         int szakaszIndex = jelenlegiSav.indexOf(this);
         
