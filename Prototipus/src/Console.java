@@ -323,7 +323,7 @@ public class Console {
     private void cmdMakeAutomento(String[] szavak) throws Hiba {
         ellen(szavak, 2, "makeAutomento <automento_neve>");
         String nev = szavak[1];
-        Automento am = new Automento(nev, palya);
+        Automento am = new Automento(nev);
         palya.addAutomento(nev, am);
         ora.addLepheto(am);
     }
