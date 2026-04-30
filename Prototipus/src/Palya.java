@@ -1,4 +1,3 @@
-package zuzmara.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -271,3 +270,4 @@ public class Palya {
 
         return null;
     }
+}

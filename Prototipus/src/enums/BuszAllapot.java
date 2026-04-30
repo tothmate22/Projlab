@@ -1,3 +1,4 @@
+package enums;
 /**
  * A busz belső állapotainak lehetőségei.
  * Három eshetőséget fed le: normál működés, baleset miatti javítás, vagy mély hó miatti elakadás.

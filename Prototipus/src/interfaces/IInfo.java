@@ -1,3 +1,4 @@
+package interfaces;
 /**
  * Az IInfo interfész azokat az objektumokat jelöli,
  * amelyekről információ kérdezhető le a cmd-ből

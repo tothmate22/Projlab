@@ -1,4 +1,4 @@
-package zuzmara.enums;
+package enums;
 
 public enum Epulet {
     MEGALLO,

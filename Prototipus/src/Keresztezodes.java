@@ -1,4 +1,4 @@
-package zuzmara.model;
+
 import java.util.*;
 
 public class Keresztezodes {

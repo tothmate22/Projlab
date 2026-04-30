@@ -1,5 +1,4 @@
-package zuzmara.model.fejek;
-
+package fejek;
 import zuzmara.model.Fej;
 import zuzmara.model.Skeleton;
 import zuzmara.model.Utszakasz;

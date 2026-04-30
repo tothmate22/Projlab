@@ -1,4 +1,4 @@
-package zuzmara.model;
+
 
 /**
  * A Fej absztrakt osztály, minden fej belőle származik

@@ -1,3 +1,5 @@
+package interfaces;
+
 /**
  * Az ICsuszhat interfész azokat a járműveket jelöli,
  * amelyek jeges útszakaszon megcsúszhatnak és ütközhetnek.

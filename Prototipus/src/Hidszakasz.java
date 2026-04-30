@@ -1,4 +1,4 @@
-package zuzmara.model;
+
 
 /**
  * A Hidszakasz osztály egy speciális típusú Utszakasz, amely hidat reprezentál az úttesten.

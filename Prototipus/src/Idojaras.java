@@ -1,4 +1,4 @@
-import zuzmara.interfaces.ILepheto;
+import Prototipus.src.interfaces.ILepheto;
 import java.util.List;
 
 /**

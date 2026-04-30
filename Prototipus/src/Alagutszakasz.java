@@ -1,6 +1,3 @@
-package zuzmara.model;
-
-
 /**
  * Az Alagutszakasz osztály egy speciális típusú Utszakasz, amely alagutat reprezentál az úttesten.
  * Felelősség: az osztály biztosítja, hogy az alagútszakaszon mindig hó és jég nélküli időjárási viszonyok legyenek.
