@@ -20,12 +20,15 @@ public class Automento implements ILepheto {
      * A kulcs az autó, az érték pedig a hátralévő idő (tick-ekben).
      */
     private Map<Auto, Integer> mentendoAutok;
+    //Automente neve, ami által lehet keresni
+    private string nev;
 
     /**
      * Létrehoz egy üres autómentő objektumot.
      */
-    public Automento() {
+    public Automento(string name) {
         this.mentendoAutok = new HashMap<>();
+        this.nev = name;
     }
 
     /**
