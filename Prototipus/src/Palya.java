@@ -37,10 +37,12 @@ public class Palya {
     /** Véletlenszám generátor. */
     private Random random;
 
+    private Ora ora;
+
     /**
      * Létrehoz egy üres pályát.
      */
-    public Palya() {
+    public Palya(Ora ora) {
         this.utszakaszok = new HashMap<>();
         this.jarmuvek = new HashMap<>();
         this.keresztezodesek = new HashMap<>();
@@ -50,6 +52,7 @@ public class Palya {
         this.fejek = new HashMap<>();
         this.automatentok = new HashMap<>();
         this.random = null;
+        this.ora = ora;
     }
 
     /**
@@ -90,6 +93,13 @@ public class Palya {
      */
     public Jarmu getJarmu(String id) {
         return jarmuvek.get(id);
+    } 
+     
+    public Ora getOra(String id) {
+        if (ora.getOra().equals(id)) {
+            return ora;
+        }
+        return null;
     }
 
     /**
@@ -249,6 +259,9 @@ public class Palya {
      * @return az IInfos interfészt implementáló objektum, vagy null, ha nincs ilyen
      */
     public IInfo getInfos(String nev) {
+        Ora ora = getOra(nev);
+        if (ora != null) return ora;
+
         // Próbáljuk meg úszakaszként keresni
         Utszakasz u = getUtszakasz(nev);
         if (u != null) return u;

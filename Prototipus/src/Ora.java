@@ -18,6 +18,9 @@ public class Ora implements IInfo {
      */
     private int ticksPerSnowCm;
     private String name;
+    public String getOra() {
+        return name;
+    }
 
     /**
      * Az összes időre érzékeny objektum listája.

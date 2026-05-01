@@ -15,8 +15,8 @@ public class Main {
         PrintStream eredeti = System.out;
         System.setOut(output);
 
-        Palya palya = new Palya();
         Ora ora = new Ora(1, "ora");
+        Palya palya = new Palya(ora);
         Console console = new Console(palya, ora);
 
         Scanner scanner = new Scanner(input);

@@ -1,6 +1,5 @@
-load bemenetek/teszt10be.txt
+load bemenetek/teszt10Be.txt
 info t1
-info h1
 buyHokotro h2 t1 u1
 info t1
 info h2
