@@ -84,8 +84,9 @@ public class Auto extends Jarmu implements ILepheto, ICsuszhat, IInfo {
         }
 
         // Belép az új útszakaszra
-        kovetkezo.belep(this);
-        this.pozicio = kovetkezo;
+        if (this.pozicio.jarmutElore(kovetkezo)) {
+            this.pozicio = kovetkezo;
+        }
 
         // Ha elérte a célt
         if (kovetkezo == cel) {

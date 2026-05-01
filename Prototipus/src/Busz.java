@@ -84,8 +84,9 @@ public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
 
         // Sikeres lépés
         // (Feltételezzük, hogy a régi szakaszról való kilépést a belep metódus vagy a hívó kezeli)
-        this.pozicio = cel;
-        cel.belep(this);
+        if (this.pozicio.jarmutElore(cel))
+            this.pozicio = cel;
+        
         
         // Mivel sikeresen lépett, biztosan mozgásképes
         this.allapot = BuszAllapot.NORMAL;
