@@ -1,0 +1,12 @@
+load teszt03_busz_varakozik.txt
+setJeg u2 2
+random 1
+move bv1 elore
+tick 1
+info b1
+tick 60
+info b1
+move bv1 elore
+tick 1
+info b1
+exit
