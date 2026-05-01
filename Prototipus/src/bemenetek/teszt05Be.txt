@@ -1,4 +1,4 @@
-load teszt05_busz_hoban.txt
+load teszt05Input.txt
 setHo u2 30
 move bv1 elore
 tick 1
