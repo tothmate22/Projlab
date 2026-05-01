@@ -1,0 +1,6 @@
+load teszt05_busz_hoban.txt
+setHo u2 30
+move bv1 elore
+tick 1
+info b1
+exit
