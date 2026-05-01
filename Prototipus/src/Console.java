@@ -58,13 +58,21 @@ public class Console {
     private void cmdLoad(String[] szavak) throws Hiba {
         ellen(szavak, 2, "load <fájlnév>");
         String fajlNev = szavak[1];
+        // If file not found at given path, try in src/ directory
         try (BufferedReader br = new BufferedReader(new FileReader(fajlNev))) {
             String sor;
             while ((sor = br.readLine()) != null) {
                 feldolgoz(sor);
             }
         } catch (IOException e) {
-            throw new Hiba("Nem sikerült megnyitni a fájlt: " + fajlNev);
+            try (BufferedReader br = new BufferedReader(new FileReader("src/" + fajlNev))) {
+                String sor;
+                while ((sor = br.readLine()) != null) {
+                    feldolgoz(sor);
+                }
+            } catch (IOException e2) {
+                throw new Hiba("Nem sikerült megnyitni a fájlt: " + fajlNev);
+            }
         }
     }
 
