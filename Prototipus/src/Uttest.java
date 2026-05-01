@@ -64,8 +64,13 @@ public class Uttest {
     * @param savIndex a sáv indexe, amelyhez a szakaszt hozzá kell adni
     */
     public void addUtszakasz(Utszakasz szakasz, int savIndex) {
-        if (savIndex < savok.size() && savIndex >= 0) {
-            savok.get(savIndex).add(szakasz);            
+        while (savok.size() <= savIndex) {
+            savok.add(new ArrayList<Utszakasz>());
+        }
+        
+        // Most már garantált, hogy létezik a lista a savIndex helyen
+        if (savIndex >= 0) {
+            savok.get(savIndex).add(szakasz);
         }
     }
 
