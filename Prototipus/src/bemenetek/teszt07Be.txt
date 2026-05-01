@@ -1,0 +1,5 @@
+load teszt07Input.txt
+move bv1 elore
+tick 1
+info bv1
+exit
