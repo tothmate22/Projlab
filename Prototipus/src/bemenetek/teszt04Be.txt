@@ -1,0 +1,7 @@
+load teszt04_busz_elagazas.txt
+info b1
+move bv1 jobbra
+tick 1
+info b1
+info u_kanyarodas
+exit
