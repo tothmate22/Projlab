@@ -1,4 +1,4 @@
-load teszt04_busz_elagazas.txt
+load teszt04Input.txt
 info b1
 move bv1 jobbra
 tick 1
