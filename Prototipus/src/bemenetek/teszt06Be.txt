@@ -1,0 +1,7 @@
+load teszt06Input.txt
+setJeg u2 2
+random 10
+move bv1 elore
+tick 1
+info b1
+exit
