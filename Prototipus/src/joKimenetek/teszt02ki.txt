@@ -1,0 +1,7 @@
+info b1 (Busz):
+pozicio: u2
+allapot: JAVITAS_ALATT
+hatralevoJavitasildo: 60
+info a1 (Auto):
+pozicio: u3
+allapot: MENTESRE_VAR
