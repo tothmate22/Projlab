@@ -1,0 +1,8 @@
+info b1 (Busz):
+pozicio: u2
+allapot: NORMAL
+hatralevoJavitasiIdo: 0
+info a1 (Auto):
+pozicio: u3
+cel: u3
+allapot: VARAKOZIK

@@ -1,0 +1,4 @@
+Takarító adatai: nev=t1, egyenleg=2000, hokotro=nincs
+Sikeres vasarlas: h2
+Takarító adatai: nev=t1, egyenleg=1000, hokotro=van
+Hókotró adatai: pozicio=u1, eletero=300, aktualisFej=SoproFej, fejek szama=1

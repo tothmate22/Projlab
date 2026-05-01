@@ -1,5 +1,9 @@
 import java.io.*;
 import java.nio.file.*;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.stream.*;
+import java.util.regex.Pattern;
 
 public class Tesztfuttato {
 
@@ -7,24 +11,53 @@ public class Tesztfuttato {
     private static int sikertelen = 0;
 
     public static void main(String[] args) throws Exception {
-        tesztFuttat("teszt10", "Új hókotró vásárlása");
+        List<String> tesztek = args.length > 0 ? Arrays.asList(args) : osszesTesztNev();
+        for (String tesztNev : tesztek) {
+            tesztFuttat(tesztNev, "Automatikus teszt");
+        }
 
         System.out.println();
         System.out.println("Eredmény: " + sikeres + " sikeres, " + sikertelen + " sikertelen");
     }
 
     static void tesztFuttat(String tesztNev, String leiras) throws Exception {
-        String inputFajl = "bemenetek/" + tesztNev + "_input.txt";
+        String beFajl = "src/bemenetek/" + tesztNev + "Be.txt";
+        String inputFajl = "src/bemenetek/" + tesztNev + "Input.txt";
         String kimenetFajl = "kimenetek/" + tesztNev + "ki.txt";
-        String joKimenetFajl = "joKimenetek/" + tesztNev + "ki.txt";
+        String joKimenetFajl = "src/joKimenetek/" + tesztNev + "ki.txt";
 
         new File("kimenetek").mkdirs();
 
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         PrintStream kimenet = new PrintStream(buffer);
-        InputStream bemenet = new FileInputStream(inputFajl);
+        Path bePath = Path.of(beFajl);
+        Path inputPath = Path.of(inputFajl);
+        boolean beExists = Files.exists(bePath);
+        boolean inputExists = Files.exists(inputPath);
+        InputStream bemenet;
+        if (beExists && inputExists) {
+            Path parancsFajl;
+            Path palyaFajl;
+            if (parancsFajl(bePath) && !parancsFajl(inputPath)) {
+                parancsFajl = bePath;
+                palyaFajl = inputPath;
+            } else if (parancsFajl(inputPath) && !parancsFajl(bePath)) {
+                parancsFajl = inputPath;
+                palyaFajl = bePath;
+            } else {
+                palyaFajl = bePath;
+                parancsFajl = inputPath;
+            }
+            bemenet = new ByteArrayInputStream(osszefuzottTartalom(palyaFajl, parancsFajl).getBytes(StandardCharsets.UTF_8));
+        } else if (inputExists) {
+            bemenet = new FileInputStream(inputFajl);
+        } else if (beExists) {
+            bemenet = new FileInputStream(beFajl);
+        } else {
+            throw new FileNotFoundException("Neither input nor Be file found for " + tesztNev);
+        }
 
-        Main.futtat(bemenet, kimenet);
+        Main.futtat(bemenet, kimenet, false);
 
         Files.writeString(Path.of(kimenetFajl), buffer.toString());
 
@@ -37,6 +70,18 @@ public class Tesztfuttato {
             System.out.println("[SIKERTELEN] " + tesztNev + " – " + leiras);
             kiirKulonbseg(kimenetFajl, joKimenetFajl);
             sikertelen++;
+        }
+    }
+
+    private static List<String> osszesTesztNev() throws IOException {
+        try (Stream<Path> utak = Files.list(Path.of("src", "bemenetek"))) {
+            return utak
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .filter(nev -> nev.endsWith("Input.txt"))
+                    .map(nev -> nev.substring(0, nev.length() - "Input.txt".length()))
+                    .sorted()
+                    .toList();
         }
     }
 
@@ -60,5 +105,19 @@ public class Tesztfuttato {
                 System.out.println("    Kapott:  " + k);
             }
         }
+    }
+
+    private static boolean parancsFajl(Path fajl) throws IOException {
+        String tartalom = Files.readString(fajl);
+        return Pattern.compile("(?m)^(load|info|move|tick|random|buy|exit)\\b").matcher(tartalom).find();
+    }
+
+    private static String osszefuzottTartalom(Path palyaFajl, Path parancsFajl) throws IOException {
+        String palya = Files.readString(palyaFajl);
+        String parancsok = Files.readString(parancsFajl);
+        if (!palya.endsWith("\n") && !palya.endsWith("\r")) {
+            palya = palya + System.lineSeparator();
+        }
+        return palya + parancsok;
     }
 }

@@ -1,0 +1,4 @@
+info b1 (Busz):
+pozicio: u2
+allapot: NORMAL
+hatralevoJavitasiIdo: 0

@@ -83,6 +83,11 @@ public class Palya {
      */
     public void addJarmu(String id, Jarmu j) {
         jarmuvek.put(id, j);
+        // propagate existing random seed to newly added vehicle if present
+        if (this.random != null) {
+            if (j instanceof Busz) ((Busz) j).setRandom(this.random);
+            // Auto already reads palya.getRandom() in its constructor
+        }
     }
 
     /**
@@ -229,6 +234,10 @@ public class Palya {
      */
     public void setRandom(Random random) {
         this.random = random;
+        // propagate to existing vehicles that support external Random
+        for (Jarmu j : jarmuvek.values()) {
+            if (j instanceof Busz) ((Busz) j).setRandom(random);
+        }
     }
 
     /**

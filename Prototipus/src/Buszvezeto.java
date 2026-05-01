@@ -60,7 +60,8 @@ public class Buszvezeto extends Jatekos implements IInfo {
 
     @Override
     public String getInfo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getInfo'");
+        return "info " + nev + " (Buszvezeto):\n"
+                + "nev: " + nev + "\n"
+                + "egyenleg: " + egyenleg;
     }
 }

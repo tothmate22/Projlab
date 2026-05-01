@@ -46,7 +46,7 @@ public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
         super(id, kezdoPozicio);
         this.allapot = BuszAllapot.NORMAL;
         this.hatralevoJavitasildo = 0;
-        this.random = new Random();
+        this.random = null; // fogyasztó Palya.setRandom segítségével beállítható tesztekhez
     }
 
     /**
@@ -68,7 +68,8 @@ public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
         }
 
         // Jég ellenőrzése és a 20%-os megcsúszás sorsolása
-        if (cel.getJeg() > 0 && random.nextInt(100) < 20) {
+        Random r = this.random == null ? new Random() : this.random;
+        if (cel.getJeg() > 0 && r.nextInt(100) < 20) {
             if (cel.foglaltE()) {
                 this.utkozott(cel.getKozlekedoJarmu());
                 return;
@@ -127,6 +128,13 @@ public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
                 csuszasCel.belep(this);
             }
         }
+    }
+
+    /**
+     * Teszt célból a külső Random beállítható, hogy determinisztikus viselkedést érjünk el.
+     */
+    public void setRandom(Random r) {
+        this.random = r;
     }
 
     /**
@@ -205,8 +213,10 @@ public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
      */
     public String getInfo() {
         String pozicioId = (this.pozicio != null) ? this.pozicio.getId() : "nincs";
-        return "Busz állapota: " + this.allapot + 
-               ", javítási idő: " + this.hatralevoJavitasildo + 
-               ", pozíció: " + pozicioId;
+        return "info " + id + " (Busz):\n"
+               + "pozicio: " + pozicioId + "\n"
+               + "allapot: " + this.allapot + "\n"
+               + "hatralevoJavitasiIdo: " + this.hatralevoJavitasildo;
+               
     }
 }

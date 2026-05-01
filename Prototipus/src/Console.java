@@ -1,15 +1,22 @@
 import java.io.*;
 import java.util.*;
+import java.nio.file.*;
 
 public class Console {
 
     private final Palya palya;
     private final Ora ora;
+    private final boolean kilepesEngedelyezett;
     private Random random = new Random();
 
     public Console(Palya palya, Ora ora) {
+        this(palya, ora, true);
+    }
+
+    public Console(Palya palya, Ora ora, boolean kilepesEngedelyezett) {
         this.palya = palya;
         this.ora   = ora;
+        this.kilepesEngedelyezett = kilepesEngedelyezett;
     }
 
     public void feldolgoz(String sor) {
@@ -58,22 +65,26 @@ public class Console {
     private void cmdLoad(String[] szavak) throws Hiba {
         ellen(szavak, 2, "load <fájlnév>");
         String fajlNev = szavak[1];
-        // If file not found at given path, try in src/ directory
-        try (BufferedReader br = new BufferedReader(new FileReader(fajlNev))) {
-            String sor;
-            while ((sor = br.readLine()) != null) {
-                feldolgoz(sor);
-            }
-        } catch (IOException e) {
-            try (BufferedReader br = new BufferedReader(new FileReader("src/" + fajlNev))) {
+        Path[] jeloltUtak = new Path[] {
+            Path.of(fajlNev),
+            Path.of("src", "bemenetek", fajlNev),
+            Path.of("bemenetek", fajlNev),
+            Path.of("src", fajlNev)
+        };
+
+        for (Path utvonal : jeloltUtak) {
+            try (BufferedReader br = Files.newBufferedReader(utvonal)) {
                 String sor;
                 while ((sor = br.readLine()) != null) {
                     feldolgoz(sor);
                 }
-            } catch (IOException e2) {
-                throw new Hiba("Nem sikerült megnyitni a fájlt: " + fajlNev);
+                return;
+            } catch (IOException e) {
+                // próbáljuk a következő lehetséges helyet
             }
         }
+
+        throw new Hiba("Nem sikerült megnyitni a fájlt: " + fajlNev);
     }
 
     private void cmdTick(String[] szavak) throws Hiba {
@@ -373,8 +384,10 @@ public class Console {
     }
 
     private void cmdExit() {
-        System.out.println("Kilépés...");
-        System.exit(0);
+        //System.out.println("Kilépés..."); - elrontja a tesztfuttató outputját, ezért kommentelve
+        if (kilepesEngedelyezett) {
+            System.exit(0);
+        }
     }
 
     private void ellen(String[] szavak, int min, String hasznalat) throws Hiba {
