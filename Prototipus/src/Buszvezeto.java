@@ -3,7 +3,7 @@
  * Feladata a busz útvonalának stratégiai megtervezése és a végállomások közötti közlekedés vezérlése.
  * Örökli a Jatekos osztály pénzkezelési képességeit, így ő gyűjti a sikeres fordulókért járó jutalmat.
  */
-public class Buszvezeto extends Jatekos {
+public class Buszvezeto extends Jatekos implements IInfo {
 
     /**
      * Referencia arra az egyetlen buszra, amit a játékos a játék során irányít.
@@ -56,5 +56,11 @@ public class Buszvezeto extends Jatekos {
      */
     public Busz getSajatBusz() {
         return this.sajatBusz;
+    }
+
+    @Override
+    public String getInfo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getInfo'");
     }
 }

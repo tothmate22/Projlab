@@ -2,7 +2,7 @@
 
 import java.util.ArrayList;
 
-public class Takarito extends Jatekos{
+public class Takarito extends Jatekos implements IInfo {
     private Hokotro hokotro;
 
     /**

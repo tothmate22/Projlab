@@ -7,7 +7,7 @@ import java.util.List;
  * kivételével. Figyeli, hogy a kereszteződésekben 
  * csak korlátozott mértékű hó halmozódhat fel.
  */
-public class Idojaras implements ILepheto{
+public class Idojaras implements ILepheto, IInfo {
     /**
      * A kereszteződésekben felhalmozódható maximális 
      * hóvastagság cm-ben.

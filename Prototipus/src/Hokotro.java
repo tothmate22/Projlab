@@ -11,7 +11,7 @@ import java.util.List;
  * A Jarmu osztályból származik, így a Jarmu osztályban megvalósított metódusokat használja
  * Tartoznak hozzá fejek, pénzt keres és vásárolni tud, valamint ezeket a fejeket használni
  */
-public class Hokotro extends Jarmu implements ILepheto{
+public class Hokotro extends Jarmu implements ILepheto, IInfo{
     private LinkedList<Fej> fejek; //A hókotróhoz tartozó fejek listája
     private int eletero;    //A hókotró életereje
     private Fej aktualisFej; //Az aktuálisan használt fej

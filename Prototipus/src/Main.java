@@ -16,7 +16,7 @@ public class Main {
         System.setOut(output);
 
         Palya palya = new Palya();
-        Ora ora = new Ora(1, "Alapóra");
+        Ora ora = new Ora(1, "ora");
         Console console = new Console(palya, ora);
 
         Scanner scanner = new Scanner(input);

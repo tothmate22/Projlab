@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Számon tartja az ütemezett eseményeket és lejáratukkor értesíti 
  * az érintett objektumokat.
  */
-public class Ora {
+public class Ora implements IInfo {
     /**
      * Az eltelt játékidő tick-ekben mérve.
      */
@@ -58,10 +58,7 @@ public class Ora {
     }
 
     public String getInfo() {
-        return "info " + name + " (Óra):\n" +
-            "currentTime: " + currentTime + "\n" +
-            "ticksPerSnowCm: " + ticksPerSnowCm + "\n" + 
-            "lephetokSzama: " + lepheto.size();
+        return "info " + name + " (Óra):\n" + "currentTime: " + currentTime + "\n" + "ticksPerSnowCm: " + ticksPerSnowCm + "\n" + "lephetokSzama: " + lepheto.size();
     }
 
     public int getCurrentTime() {

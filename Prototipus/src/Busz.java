@@ -5,7 +5,7 @@ import java.util.Random;
  * Felelős a mozgásért, az ütközések kezeléséért és a saját állapotának (elakadás, javítás) nyilvántartásáért.
  * Két kijelölt végállomás között közlekedik a sofőr (Buszvezető) utasításai alapján.
  */
-public class Busz extends Jarmu implements ILepheto, ICsuszhat {
+public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
 
     /**
      * A kijelölt végállomás, ahol a busz jutalmat kap a sikeres fordulóért.
