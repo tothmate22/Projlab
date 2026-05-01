@@ -1,0 +1,8 @@
+makeKeresztezodes kereszt_1
+makeUttest ut_1 kereszt_1
+makeUtszakasz u1 ut_1 1
+makeUtszakasz u2 ut_1 1
+makeUtszakasz u3 ut_1 1
+makeBuszvezeto bv1 0
+makeBusz b1 bv1 u1 u3
+makeAuto a1 u3 u3 VARAKOZIK
