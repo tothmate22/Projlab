@@ -40,9 +40,10 @@ public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
     /**
      * A Busz osztály konstruktora.
      * @param id A busz egyedi azonosítója.
+     * @param kezdoPozicio A busz kezdő pozíciója.
      */
-    public Busz(String id) {
-        super(id);
+    public Busz(String id, Utszakasz kezdoPozicio) {
+        super(id, kezdoPozicio);
         this.allapot = BuszAllapot.NORMAL;
         this.hatralevoJavitasildo = 0;
         this.random = new Random();

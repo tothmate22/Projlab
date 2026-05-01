@@ -92,8 +92,25 @@ public class Takarito extends Jatekos implements IInfo {
 
 
     public void vasarolHokotro(String hokotroNev, Takarito takarito, Utszakasz kezdo, Palya palya) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'vasarolHokotro'");
+        // Ellenőrizzük, van-e elég pénz (pl. 1000) és nincs-e már hókotrója
+        if (this.egyenleg >= 1000 && this.hokotro == null) {
+            // Létrehozzuk az új hókotrót a megadott névvel és kezdőpozícióval
+            Hokotro ujHokotro = new Hokotro(hokotroNev, kezdo);
+            
+            // Beállítjuk a takarítót és a pályát
+            ujHokotro.setTakarito(this);
+            this.hokotro = ujHokotro;
+            
+            // Hozzáadjuk a pályához, hogy a többi jármű is lássa
+            palya.addJarmu(hokotroNev, ujHokotro);
+            
+            // Levonjuk a pénzt
+            this.egyenleg -= 1000;
+            
+            System.out.println("Sikeres vasarlas: " + hokotroNev);
+        } else {
+            System.out.println("Sikertelen vasarlas: nincs eleg penz vagy mar van hokotro.");
+        }
     }
 
 
