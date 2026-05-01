@@ -1,4 +1,4 @@
-load teszt03_busz_varakozik.txt
+load teszt03Input.txt
 setJeg u2 2
 random 1
 move bv1 elore
