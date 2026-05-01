@@ -286,7 +286,7 @@ public class Console {
         Utszakasz cel = palya.getUtszakasz(celNev);
         if (cel == null) throw new Hiba("Ismeretlen útszakasz: " + celNev);
 
-        Busz b = new Busz(nev);
+        Busz b = new Busz(nev, kezdo);
         b.setPozicio(kezdo);
         b.setCelAllomas(cel);
         kezdo.setKozlekedoJarmu(b);

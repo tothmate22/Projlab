@@ -19,9 +19,11 @@ public abstract class Jarmu {
     /**
      * A Jarmu osztály konstruktora.
      * @param id A jármű egyedi azonosítója.
+     * @param kezdoPozicio A jármű kezdő pozíciója.
      */
-    public Jarmu(String id) {
+    public Jarmu(String id, Utszakasz kezdoPozicio) {
         this.id = id;
+        this.pozicio = kezdoPozicio;
     }
 
     /**

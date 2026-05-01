@@ -31,8 +31,7 @@ public class Auto extends Jarmu implements ILepheto, ICsuszhat, IInfo {
      * @param palya a pálya, amelyen az autó közlekedik
      */
     public Auto(String id, Utszakasz pozicio, Utszakasz cel, AutoAllapot allapot, Palya palya) {
-        super(id);
-        this.pozicio = pozicio;
+        super(id, pozicio);
         this.cel = cel;
         this.allapot = allapot;
         this.gps = new GPS(palya);

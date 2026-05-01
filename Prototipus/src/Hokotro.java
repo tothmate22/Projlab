@@ -24,7 +24,15 @@ public class Hokotro extends Jarmu implements ILepheto, IInfo{
      * a fejek listáját is létrehozza és hozzáadja az első fejet
      */
     public Hokotro() {
-        super(null);
+        super(null, null    );
+        this.fejek = new LinkedList<>();
+        fejek.add(new SoproFej("Alap SoproFej"));
+        this.eletero = 300;
+        this.aktualisFej = fejek.get(0);
+    }
+
+    public Hokotro(String hokotroNev, Utszakasz kezdo) {
+        super(hokotroNev, kezdo);
         this.fejek = new LinkedList<>();
         fejek.add(new SoproFej("Alap SoproFej"));
         this.eletero = 300;
