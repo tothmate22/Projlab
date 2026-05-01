@@ -1,4 +1,4 @@
-load teszt01_busz_celba.txt
+load teszt01Input.txt
 info bv1
 move bv1 elore
 tick 1
