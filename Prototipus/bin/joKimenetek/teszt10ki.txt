@@ -1,0 +1,19 @@
+info t1 (Takarító):
+nev: t1
+egyenleg: 2000
+hokotro: h1
+info h1 (Hókotró):
+pozicio: u1
+eletero: 0
+aktualisFej: nincs
+fejek: []
+info t1 (Takarító):
+nev: t1
+egyenleg: 0
+hokotro: h2
+info h2 (Hókotró):
+pozicio: u1
+eletero: 300
+aktualisFej: nincs
+fejek: []
+Kilépés...

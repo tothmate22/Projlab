@@ -17,6 +17,7 @@ public class Hokotro extends Jarmu implements ILepheto{
     private Fej aktualisFej; //Az aktuálisan használt fej
     private Takarito takarito; //A hókotróhoz tartozó takarító
     
+
     /**
      * Konstruktor, létrehozza a hókotró objektumot
      * alapértelmezetten egy söprőfejjel indul, és 300 életerővel, 
@@ -112,7 +113,10 @@ public class Hokotro extends Jarmu implements ILepheto{
         this.aktualisFej = sf1;
     }
 
-    
+    @Override
+    public Jarmu getJarmu() {
+        return this;
+    }
 
     /**
      * A hokotro halad a megadott utszakasz fele.
@@ -145,6 +149,14 @@ public class Hokotro extends Jarmu implements ILepheto{
 
     public void setTakarito(Takarito takarito) {
         this.takarito = takarito;
+    }
+
+    /**
+     * Visszaadja a hókotróhoz tartozó takarítót.
+     * * @return A takarító, vagy null ha nincs.
+     */
+    public Takarito getTakarito() {
+        return this.takarito;
     }
 
     @Override

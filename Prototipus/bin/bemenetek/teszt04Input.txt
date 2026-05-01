@@ -1,0 +1,6 @@
+makeKeresztezodes kereszt_1
+makeUttest ut_1 kereszt_1
+makeUtszakasz u_egyenes ut_1 1 
+makeUtszakasz u_kanyarodas ut_1 2 
+makeBuszvezeto bv1 0
+makeBusz b1 bv1 u_egyenes u_egyenes

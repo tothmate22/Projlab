@@ -31,6 +31,15 @@ public class Buszvezeto extends Jatekos {
     }
 
     /**
+     * Visszaadja a játékos járművét.
+     * * @return A buszvezető által irányított busz.
+     */
+    @Override
+    public Jarmu getJarmu() {
+        return this.sajatBusz;
+    }
+
+    /**
      * A játékos ezen a metóduson keresztül adja ki a parancsot a busz mozgási szándékának módosítására.
      * A metódus a paraméterként kapott útszakaszt továbbadja a busznak.
      * * @param ujCel A cél útszakasz, amerre a busz haladni fog.
@@ -39,5 +48,13 @@ public class Buszvezeto extends Jatekos {
         if (this.sajatBusz != null) {
             this.sajatBusz.setKovetkezoLepes(ujCel);
         }
+    }
+
+    /**
+     * Visszaadja a játékos saját buszát.
+     * * @return A játékos által irányított busz, vagy null ha még nincs.
+     */
+    public Busz getSajatBusz() {
+        return this.sajatBusz;
     }
 }

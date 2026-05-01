@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Main",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "Main",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "Build Java Project"
+        },
+        {
+            "name": "Run Tests",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "Main",
+            "args": "--teszt",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "Build Java Project"
+        }
+    ]
+}

@@ -56,4 +56,9 @@ public abstract class Jarmu {
     public void setPozicio(Utszakasz u) {
         this.pozicio = u;
     }
+
+    public Jarmu getJarmu() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getJarmu'");
+    }
 }

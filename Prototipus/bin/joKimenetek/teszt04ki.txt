@@ -1,0 +1,15 @@
+makeUttest ut_1
+info b1 (Busz):
+pozicio: u_egyenes
+allapot: NORMAL
+hatralevoJavitasiIdo: 0
+info b1 (Busz):
+pozicio: u_kanyarodas
+allapot: NORMAL
+hatralevoJavitasiIdo: 0
+info u_kanyarodas (Utszakasz):
+ho: 0
+jeg: 0
+zuzottko: false
+kozlekedoJarmu: b1
+epulet: nincs

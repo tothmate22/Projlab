@@ -1,4 +1,4 @@
-package interfaces;
+
 /**
  * Az ILepheto interfész azokat az objektumokat jelöli,
  * amelyek az idő múlására reagálnak.

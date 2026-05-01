@@ -17,6 +17,15 @@ public class Takarito extends Jatekos{
     
     
     /**
+     * Visszaadja a játékos járművét.
+     * * @return A takarító által irányított hókotró.
+     */
+    @Override
+    public Jarmu getJarmu() {
+        return this.hokotro;
+    }
+
+    /**
      * Új hókotró vásárlása.
      * Csak akkor sikeres, ha van elegendő pénz és nincs aktív hókotrója
      */

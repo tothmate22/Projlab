@@ -54,4 +54,6 @@ public abstract class Jatekos {
     public String getNev() {
         return this.nev;
     }
+
+    protected abstract Jarmu getJarmu();
 }

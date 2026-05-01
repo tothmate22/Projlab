@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import fejek.*;
 
 public class Console {
 
@@ -92,14 +91,27 @@ public class Console {
         Jatekos jatekos = palya.getJatekos(nev);
         if (jatekos == null) throw new Hiba("Ismeretlen játékos: " + nev);
 
+        Jarmu jarmu = null;
+        if (jatekos instanceof Buszvezeto bv) {
+            jarmu = bv.getSajatBusz();
+        } else if (jatekos instanceof Takarito t) {
+            jarmu = t.getHokotro();
+        }
+
+        if (jarmu == null) throw new Hiba("A játékosnak nincs járműve");
+
         Utszakasz cel = switch (irany) {
-            case "elore" -> jatekos.getJarmu().getPozicio().getSzakaszElore();
-            case "jobbra" -> jatekos.getJarmu().getPozicio().getSzakaszJobbra();
-            case "balra" -> jatekos.getJarmu().getPozicio().getSzakaszBalra();
+            case "elore" -> jarmu.getPozicio().getSzakaszElore();
+            case "jobbra" -> jarmu.getPozicio().getSzakaszJobbra();
+            case "balra" -> jarmu.getPozicio().getSzakaszBalra();
             default -> throw new Hiba("Ismeretlen irány: " + irany + " (elore / jobbra / balra)");
         };
 
-        jatekos.utvonalatValtoztat(cel);
+        if (jatekos instanceof Buszvezeto) {
+            ((Buszvezeto) jatekos).utvonalatValtoztat(cel);
+        } else if (jatekos instanceof Takarito) {
+            ((Takarito) jatekos).iranyit(cel);
+        }
     }
 
     private void cmdInfo(String[] szavak) throws Hiba {
@@ -133,6 +145,7 @@ public class Console {
         Hokotro hokotro = palya.getHokotro(hokotroNev);
         if (hokotro == null) throw new Hiba("Ismeretlen hókotró: " + hokotroNev);
         Takarito takarito = hokotro.getTakarito();
+        if (takarito == null) throw new Hiba("A hókotrónak nincs takarítója");
 
         takarito.vasarolFej(fejNev, fejTipus, hokotro, palya);
     }
@@ -265,7 +278,9 @@ public class Console {
         Utszakasz cel = palya.getUtszakasz(celNev);
         if (cel == null) throw new Hiba("Ismeretlen útszakasz: " + celNev);
 
-        Busz b = new Busz(nev, kezdo, cel, bv);
+        Busz b = new Busz(nev);
+        b.setPozicio(kezdo);
+        b.setCelAllomas(cel);
         kezdo.setKozlekedoJarmu(b);
         bv.setSajatBusz(b);
         palya.addJarmu(nev, b);
@@ -283,7 +298,8 @@ public class Console {
         Utszakasz kezdo = palya.getUtszakasz(kezdoNev);
         if (kezdo == null) throw new Hiba("Ismeretlen útszakasz: " + kezdoNev);
 
-        Hokotro h = new Hokotro(nev, kezdo, takarito);
+        Hokotro h = new Hokotro();
+        h.setPozicio(kezdo);
         kezdo.setKozlekedoJarmu(h);
         takarito.setHokotro(h);
         palya.addJarmu(nev, h);

@@ -1,0 +1,10 @@
+info bv1 (Buszvezeto):
+nev: bv1
+egyenleg: 0
+info b1 (Busz):
+pozicio: u2
+allapot: NORMAL
+hatralevoJavitasiIdo: 0
+info bv1 (Buszvezeto):
+nev: bv1
+egyenleg: 100

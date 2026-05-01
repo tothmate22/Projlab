@@ -1,0 +1,8 @@
+{
+    "[java]": {
+        "editor.defaultFormatter": "redhat.java",
+        "editor.formatOnSave": false
+    },
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin"
+}

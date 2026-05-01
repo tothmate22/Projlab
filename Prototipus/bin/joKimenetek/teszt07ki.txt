@@ -1,0 +1,3 @@
+info bv1 (Buszvezeto):
+nev: bv1
+egyenleg: 1500
