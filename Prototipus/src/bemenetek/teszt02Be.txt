@@ -1,0 +1,8 @@
+load teszt02_busz_utkozik.txt
+setJeg u2 2
+random 1
+move bv1 elore
+tick 1
+info b1 
+info a1 
+exit
