@@ -1,0 +1,7 @@
+load teszt01_busz_celba.txt
+info bv1
+move bv1 elore
+tick 1
+info b1
+info bv1
+exit
