@@ -1,5 +1,5 @@
 Takarító adatai: nev=t1, egyenleg=500, hokotro=van
 Hókotró adatai: pozicio=u1, eletero=300, aktualisFej=SoproFej, fejek szama=1
-Sikertelen vasarlas: ismeretlen fejtípus: soprofej
-Takarító adatai: nev=t1, egyenleg=500, hokotro=van
-Hókotró adatai: pozicio=u1, eletero=300, aktualisFej=SoproFej, fejek szama=1
+Sikeres vasarlas: f1 (sopro)
+Takarító adatai: nev=t1, egyenleg=0, hokotro=van
+Hókotró adatai: pozicio=u1, eletero=300, aktualisFej=SoproFej, fejek szama=2
