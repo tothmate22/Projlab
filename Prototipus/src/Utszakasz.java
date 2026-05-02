@@ -313,7 +313,15 @@ public class Utszakasz implements IInfo {
 
     @Override
     public String getInfo() {
-        return (id + " útszakasz adatai: " + "hó=" + ho + " jég=" + jeg + " zúzottköves=" + zuzottKo + " havon áthaladt=" + havonAthaladt + " közlekedő jármű=" + (kozlekedoJarmu != null ? kozlekedoJarmu.getId() : "nincs") + " félrehúzódott jármű=" + (felrehuzodottJarmu != null ? felrehuzodottJarmu.getId() : "nincs") + "szülő úttest=" + szuloUttest.getId() + " épület=" + epulet.toString());
+        return (id + " útszakasz adatai: " + 
+            "\n hó=" + ho + 
+            "\n jég=" + jeg + 
+            "\n zúzottköves=" + zuzottKo + 
+            "\n havon áthaladt=" + havonAthaladt + 
+            "\n közlekedő jármű=" + (kozlekedoJarmu != null ? kozlekedoJarmu.getId() : "nincs") + 
+            "\n félrehúzódott jármű=" + (felrehuzodottJarmu != null ? felrehuzodottJarmu.getId() : "nincs") + 
+            "\n szülő úttest=" + szuloUttest.getId() + 
+            "\n épület=" + epulet.toString());
     }
 }
 

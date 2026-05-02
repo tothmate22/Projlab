@@ -1,0 +1,10 @@
+makeKeresztezodes kereszt_1
+makeUttest ut_1 kereszt_1
+makeUtszakasz u1 ut_1 1
+makeUtszakasz u2 ut_1 1
+makeUtszakasz u3 ut_1 1
+random 2
+setJeg u2 1
+makeAutomento am1
+makeAuto a1 u1 u3 HALAD
+makeAuto a2 u2 u2 VARAKOZIK

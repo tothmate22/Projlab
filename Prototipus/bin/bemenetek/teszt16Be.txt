@@ -1,0 +1,5 @@
+load teszt16Input.txt
+info a1
+tick 1
+info a1
+exit
