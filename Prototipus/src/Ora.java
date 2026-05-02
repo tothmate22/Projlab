@@ -35,20 +35,30 @@ public class Ora implements IInfo {
      */
     public Ora(int ticksPerSnowCm, String name) {
         this.currentTime = 0;
-        this.ticksPerSnowCm = ticksPerSnowCm;
+        this.ticksPerSnowCm = ticksPerSnowCm == 0 ? 1 : ticksPerSnowCm; // Biztosítjuk, hogy legalább 1
         this.lepheto = new ArrayList<>();
         this.name = name;
     }
 
     /**
      * Egy időlépés végrehajtása.
-     * Növeli a belső időt, majd meghívja az összes
-     * regisztrált ILepheto objektum idoEltelt() metódusát.
+     * Növeli a belső időt, előbb az Idojaras-t (időjárás frissítés),
+     * majd az összes többi regisztrált ILepheto objektum idoEltelt() metódusát.
      */
     public void tick() {
         currentTime++;
+        // Előbb az Idojaras (időjárás frissítés)
         for (ILepheto l : lepheto) {
-            l.idoEltelt();
+            if (l instanceof Idojaras) {
+                l.idoEltelt();
+                break;  // Csak az első Idojaras
+            }
+        }
+        // Utána az összes többi (járművek, etc)
+        for (ILepheto l : lepheto) {
+            if (!(l instanceof Idojaras)) {
+                l.idoEltelt();
+            }
         }
     }
 
@@ -58,6 +68,15 @@ public class Ora implements IInfo {
      */
     public void addLepheto(ILepheto l) {
         lepheto.add(l);
+    }
+
+    /**
+     * Egy ILepheto objektumot regisztrál az Órához az elején.
+     * (Elsősorban az Idojaras-hoz használjuk)
+     * @param l a regisztrálandó ILepheto objektum
+     */
+    public void addLehetoAtStart(ILepheto l) {
+        lepheto.add(0, l);
     }
 
     public String getInfo() {

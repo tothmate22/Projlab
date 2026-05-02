@@ -1,6 +1,5 @@
-load bemenetek/teszt10Be.txt
-info t1
-buyHokotro h2 t1 u1
-info t1
-info h2
-exit
+makeKeresztezodes kereszt_1
+makeUttest ut_1 kereszt_1
+makeUtszakasz u1 ut_1 1
+makeTakarito t1 500
+makeHokotro h1 t1 u1

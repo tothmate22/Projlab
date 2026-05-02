@@ -143,26 +143,88 @@ public class Utszakasz implements IInfo {
 
     /**
      * Frissíti az időjárási viszonyokat az útszakaszon.
+     * A hó nő a ticksPerSnowCm beállítás alapján, de csak akkor esik, ha nincs jármű az útszakaszon.
+     * A jég úgy nő, hogy amikor a hó >= 4, akkor jeg = floor((ho - 1) / 2)
+     * @param ora az Óra, amely a ticksPerSnowCm és currentTime értékeket tartalmazza
      */
-    public void idojarasFrissites() {
-        ho += 10;
-        zuzottKo = false;
-        if (havonAthaladt >= 15) {
-            jeg += (int) Math.floor(ho / 5);
-            havonAthaladt = 0;
-            ho = 0;
+    public void idojarasFrissites(Ora ora) {
+        // Ha van jármű az útszakaszon, nem esik hó (de a meglévő marad)
+        if (kozlekedoJarmu != null) {
+            return;
         }
+        
+        // Hó növekedése az Ora ticksPerSnowCm értéke alapján
+        int ticksPerSnowCm = ora.getTicksPerSnowCm();
+        int currentTime = ora.getCurrentTime();
+        
+        // Minden ticksPerSnowCm tick után nő 1 cm a hó
+        // De mivel az Ora 1-ről indul, szükséges a maradék számítása
+        if (currentTime % ticksPerSnowCm == 0) {
+            ho++;
+        }
+        
+        // Jég számítása: ha ho >= 4, akkor jeg = floor((ho - 1) / 2)
+        if (ho >= 4) {
+            jeg = (int) Math.floor((ho - 1) / 2.0);
+        } else {
+            jeg = 0;
+        }
+        
+        zuzottKo = false;
     }
 
 
 
     /**
-     * Letakarítja az útszakaszt, eltávolítva a havat és a jeget.
+     * Letakarítja az útszakaszt, eltávolítva a havat és a jeget a fej típusa alapján.
+     * @param f a fejfej, amely a takarítást végzi
+     * @return true, ha volt mit takarítani, false egyébként
      */
     public boolean letakaritas(Fej f) {
-        return true;
-        //*** */
-
+        boolean voltMitTakaritani = false;
+        
+        // Sárkanyfej: azonnal eltünteti mind a havat, mind a jeget
+        if (f instanceof Sarkanyfej) {
+            if (ho > 0 || jeg > 0) {
+                voltMitTakaritani = true;
+                ho = 0;
+                jeg = 0;
+            }
+        }
+        // JegtoroFej: csak a jeget távolítja el
+        else if (f instanceof JegtoroFej) {
+            if (jeg > 0) {
+                voltMitTakaritani = true;
+                jeg = 0;
+            }
+        }
+        // SoproFej és HanyoFej: csökkentik a havat (50%-ot vagy valamennyit)
+        else if (f instanceof SoproFej || f instanceof HanyoFej) {
+            if (ho > 0) {
+                voltMitTakaritani = true;
+                ho = (int) Math.ceil(ho * 0.5); // 50%-ot meghagyva, a maradékot eltávolítva
+            }
+        }
+        // ZuzalekFej és SoszoroFej: egyéb logika
+        else if (f instanceof ZuzalekFej) {
+            // Zúzott kő jelölése, de hó/jég eltávolítás
+            if (ho > 0 || jeg > 0) {
+                voltMitTakaritani = true;
+                ho = (int) Math.ceil(ho * 0.7);
+                jeg = (int) Math.ceil(jeg * 0.7);
+                zuzottKo = true;
+            }
+        }
+        // Alapértelmezett: próbál valamit eltávolítani
+        else {
+            if (ho > 0 || jeg > 0) {
+                voltMitTakaritani = true;
+                ho = (int) Math.ceil(ho * 0.5);
+                jeg = (int) Math.ceil(jeg * 0.5);
+            }
+        }
+        
+        return voltMitTakaritani;
     }
 
     /**

@@ -1,7 +1,7 @@
-load teszt01Be.txt
-info bv1
-move bv1 elore
-tick 1
-info b1
-info bv1
-exit
+makeKeresztezodes kereszt_1
+makeUttest ut_1 kereszt_1
+makeUtszakasz u1 ut_1 1
+makeUtszakasz u2 ut_1 1
+setEpulet u2 MEGALLO
+makeBuszvezeto bv1 0
+makeBusz b1 bv1 u1 u2

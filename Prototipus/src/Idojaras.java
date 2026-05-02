@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Az Időjárás osztály felelős a hóesés szimulálásáért.
@@ -21,17 +22,24 @@ public class Idojaras implements ILepheto, IInfo {
      */
     private List<Utszakasz> utszakaszok;
     private String name;
+    
+    /**
+     * Az Óra referenciája, amely alapján kalkuláljuk az időjárási frissítéseket
+     */
+    private Ora ora;
 
     /**
      * Konstruktor.
      * @param utszakaszok az összes útszakasz listája
      * @param maxIntersectionSnow maximális hó kereszteződésekben
      * @param name az időjárás neve
+     * @param ora az Óra referenciája
      */
-    public Idojaras(List<Utszakasz> utszakaszok, int maxIntersectionSnow, String name) {
+    public Idojaras(List<Utszakasz> utszakaszok, int maxIntersectionSnow, String name, Ora ora) {
         this.utszakaszok = utszakaszok;
         this.maxIntersectionSnow = maxIntersectionSnow;
         this.name = name;
+        this.ora = ora;
     }
 
     /**
@@ -42,13 +50,22 @@ public class Idojaras implements ILepheto, IInfo {
     }
 
     /**
+     * Frissíti az Utszakaszok listáját az összes jelenleg ismert útszakasszal.
+     * @param ujUtszakaszok az összes Utszakasz listája
+     */
+    public void updateUtszakaszok(List<Utszakasz> ujUtszakaszok) {
+        this.utszakaszok = new ArrayList<>(ujUtszakaszok);
+    }
+
+    /**
      * Meghívja az összes ismert Útszakasz idojarasFrissites() 
-     * metódusát. Az egyes szakaszok maguk döntik el típusuk 
+     * metódusát, átadva az Ora referenciáját.
+     * Az egyes szakaszok maguk döntik el típusuk 
      * alapján, hogy kell-e havat kapniuk.
      */
     public void snowfall() {
         for (Utszakasz u : utszakaszok) {
-            u.idojarasFrissites();
+            u.idojarasFrissites(ora);
         }
     }
 

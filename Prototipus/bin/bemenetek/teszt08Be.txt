@@ -1,0 +1,9 @@
+load bemenetek/teszt08Input.txt
+switchhead t1
+random 1
+tick 5 
+info u2 
+move t1 elore
+tick 1
+info u2
+exit

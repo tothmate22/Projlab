@@ -22,11 +22,19 @@ public class Main {
 
         Ora ora = new Ora(1, "ora");
         Palya palya = new Palya(ora);
+        
+        // Idojaras létrehozása az Ora-val
+        Idojaras idojaras = new Idojaras(palya.getUtszakaszok(), 200, "idojaras", ora);
+        ora.addLepheto(idojaras);
+        
         Console console = new Console(palya, ora, kilepesEngedelyezett);
 
         Scanner scanner = new Scanner(input);
         while (scanner.hasNextLine()) {
-            console.feldolgoz(scanner.nextLine());
+            String sor = scanner.nextLine();
+            // Az Idojaras feltöltése az új Utszakaszokkal
+            idojaras.updateUtszakaszok(palya.getUtszakaszok());
+            console.feldolgoz(sor);
         }
 
         System.setOut(eredeti);

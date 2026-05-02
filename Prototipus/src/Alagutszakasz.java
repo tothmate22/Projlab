@@ -18,7 +18,7 @@ public class Alagutszakasz extends Utszakasz {
      * Hó és jég nélküli időjárási viszonyokat biztosít az alagútszakaszon.
      */
     @Override
-    public void idojarasFrissites() {
+    public void idojarasFrissites(Ora ora) {
         super.ho = 0;
         super.jeg = 0;
     }
