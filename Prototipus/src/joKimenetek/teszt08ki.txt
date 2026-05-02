@@ -1,6 +1,6 @@
 u2 útszakasz adatai: 
- hó=0
- jég=0
+ hó=5
+ jég=2
  zúzottköves=false
  havon áthaladt=0
  közlekedő jármű=nincs
@@ -11,7 +11,7 @@ u2 útszakasz adatai:
  hó=0
  jég=0
  zúzottköves=false
- havon áthaladt=0
+ havon áthaladt=1
  közlekedő jármű=null
  félrehúzódott jármű=nincs
  szülő úttest=ut_1

@@ -28,6 +28,7 @@ public class Main {
         ora.addLepheto(idojaras);
         
         Console console = new Console(palya, ora, kilepesEngedelyezett);
+        console.setIdojaras(idojaras);
 
         Scanner scanner = new Scanner(input);
         while (scanner.hasNextLine()) {

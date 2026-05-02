@@ -7,6 +7,7 @@ public class Console {
     private final Palya palya;
     private final Ora ora;
     private final boolean kilepesEngedelyezett;
+    private Idojaras idojaras;
     private Random random = new Random();
 
     public Console(Palya palya, Ora ora) {
@@ -17,6 +18,11 @@ public class Console {
         this.palya = palya;
         this.ora   = ora;
         this.kilepesEngedelyezett = kilepesEngedelyezett;
+        this.idojaras = null;
+    }
+
+    public void setIdojaras(Idojaras idojaras) {
+        this.idojaras = idojaras;
     }
 
     public void feldolgoz(String sor) {
@@ -76,6 +82,9 @@ public class Console {
             try (BufferedReader br = Files.newBufferedReader(utvonal)) {
                 String sor;
                 while ((sor = br.readLine()) != null) {
+                    if (idojaras != null) {
+                        idojaras.updateUtszakaszok(palya.getUtszakaszok());
+                    }
                     feldolgoz(sor);
                 }
                 return;

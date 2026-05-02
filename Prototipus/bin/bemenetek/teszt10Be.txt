@@ -1,7 +1,7 @@
 load bemenetek/teszt10Input.txt
 info t1
 info h1
-buyFej f1 soprofej h1
+buyFej f1 sopro h1
 info t1
 info h1
 exit
