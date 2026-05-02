@@ -1,4 +1,3 @@
-load teszt02Input.txt
 setJeg u2 2
 random 1
 move bv1 elore

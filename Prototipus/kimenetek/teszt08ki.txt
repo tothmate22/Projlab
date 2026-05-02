@@ -1,0 +1,18 @@
+u2 útszakasz adatai: 
+ hó=5
+ jég=2
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=ut_1
+ épület=URES
+u2 útszakasz adatai: 
+ hó=0
+ jég=0
+ zúzottköves=false
+ havon áthaladt=1
+ közlekedő jármű=null
+ félrehúzódott jármű=nincs
+ szülő úttest=ut_1
+ épület=URES

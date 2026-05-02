@@ -166,9 +166,7 @@ public class Utszakasz implements IInfo {
         // Jég számítása: ha ho >= 4, akkor jeg = floor((ho - 1) / 2)
         if (ho >= 4) {
             jeg = (int) Math.floor((ho - 1) / 2.0);
-        } else {
-            jeg = 0;
-        }
+        } 
         
         zuzottKo = false;
     }

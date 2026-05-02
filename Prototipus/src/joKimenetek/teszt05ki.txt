@@ -1,3 +1,4 @@
 info b1 (Busz):
-pozicio: u2
+pozicio: u1
 allapot: ELAKADT
+hatralevoJavitasiIdo: 0

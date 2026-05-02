@@ -6,7 +6,4 @@ tick 1
 info b1
 tick 60
 info b1
-move bv1 elore
-tick 1
-info b1
 exit

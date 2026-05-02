@@ -109,7 +109,7 @@ public class Tesztfuttato {
 
     private static boolean parancsFajl(Path fajl) throws IOException {
         String tartalom = Files.readString(fajl);
-        return Pattern.compile("(?m)^(load|info|move|tick|random|buy|exit)\\b").matcher(tartalom).find();
+        return Pattern.compile("(?m)^(load|info|move|tick|random|buy|exit|setjeg|setho|setzuzalek|setepulet)\\b").matcher(tartalom).find();
     }
 
     private static String osszefuzottTartalom(Path palyaFajl, Path parancsFajl) throws IOException {

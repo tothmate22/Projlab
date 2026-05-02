@@ -1,12 +1,8 @@
 info b1 (Busz):
 pozicio: u2
+allapot: JAVITAS_ALATT
+hatralevoJavitasiIdo: 60
+info b1 (Busz):
+pozicio: u2
 allapot: NORMAL
 hatralevoJavitasiIdo: 0
-info b1 (Busz):
-pozicio: u2
-allapot: JAVITAS_ALATT
-hatralevoJavitasiIdo: 3
-info b1 (Busz):
-pozicio: u2
-allapot: JAVITAS_ALATT
-hatralevoJavitasiIdo: 2

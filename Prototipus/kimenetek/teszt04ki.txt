@@ -6,4 +6,12 @@ info b1 (Busz):
 pozicio: u_kanyarodas
 allapot: NORMAL
 hatralevoJavitasiIdo: 0
-u_kanyarodas útszakasz adatai: hó=0 jég=0 zúzottköves=false havon áthaladt=0 közlekedő jármű=b1 félrehúzódott jármű=nincsszülő úttest=ut_1 épület=URES
+u_kanyarodas útszakasz adatai: 
+ hó=1
+ jég=0
+ zúzottköves=false
+ havon áthaladt=1
+ közlekedő jármű=b1
+ félrehúzódott jármű=nincs
+ szülő úttest=ut_1
+ épület=URES

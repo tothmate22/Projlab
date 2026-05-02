@@ -1,8 +1,8 @@
 info b1 (Busz):
 pozicio: u2
-allapot: NORMAL
-hatralevoJavitasiIdo: 0
+allapot: JAVITAS_ALATT
+hatralevoJavitasiIdo: 60
 info a1 (Auto):
 pozicio: u3
 cel: u3
-allapot: VARAKOZIK
+allapot: MENTESRE_VAR

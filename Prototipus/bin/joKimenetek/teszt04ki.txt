@@ -1,4 +1,3 @@
-makeUttest ut_1
 info b1 (Busz):
 pozicio: u_egyenes
 allapot: NORMAL
@@ -7,9 +6,12 @@ info b1 (Busz):
 pozicio: u_kanyarodas
 allapot: NORMAL
 hatralevoJavitasiIdo: 0
-info u_kanyarodas (Utszakasz):
-ho: 0
-jeg: 0
-zuzottko: false
-kozlekedoJarmu: b1
-epulet: nincs
+u_kanyarodas útszakasz adatai: 
+ hó=1
+ jég=0
+ zúzottköves=false
+ havon áthaladt=1
+ közlekedő jármű=b1
+ félrehúzódott jármű=nincs
+ szülő úttest=ut_1
+ épület=URES

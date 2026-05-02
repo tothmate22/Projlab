@@ -67,16 +67,35 @@ public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
             return;
         }
 
-        // Jég ellenőrzése és a 20%-os megcsúszás sorsolása
-        Random r = this.random == null ? new Random() : this.random;
-        if (cel.getJeg() > 0 && r.nextInt(100) < 20) {
+        // Ha a busz éppen jeges útszakaszon áll, onnan kell megcsúsznia.
+        if (this.pozicio != null && this.pozicio.getJeg() > 0) {
+            this.kicsuszik();
+            return;
+        }
+
+        // Jeges cél esetén a busz előbb belép a szakaszra, majd onnan megcsúszhat tovább.
+        if (cel.getJeg() > 0) {
             if (cel.foglaltE()) {
                 this.utkozott(cel.getKozlekedoJarmu());
                 return;
-            } else {
-                this.kicsuszik();
-                return;
             }
+
+            if (this.pozicio.jarmutElore(cel)) {
+                this.pozicio = cel;
+                cel.belep(this);
+            }
+
+            Utszakasz csuszasCel = cel.getSzakaszElore();
+            if (csuszasCel != null) {
+                if (csuszasCel.foglaltE()) {
+                    this.utkozott(csuszasCel.getKozlekedoJarmu());
+                    return;
+                }
+
+                this.pozicio = csuszasCel;
+                csuszasCel.belep(this);
+            }
+            return;
         }
 
         // Torlódás ellenőrzése (ha normálisan lépne)
@@ -105,9 +124,13 @@ public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
      * * @param masik A jármű, amivel a busz ütközött.
      */
     @Override
-    public void utkozott(Jarmu masik) {
+    public void utkozott( Jarmu masik) {
         this.hatralevoJavitasildo = 60; // 1 óra büntetés
         this.allapot = BuszAllapot.JAVITAS_ALATT;
+
+        if (masik instanceof ICsuszhat) {
+            ((ICsuszhat) masik).utkozott(this);
+        }
     }
 
     /**
@@ -116,7 +139,7 @@ public class Busz extends Jarmu implements ILepheto, ICsuszhat, IInfo {
     @Override
     public void kicsuszik() {
         Utszakasz csuszasCel = this.pozicio.getSzakaszElore();
-        
+
         if (csuszasCel != null) {
             if (csuszasCel.foglaltE()) {
                 // Ha foglalt az előtte lévő út, ütközik az ott állóval
