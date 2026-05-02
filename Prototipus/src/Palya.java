@@ -76,6 +76,15 @@ public class Palya {
     }
 
     /**
+     * Visszaadja az összes útszakaszt.
+     *
+     * @return az összes útszakasz listája
+     */
+    public java.util.List<Utszakasz> getUtszakaszok() {
+        return new java.util.ArrayList<>(utszakaszok.values());
+    }
+
+    /**
      * Hozzáad egy járművet a pályához.
      *
      * @param id a jármű azonosítója

@@ -1,0 +1,13 @@
+load bemenetek/teszt08Be.txt
+random 1
+tick 1
+info u2
+tick 1
+info u2
+tick 1
+info u2
+tick 1
+info u2
+tick 1
+info u2
+exit

@@ -168,7 +168,7 @@ public class Hokotro extends Jarmu implements ILepheto, IInfo{
 
     @Override
     public void idoEltelt() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'idoEltelt'");
+        // A hokotro kopása: az idővel csökken az életereje és a fejek életereje
+        kopas();
     }
 }
