@@ -1,0 +1,8 @@
+load teszt19Input.txt
+tick 1
+info a1
+info am1
+tick 30
+info a1
+info am1
+exit
