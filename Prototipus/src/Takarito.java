@@ -115,7 +115,52 @@ public class Takarito extends Jatekos implements IInfo {
 
 
     public void vasarolFej(String fejNev, String fejTipus, Hokotro hokotro2, Palya palya) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'vasarolFej'");
+        // Ellenőrizzük, van-e hókotrónk és elég-e pénz
+        if (this.hokotro == null) {
+            System.out.println("Sikertelen vasarlas: nincs hokotro.");
+            return;
+        }
+        
+        // Fejek ára
+        int fejAr = 500; // Alapértelmezett ár
+        
+        // A megfelelő fej létrehozása a típus alapján
+        Fej ujFej = null;
+        switch (fejTipus.toLowerCase()) {
+            case "sopro":
+                ujFej = new SoproFej(fejNev);
+                break;
+            case "hanyo":
+                ujFej = new HanyoFej(fejNev);
+                break;
+            case "jegtoro":
+                ujFej = new JegtoroFej(fejNev);
+                break;
+            case "sarkany":
+                ujFej = new Sarkanyfej(fejNev, 100); // Kerozin tartály 100-ról indul
+                fejAr = 800; // Drágább fej
+                break;
+            case "zuzalek":
+                ujFej = new ZuzalekFej(fejNev, 50); // Zuzalék tartály 50-ről indul
+                fejAr = 600;
+                break;
+            case "soszoro":
+                ujFej = new SoszoroFej(fejNev, 30); // Só szóró tartály 30-ról indul
+                fejAr = 700;
+                break;
+            default:
+                System.out.println("Sikertelen vasarlas: ismeretlen fejt\u00edpus: " + fejTipus);
+                return;
+        }
+        
+        // Ellenőrizzük az egyenleget
+        if (this.egyenleg >= fejAr) {
+            this.hokotro.addFej(ujFej);
+            palya.addFej(fejNev, ujFej);
+            this.egyenleg -= fejAr;
+            System.out.println("Sikeres vasarlas: " + fejNev + " (" + fejTipus + ")");
+        } else {
+            System.out.println("Sikertelen vasarlas: nincs eleg penz. Szukseglet: " + fejAr + ", megvan: " + this.egyenleg);
+        }
     }
 }
