@@ -135,6 +135,7 @@ public class Hokotro extends Jarmu implements ILepheto, IInfo{
         
         boolean belephet = this.pozicio.jarmutElore(cel);
         if (belephet) {
+            this.setPozicio(cel);
             boolean voltSzennyezodes = cel.ho > 0 || cel.jeg > 0;
             if (aktualisFej != null) {
                 takarit(cel);
