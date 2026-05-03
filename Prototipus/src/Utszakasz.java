@@ -170,12 +170,17 @@ public class Utszakasz implements IInfo {
             ho++;
         }
         
-        // Jég számítása: ha ho >= 4, akkor jeg = floor((ho - 1) / 2)
-        if (ho >= 4) {
-            jeg = (int) Math.floor((ho - 1) / 2.0);
+        /** Jég számítása: ha ho >= 4 és havonAthaladt >= 15, akkor jeg += floor(ho/5) */
+        if (ho >= 4 && havonAthaladt >= 15) {
+            jeg += (int) Math.floor(ho/5);
+            ho = 0;
+            havonAthaladt = 0; 
         } 
         
-        zuzottKo = false;
+    
+        if (currentTime % 10 == 0 && currentTime != 0) {
+            zuzottKo = false;
+        }
     }
 
 
