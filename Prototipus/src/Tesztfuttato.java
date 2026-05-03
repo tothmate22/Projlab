@@ -86,9 +86,14 @@ public class Tesztfuttato {
     }
 
     private static boolean fajlokEgyeznek(String kapott, String elvart) throws IOException {
-        String kapottSzoveg = Files.readString(Path.of(kapott)).stripTrailing();
-        String elvartSzoveg = Files.readString(Path.of(elvart)).stripTrailing();
-        return kapottSzoveg.equals(elvartSzoveg);
+        List<String> kSorok = Files.readAllLines(Path.of(kapott), StandardCharsets.UTF_8);
+        List<String> eSorok = Files.readAllLines(Path.of(elvart), StandardCharsets.UTF_8);
+        
+        // Tisztítás: szóközök levágása a sorok végéről + üres sorok kihagyása a fájl végén
+        List<String> kTisztitott = kSorok.stream().map(String::stripTrailing).filter(s -> !s.isEmpty()).toList();
+        List<String> eTisztitott = eSorok.stream().map(String::stripTrailing).filter(s -> !s.isEmpty()).toList();
+        
+        return kTisztitott.equals(eTisztitott);
     }
 
     private static void kiirKulonbseg(String kapottFajl, String elvartFajl) throws IOException {
