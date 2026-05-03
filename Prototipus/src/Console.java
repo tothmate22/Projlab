@@ -326,8 +326,7 @@ public class Console {
         Utszakasz kezdo = palya.getUtszakasz(kezdoNev);
         if (kezdo == null) throw new Hiba("Ismeretlen útszakasz: " + kezdoNev);
 
-        Hokotro h = new Hokotro();
-        h.setPozicio(kezdo);
+        Hokotro h = new Hokotro(nev, kezdo);
         kezdo.setKozlekedoJarmu(h);
         takarito.setHokotro(h);
         palya.addJarmu(nev, h);

@@ -1,3 +1,4 @@
+load teszt11Be.txt
 u2 útszakasz adatai: 
  hó=5
  jég=2
@@ -8,8 +9,8 @@ u2 útszakasz adatai:
  szülő úttest=ut_1
  épület=URES
 u2 útszakasz adatai: 
- hó=3
- jég=2
+ hó=7
+ jég=0
  zúzottköves=false
  havon áthaladt=1
  közlekedő jármű=null

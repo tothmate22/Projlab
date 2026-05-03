@@ -189,10 +189,11 @@ public class Utszakasz implements IInfo {
                 jeg = 0;
             }
         }
-        // JegtoroFej: csak a jeget távolítja el
+        // JegtoroFej: csak a jeget töríti fel, a tört jég hóként marad az úton
         else if (f instanceof JegtoroFej) {
             if (jeg > 0) {
                 voltMitTakaritani = true;
+                ho += jeg;
                 jeg = 0;
             }
         }

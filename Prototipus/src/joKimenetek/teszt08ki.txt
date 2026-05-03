@@ -1,3 +1,4 @@
+load teszt08Be.txt
 u2 útszakasz adatai: 
  hó=5
  jég=2

@@ -1,4 +1,4 @@
-load teszt13Be.txt
+load teszt12Be.txt
 tick 5
 info u2
 move t1 elore

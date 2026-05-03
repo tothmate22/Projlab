@@ -1,4 +1,4 @@
-load bemenetek/teszt09Be.txt   
+load teszt09Be.txt
 Takarító adatai: nev=t1, egyenleg=2000, hokotro=nincs
 Sikeres vasarlas: h2
 Takarító adatai: nev=t1, egyenleg=1000, hokotro=van

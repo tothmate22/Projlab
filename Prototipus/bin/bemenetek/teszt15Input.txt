@@ -1,0 +1,11 @@
+load teszt15Be.txt
+random 1
+tick 5 
+info u2 
+move t1 elore
+info u2
+tick 1
+info u2
+tick 4
+info u2
+exit
