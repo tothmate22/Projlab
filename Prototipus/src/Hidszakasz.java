@@ -16,5 +16,17 @@ public class Hidszakasz extends Utszakasz {
         
     }
 
+    @Override
+    public String getInfo() {
+        return (id + " hidszakasz adatai: " + 
+            "\n hó=" + ho + 
+            "\n jég=" + jeg + 
+            "\n zúzottköves=" + zuzottKo + 
+            "\n havon áthaladt=" + havonAthaladt + 
+            "\n közlekedő jármű=" + (kozlekedoJarmu != null ? kozlekedoJarmu.getId() : "nincs") + 
+            "\n félrehúzódott jármű=" + (felrehuzodottJarmu != null ? felrehuzodottJarmu.getId() : "nincs") + 
+            "\n szülő úttest=" + szuloUttest.getId() + 
+            "\n épület=" + epulet.toString());
+    }
 
 }

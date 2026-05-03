@@ -22,4 +22,17 @@ public class Alagutszakasz extends Utszakasz {
         super.ho = 0;
         super.jeg = 0;
     }
+
+    @Override
+    public String getInfo() {
+        return (id + " alagútszakasz adatai: " + 
+            "\n hó=" + ho + 
+            "\n jég=" + jeg + 
+            "\n zúzottköves=" + zuzottKo + 
+            "\n havon áthaladt=" + havonAthaladt + 
+            "\n közlekedő jármű=" + (kozlekedoJarmu != null ? kozlekedoJarmu.getId() : "nincs") + 
+            "\n félrehúzódott jármű=" + (felrehuzodottJarmu != null ? felrehuzodottJarmu.getId() : "nincs") + 
+            "\n szülő úttest=" + szuloUttest.getId() + 
+            "\n épület=" + epulet.toString());
+    }
 }

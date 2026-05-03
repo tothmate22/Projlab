@@ -1,41 +1,54 @@
-info a1 (Alagutszakasz):
-ho: 0
-jeg: 0
-zuzottKo: false
-kozlekedoJarmu: nincs
-epulet: nincs
-
-info b1 (Utszakasz):
-ho: 3
-jeg: 0
-zuzottKo: false
-kozlekedoJarmu: nincs
-epulet: nincs
-
-info c1 (Utszakasz):
-ho: 2
-jeg: 0
-zuzottKo: false
-kozlekedoJarmu: nincs
-epulet: nincs
-
-info d1 (Utszakasz):
-ho: 3
-jeg: 20
-zuzottKo: false
-kozlekedoJarmu: nincs
-epulet: nincs
-
-info e1 (Utszakasz):
-ho: 1
-jeg: 20
-zuzottKo: true
-kozlekedoJarmu: h1
-epulet: nincs
-
-info f1 (Utszakasz):
-ho: 23
-jeg: 0
-zuzottKo: true
-kozlekedoJarmu: nincs
-epulet: nincs
+a1 alagútszakasz adatai: 
+ hó=0
+ jég=0
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=a
+ épület=URES
+b1 útszakasz adatai: 
+ hó=12
+ jég=5
+ zúzottköves=false
+ havon áthaladt=1
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=b
+ épület=URES
+c1 útszakasz adatai: 
+ hó=12
+ jég=5
+ zúzottköves=false
+ havon áthaladt=1
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=c
+ épület=URES
+d1 útszakasz adatai: 
+ hó=3
+ jég=20
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=d
+ épület=URES
+e1 útszakasz adatai: 
+ hó=1
+ jég=20
+ zúzottköves=false
+ havon áthaladt=1
+ közlekedő jármű=h1
+ félrehúzódott jármű=nincs
+ szülő úttest=e
+ épület=URES
+f1 útszakasz adatai: 
+ hó=23
+ jég=11
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=f
+ épület=URES
