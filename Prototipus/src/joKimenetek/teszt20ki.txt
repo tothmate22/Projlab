@@ -1,0 +1,41 @@
+info al (Alagutszakasz):
+ho: 0
+jeg: 0
+zuzottKo: false
+kozlekedoJarmu: nincs
+epulet: nincs
+
+info b1 (Utszakasz):
+ho: 3
+jeg: 0
+zuzottKo: false
+kozlekedoJarmu: nincs
+epulet: nincs
+
+info c1 (Utszakasz):
+ho: 2
+jeg: 0
+zuzottKo: false
+kozlekedoJarmu: nincs
+epulet: nincs
+
+info d1 (Utszakasz):
+ho: 3
+jeg: 20
+zuzottKo: false
+kozlekedoJarmu: nincs
+epulet: nincs
+
+info e1 (Utszakasz):
+ho: 1
+jeg: 20
+zuzottKo: true
+kozlekedoJarmu: h1
+epulet: nincs
+
+info f1 (Utszakasz):
+ho: 23
+jeg: 0
+zuzottKo: true
+kozlekedoJarmu: nincs
+epulet: nincs

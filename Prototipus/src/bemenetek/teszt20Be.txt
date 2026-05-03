@@ -1,0 +1,34 @@
+load teszt20Input.txt
+makeKeresztezodes k1
+makeUttest a k1
+makeAlagutszakasz a1 a 1
+makeKeresztezodes k2
+makeUttest b k2
+makeUtszakasz b1 b 1
+setHo b1 20
+bindKijarat k1 b
+makeKeresztezodes k3
+makeUttest c k3
+makeUtszakasz c1 c 1
+setHo c1 20
+bindKijarat k2 c
+makeUttest d k3
+makeUtszakasz d1 d 1
+setJeg d1 20
+bindKijarat k1 d
+makeKeresztezodes k4
+makeUttest e k4
+makeUtszakasz e1 e 1
+setJeg e1 20
+setZuzalek e1 true
+bindKijarat k3 e
+makeKeresztezodes k5
+makeUttest f k5
+makeUtszakasz f1 f 1
+setHo f1 20
+setZuzalek f1 true
+bindKijarat k3 f
+makeTakarito t1 500 
+makeHokotro h1 t1 a1 
+makeFej f1 hanyofej h1
+move t1 elore
