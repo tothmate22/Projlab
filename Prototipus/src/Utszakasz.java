@@ -204,31 +204,43 @@ public class Utszakasz implements IInfo {
                 jeg = 0;
             }
         }
-        // SoproFej és HanyoFej: csökkentik a havat (50%-ot vagy valamennyit)
-        else if (f instanceof SoproFej || f instanceof HanyoFej) {
+        // SoproFej: a havat a tőle jobbra lévő sávba tolja (ha van jobb sáv)
+        else if (f instanceof SoproFej) {
             if (ho > 0) {
                 voltMitTakaritani = true;
-                ho = (int) Math.ceil(ho * 0.5); // 50%-ot meghagyva, a maradékot eltávolítva
+                Utszakasz jobb = getSzakaszJobbra();
+                int toPush = ho;
+                if (jobb != null) {
+                    jobb.setHo(jobb.getHo() + toPush);
+                }
+                // mindig csökkentjük a helyi hómennyiséget a tolás mértékével
+                ho = 0;
+            
             }
         }
-        // ZuzalekFej és SoszoroFej: egyéb logika
-        else if (f instanceof ZuzalekFej) {
-            // Zúzott kő jelölése, de hó/jég eltávolítás
-            if (ho > 0 || jeg > 0) {
+        else if (f instanceof HanyoFej) {
+            // Hányófej eltávolítja a havat (megtartás nélkül)
+            if (ho > 0) {
                 voltMitTakaritani = true;
-                ho = (int) Math.ceil(ho * 0.7);
-                jeg = (int) Math.ceil(jeg * 0.7);
-                zuzottKo = true;
+                ho = 0;
             }
         }
-        // Alapértelmezett: próbál valamit eltávolítani
-        else {
-            if (ho > 0 || jeg > 0) {
+        else if (f instanceof SoszoroFej) {
+            // Sózás: ha van hó, csökkenti 2 cm-rel; ha nincs hó, a jeget csökkenti (50%)
+            if (ho > 0) {
                 voltMitTakaritani = true;
-                ho = (int) Math.ceil(ho * 0.5);
+                ho = Math.max(0, ho - 2);
+            } else if (jeg > 0) {
+                voltMitTakaritani = true;
                 jeg = (int) Math.ceil(jeg * 0.5);
             }
         }
+        // ZuzalekFej: a csúszósságot megszünteti, de a hó és jég mennyiségét nem változtatja
+        else if (f instanceof ZuzalekFej) {
+            voltMitTakaritani = true;
+            zuzottKo = true;
+        }
+        
         
         return voltMitTakaritani;
     }

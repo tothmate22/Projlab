@@ -8,11 +8,11 @@ u2 útszakasz adatai:
  szülő úttest=ut_1
  épület=URES
 u2 útszakasz adatai: 
- hó=3
- jég=2
+ hó=0
+ jég=0
  zúzottköves=false
  havon áthaladt=1
- közlekedő jármű=null
+ közlekedő jármű=h1
  félrehúzódott jármű=nincs
  szülő úttest=ut_1
  épület=URES

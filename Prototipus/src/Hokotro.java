@@ -46,9 +46,7 @@ public class Hokotro extends Jarmu implements ILepheto, IInfo{
     public void addFej(Fej fej){
         if(fej!=null && !fejek.contains(fej)){
             fejek.addLast(fej);
-            if(aktualisFej == null){
-                aktualisFej = fej;
-            }
+            aktualisFej = fej;
         }
     }
 
