@@ -47,7 +47,7 @@ public class Auto extends Jarmu implements ILepheto, ICsuszhat, IInfo {
     @Override
     public void halad(Utszakasz cel) {
         this.cel = cel;
-
+        
         // Csak akkor halad, ha HALAD állapotban van
         if (allapot != AutoAllapot.HALAD || cel == null) {
             return;
@@ -66,25 +66,22 @@ public class Auto extends Jarmu implements ILepheto, ICsuszhat, IInfo {
             return;
         }
 
-        // Ha jeges és nincs zúzalék, az autó megcsúszhat
-        if (kovetkezo.getJeg() > 0 && !kovetkezo.zuzottKovesE() && random.nextInt(100) < 20) {
-            kicsuszik();
-            return;
-        }
 
         // Ha foglalt az útszakasz, az autó nem lép (követési távolság)
         if (kovetkezo.foglaltE()) {
             return;
         }
 
-        // Kilép az aktuális útszakaszról
-        if (pozicio != null) {
-            pozicio.setKozlekedoJarmu(null);
+        // Ha jeges és nincs zúzalék, az autó megcsúszhat
+        if (kovetkezo.getJeg() > 0) {
+        
+            kicsuszik();
+            return;
         }
 
-        // Belép az új útszakaszra
-        if (this.pozicio.jarmutElore(kovetkezo)) {
-            this.pozicio = kovetkezo;
+        // Kilép az aktuális útszakaszról
+        if (pozicio != null && pozicio.jarmutElore(kovetkezo)) {
+        this.pozicio = kovetkezo;
         }
 
         // Ha elérte a célt
@@ -101,6 +98,7 @@ public class Auto extends Jarmu implements ILepheto, ICsuszhat, IInfo {
     public void idoEltelt() {
         if (cel == null) {
             return;
+            
         }
 
         // Normál haladás
@@ -140,28 +138,31 @@ public class Auto extends Jarmu implements ILepheto, ICsuszhat, IInfo {
      */
     @Override
     public void kicsuszik() {
-        Utszakasz csuszasCel = pozicio == null ? null : pozicio.getSzakaszElore();
+        Utszakasz kovetkezo = gps.kovetkezoLepes(pozicio, cel);
 
-        if (csuszasCel == null) {
+        if (kovetkezo == null) {
             return;
         }
 
-        // Ütközés
-        if (csuszasCel.foglaltE()) {
+        Utszakasz csuszasCel = kovetkezo.getSzakaszElore();
+
+        if (pozicio != null && pozicio.jarmutElore(kovetkezo)) {
+            this.pozicio = kovetkezo;
+        } else {
+            return;
+        }
+
+        if (csuszasCel != null && csuszasCel.foglaltE()) {
             utkozott(csuszasCel.getKozlekedoJarmu());
             return;
         }
 
-        // Csúszás előre
-        if (pozicio != null) {
-            pozicio.setKozlekedoJarmu(null);
-        }
+        if (csuszasCel != null && pozicio.jarmutElore(csuszasCel)) {
+            this.pozicio = csuszasCel;
 
-        csuszasCel.belep(this);
-        this.pozicio = csuszasCel;
-
-        if (csuszasCel == cel) {
-            celbaErt();
+            if (this.pozicio == cel) {
+                celbaErt();
+            }
         }
     }
 
@@ -174,7 +175,7 @@ public class Auto extends Jarmu implements ILepheto, ICsuszhat, IInfo {
     @Override
     public void utkozott(Jarmu masik) {
         allapotValtoztat(AutoAllapot.MENTESRE_VAR);
-
+        
         Automento automento = gps.getElsoAutomento();
         if (automento != null) {
             automento.mentesRegisztral(this);
