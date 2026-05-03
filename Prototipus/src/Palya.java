@@ -1,4 +1,3 @@
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -246,6 +245,7 @@ public class Palya {
         // propagate to existing vehicles that support external Random
         for (Jarmu j : jarmuvek.values()) {
             if (j instanceof Busz) ((Busz) j).setRandom(random);
+            
         }
     }
 

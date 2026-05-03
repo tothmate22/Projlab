@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * Az osztály ILepheto interfészt valósít meg, így az idő múlására reagál.
  */
-public class Automento implements ILepheto {
+public class Automento implements ILepheto, IInfo {
 
     /**
      * A mentésre váró autók és a hozzájuk tartozó hátralévő idő tárolása.
@@ -88,9 +88,10 @@ public class Automento implements ILepheto {
      *
      * @return az autómentő aktuális állapota
      */
+    @Override
     public String getInfo() {
         StringBuilder sb = new StringBuilder();
-        sb.append("info automento (Automento):\n");
+        sb.append("info " + nev + " (Automento):\n");
         sb.append("mentendoAutok: [");
 
         int i = 0;
