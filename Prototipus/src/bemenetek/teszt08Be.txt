@@ -1,7 +1,8 @@
 load bemenetek/teszt08Input.txt
 switchhead t1
 random 1
-tick 5 
+setHo u2 5
+setjeg u2 2
 info u2 
 move t1 elore
 tick 1

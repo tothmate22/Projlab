@@ -6,5 +6,5 @@ makeUtszakasz u3 ut_1 1
 random 2
 setJeg u2 1
 makeAutomento am1
-makeAuto a1 u1 u3 HALAD
-makeAuto a2 u2 u2 VARAKOZIK
+makeAuto a1 u1 u2 HALAD
+makeAuto a2 u3 u3 VARAKOZIK

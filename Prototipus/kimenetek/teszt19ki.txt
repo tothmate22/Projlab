@@ -1,10 +1,12 @@
 info a1 (Auto):
-pozicio: u1
-cel: u3
-allapot: HALAD
-HIBA: info: Ismeretlen objektum: am1
+pozicio: u2
+cel: u2
+allapot: MENTESRE_VAR
+info am1 (Automento):
+mentendoAutok: [a1]
 info a1 (Auto):
-pozicio: u1
-cel: u3
-allapot: HALAD
-HIBA: info: Ismeretlen objektum: am1
+pozicio: u2
+cel: u2
+allapot: VARAKOZIK
+info am1 (Automento):
+mentendoAutok: []
