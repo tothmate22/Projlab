@@ -1,4 +1,4 @@
-info al (Alagutszakasz):
+info a1 (Alagutszakasz):
 ho: 0
 jeg: 0
 zuzottKo: false

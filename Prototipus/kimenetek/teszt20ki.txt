@@ -1,27 +1,180 @@
-HIBA: move: Ismeretlen játékos: t1
-HIBA: move: Ismeretlen játékos: t1
-HIBA: move: Ismeretlen játékos: t1
-HIBA: info: Ismeretlen objektum: a1
-HIBA: info: Ismeretlen objektum: b1
-HIBA: info: Ismeretlen objektum: c1
-HIBA: info: Ismeretlen objektum: d1
-HIBA: info: Ismeretlen objektum: e1
-HIBA: info: Ismeretlen objektum: f1
 a1 útszakasz adatai: 
  hó=0
  jég=0
  zúzottköves=false
  havon áthaladt=0
- közlekedő jármű=null
+ közlekedő jármű=h1
  félrehúzódott jármű=nincs
  szülő úttest=a
  épület=URES
 b1 útszakasz adatai: 
- hó=23
- jég=11
+ hó=20
+ jég=0
  zúzottköves=false
  havon áthaladt=0
  közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=b
+ épület=URES
+c1 útszakasz adatai: 
+ hó=20
+ jég=0
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=c
+ épület=URES
+d1 útszakasz adatai: 
+ hó=0
+ jég=20
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=d
+ épület=URES
+e1 útszakasz adatai: 
+ hó=0
+ jég=20
+ zúzottköves=true
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=e
+ épület=URES
+f1 útszakasz adatai: 
+ hó=20
+ jég=0
+ zúzottköves=true
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=f
+ épület=URES
+a1 útszakasz adatai: 
+ hó=0
+ jég=0
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=a
+ épület=URES
+b1 útszakasz adatai: 
+ hó=10
+ jég=0
+ zúzottköves=false
+ havon áthaladt=1
+ közlekedő jármű=h1
+ félrehúzódott jármű=nincs
+ szülő úttest=b
+ épület=URES
+c1 útszakasz adatai: 
+ hó=21
+ jég=10
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=c
+ épület=URES
+d1 útszakasz adatai: 
+ hó=1
+ jég=20
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=d
+ épület=URES
+e1 útszakasz adatai: 
+ hó=1
+ jég=20
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=e
+ épület=URES
+f1 útszakasz adatai: 
+ hó=21
+ jég=10
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=f
+ épület=URES
+a1 útszakasz adatai: 
+ hó=0
+ jég=0
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=a
+ épület=URES
+b1 útszakasz adatai: 
+ hó=10
+ jég=0
+ zúzottköves=false
+ havon áthaladt=1
+ közlekedő jármű=h1
+ félrehúzódott jármű=nincs
+ szülő úttest=b
+ épület=URES
+c1 útszakasz adatai: 
+ hó=22
+ jég=10
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=c
+ épület=URES
+d1 útszakasz adatai: 
+ hó=2
+ jég=20
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=d
+ épület=URES
+e1 útszakasz adatai: 
+ hó=2
+ jég=20
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=e
+ épület=URES
+f1 útszakasz adatai: 
+ hó=22
+ jég=10
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=f
+ épület=URES
+a1 útszakasz adatai: 
+ hó=0
+ jég=0
+ zúzottköves=false
+ havon áthaladt=0
+ közlekedő jármű=nincs
+ félrehúzódott jármű=nincs
+ szülő úttest=a
+ épület=URES
+b1 útszakasz adatai: 
+ hó=10
+ jég=0
+ zúzottköves=false
+ havon áthaladt=1
+ közlekedő jármű=h1
  félrehúzódott jármű=nincs
  szülő úttest=b
  épület=URES

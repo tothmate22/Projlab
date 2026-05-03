@@ -43,6 +43,7 @@ public class Utszakasz implements IInfo {
      */
     public void belep(Jarmu jarmu) {
         kozlekedoJarmu = jarmu;
+        jarmu.setPozicio(this);
         if (ho > 0) {
             havonAthaladt++;
         }
@@ -137,6 +138,12 @@ public class Utszakasz implements IInfo {
         
         if (szakaszIndex < jelenlegiSav.size() - 1) {
             return jelenlegiSav.get(szakaszIndex + 1);            
+        }
+        else if (szakaszIndex == jelenlegiSav.size() - 1) {
+            // Ha ez az utolsó szakasz a savban, akkor a következő szakasz az út végén van
+            if (!szuloUttest.getCelKeresztezodes().getKijaratok().isEmpty()) {
+                return szuloUttest.getCelKeresztezodes().getKijaratok().get(0).getSavok().get(0).get(0); // Az első szakasz a következő úttesten
+            }
         }
         return null;
     }
