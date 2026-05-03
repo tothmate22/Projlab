@@ -1,0 +1,10 @@
+info a1 (Auto):
+pozicio: u1
+cel: u3
+allapot: HALAD
+HIBA: info: Ismeretlen objektum: am1
+info a1 (Auto):
+pozicio: u1
+cel: u3
+allapot: HALAD
+HIBA: info: Ismeretlen objektum: am1

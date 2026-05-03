@@ -9,7 +9,7 @@ u2 útszakasz adatai:
  épület=URES
 u2 útszakasz adatai: 
  hó=0
- jég=0
+ jég=2
  zúzottköves=false
  havon áthaladt=1
  közlekedő jármű=h1
