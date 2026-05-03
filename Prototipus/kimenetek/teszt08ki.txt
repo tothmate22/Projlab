@@ -12,7 +12,7 @@ u2 útszakasz adatai:
  jég=0
  zúzottköves=false
  havon áthaladt=1
- közlekedő jármű=null
+ közlekedő jármű=h1
  félrehúzódott jármű=nincs
  szülő úttest=ut_1
  épület=URES

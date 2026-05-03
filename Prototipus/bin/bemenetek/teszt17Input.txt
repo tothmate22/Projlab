@@ -1,0 +1,6 @@
+makeKeresztezodes kereszt_1
+makeUttest ut_1 kereszt_1
+makeUtszakasz u1 ut_1 1
+makeUtszakasz u2 ut_1 1
+setHo u2 25
+makeAuto a1 u1 u2 HALAD

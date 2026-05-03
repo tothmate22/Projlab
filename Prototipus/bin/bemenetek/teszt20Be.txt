@@ -1,0 +1,13 @@
+load teszt20Input.txt
+move t1 elore
+tick 1
+move t1 elore
+tick 1
+move t1 elore
+tick 1
+info a1
+info b1
+info c1
+info d1
+info e1
+info f1

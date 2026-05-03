@@ -1,4 +1,3 @@
-load teszt10Be.txt
 Takarító adatai: nev=t1, egyenleg=500, hokotro=van
 Hókotró adatai: pozicio=u1, eletero=300, aktualisFej=SoproFej, fejek szama=1
 Sikeres vasarlas: f1 (sopro)
