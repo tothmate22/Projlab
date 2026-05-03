@@ -62,6 +62,7 @@ public class Auto extends Jarmu implements ILepheto, ICsuszhat, IInfo {
 
         // Ha túl nagy a hó, az autó elakad
         if (kovetkezo.getHo() >= 25) {
+            //System.out.println("hello");
             elakad();
             return;
         }
