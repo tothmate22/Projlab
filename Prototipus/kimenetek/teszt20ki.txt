@@ -18,7 +18,7 @@ b1 útszakasz adatai:
  épület=URES
 c1 útszakasz adatai: 
  hó=1
- jég=10
+ jég=0
  zúzottköves=false
  havon áthaladt=1
  közlekedő jármű=nincs
@@ -37,7 +37,7 @@ d1 útszakasz adatai:
 e1 útszakasz adatai: 
  hó=0
  jég=20
- zúzottköves=false
+ zúzottköves=true
  havon áthaladt=1
  közlekedő jármű=h1
  félrehúzódott jármű=nincs
@@ -45,8 +45,8 @@ e1 útszakasz adatai:
  épület=URES
 f1 útszakasz adatai: 
  hó=23
- jég=11
- zúzottköves=false
+ jég=0
+ zúzottköves=true
  havon áthaladt=0
  közlekedő jármű=nincs
  félrehúzódott jármű=nincs

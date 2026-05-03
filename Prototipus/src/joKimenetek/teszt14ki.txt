@@ -1,6 +1,6 @@
 u2 útszakasz adatai: 
  hó=5
- jég=2
+ jég=0
  zúzottköves=false
  havon áthaladt=0
  közlekedő jármű=nincs
