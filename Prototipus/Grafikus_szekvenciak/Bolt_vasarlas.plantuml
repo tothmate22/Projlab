@@ -1,0 +1,22 @@
+@startuml Bolt_vasarlas
+title Bolt vásárlás
+skinparam style strictuml
+actor Jatekos
+Jatekos -> HokotroController: keyPressed(B)
+activate HokotroController
+HokotroController -> BoltView: getAr()
+activate BoltView
+BoltView --> HokotroController: ar
+deactivate BoltView
+HokotroController -> Takarito: vasarolFej(fej)
+activate Takarito
+Takarito --> HokotroController: true
+deactivate Takarito
+HokotroController --> Jatekos
+deactivate HokotroController
+actor System
+System -> BoltView
+BoltView --> System
+System -> HokotroView
+HokotroView --> System
+@enduml

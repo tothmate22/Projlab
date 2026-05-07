@@ -1,0 +1,18 @@
+@startuml Hoktro_fecsere
+title Hoktro fejcsere
+skinparam style strictuml
+actor Jatekos
+Jatekos -> HokotroController: keyPressed(Tab)
+activate HokotroController
+HokotroController -> Hokotro: cserelFej()
+activate Hokotro
+Hokotro --> HokotroController
+deactivate Hokotro
+HokotroController --> Jatekos
+deactivate HokotroController
+actor System
+System -> FejView
+FejView --> System
+System -> HokotroView
+HokotroView --> System
+@enduml

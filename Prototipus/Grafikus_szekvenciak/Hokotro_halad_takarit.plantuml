@@ -1,0 +1,29 @@
+@startuml Hoktro_halad_takarit
+title Hoktro halad takarit
+skinparam style strictuml
+actor Jatekos
+Jatekos -> HokotroController: keyPressed()
+activate HokotroController
+HokotroController -> Hokotro: halad()
+activate Hokotro
+Hokotro -> Utszakasz: belep(this)
+activate Utszakasz
+Utszakasz --> Hokotro: true
+Hokotro -> Hokotro: takarit(utszakasz)
+Hokotro -> Fej: takarit(utszakasz)
+activate Fej
+Fej -> Utszakasz: letakaritas(this)
+activate Utszakasz
+Utszakasz --> Fej: true
+deactivate Utszakasz
+Fej --> Hokotro: true
+deactivate Fej
+Hokotro -> Hokotro: kopas()
+Hokotro --> HokotroController
+deactivate Hokotro
+HokotroController --> Jatekos
+deactivate HokotroController
+actor System
+System -> HokotroView
+HokotroView --> System
+@enduml
