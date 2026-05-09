@@ -1,0 +1,37 @@
+@startuml
+title Szekvenciadiagram: Busz vezérlése (Sávváltás jobbra)
+
+actor Játékos
+participant "c: BuszController" as Ctrl
+participant "b: Busz" as Busz
+participant "u: Utszakasz" as Utszakasz
+participant "v: Buszvezeto" as Vezeto
+
+Játékos -> Ctrl : keyPressed(KeyEvent VK_RIGHT)
+activate Ctrl
+
+Ctrl -> Busz : getPozicio()
+activate Busz
+Busz --> Ctrl : u
+deactivate Busz
+
+Ctrl -> Utszakasz : getSzakaszJobbra()
+activate Utszakasz
+Utszakasz --> Ctrl : celUtszakasz
+deactivate Utszakasz
+
+opt celUtszakasz != null
+    Ctrl -> Vezeto : utvonalatValtoztat(celUtszakasz)
+    activate Vezeto
+    Vezeto -> Busz : setKovetkezoLepes(celUtszakasz)
+    activate Busz
+    Busz --> Vezeto
+    deactivate Busz
+    Vezeto --> Ctrl
+    deactivate Vezeto
+end
+
+Ctrl --> Játékos
+deactivate Ctrl
+
+@enduml
