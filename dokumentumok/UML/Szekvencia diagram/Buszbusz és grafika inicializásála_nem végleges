@@ -1,0 +1,44 @@
+@startuml
+title Szekvenciadiagram: Busz és grafika inicializálása
+
+participant "Main" as M
+participant "b: Busz" as Busz
+participant "v: Buszvezeto" as Vezeto
+participant "view: BuszView" as View
+participant "hud: BuszvezetoHUDView" as HUD
+participant "ctrl: BuszController" as Ctrl
+
+M -> Busz : new Busz(...)
+activate Busz
+Busz --> M : b
+deactivate Busz
+
+M -> Vezeto : new Buszvezeto(...)
+activate Vezeto
+Vezeto --> M : v
+deactivate Vezeto
+
+M -> View : new BuszView(b)
+activate View
+View -> Busz : addObserver(this)
+activate Busz
+Busz --> View
+deactivate Busz
+View --> M : view
+deactivate View
+
+M -> HUD : new BuszvezetoHUDView(v)
+activate HUD
+HUD -> Vezeto : addObserver(this)
+activate Vezeto
+Vezeto --> HUD
+deactivate Vezeto
+HUD --> M : hud
+deactivate HUD
+
+M -> Ctrl : new BuszController(v)
+activate Ctrl
+Ctrl --> M : ctrl
+deactivate Ctrl
+
+@enduml
