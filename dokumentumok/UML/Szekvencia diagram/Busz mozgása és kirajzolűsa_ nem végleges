@@ -1,0 +1,58 @@
+@startuml
+title Szekvenciadiagram: Busz mozgása és kirajzolása (Tick)
+
+actor Óra
+participant "b: Busz" as Busz
+participant "u: Utszakasz" as Utszakasz
+participant "view: BuszView" as View
+participant "Swing" as Swing
+
+Óra -> Busz : idoEltelt()
+activate Busz
+
+opt kovetkezoLepes != null
+    Busz -> Busz : halad(kovetkezoLepes)
+    activate Busz
+    
+    Busz -> Utszakasz : belep(this)
+    activate Utszakasz
+    Utszakasz --> Busz
+    deactivate Utszakasz
+    
+    Busz -> Busz : notifyObservers()
+    activate Busz
+    
+    Busz -> View : update()
+    activate View
+    View -> Swing : repaint()
+    activate Swing
+    Swing --> View
+    deactivate Swing
+    View --> Busz
+    deactivate View
+    
+    Busz --> Busz
+    deactivate Busz
+    
+    deactivate Busz
+end
+
+Busz --> Óra
+deactivate Busz
+
+== Aszinkron kirajzolás a Swing által ==
+
+Swing -> View : draw(Graphics g)
+activate View
+View -> Busz : getPozicio()
+activate Busz
+Busz --> View : u
+deactivate Busz
+View -> Busz : getAllapot()
+activate Busz
+Busz --> View : NORMAL
+deactivate Busz
+View --> Swing
+deactivate View
+
+@enduml
