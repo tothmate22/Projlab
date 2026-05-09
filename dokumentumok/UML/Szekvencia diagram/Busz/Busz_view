@@ -1,0 +1,69 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' --- Interfészek ---
+interface KeyListener <<interface>> {
+    + keyPressed(e: KeyEvent): void
+}
+
+interface IView <<interface>> {
+    + draw(g: Graphics): void
+}
+
+' --- Új Grafikus / Controller Osztályok ---
+class BuszController {
+    - vezeto: Buszvezeto
+    + keyPressed(e: KeyEvent): void
+}
+
+class BuszView {
+    - buszSprite: Image
+    - javitasIkon: Image
+    - elakadtIkon: Image
+    - modell: Busz
+    + draw(g: Graphics): void
+}
+
+class BuszvezetoHUDView {
+    - sajatVezeto: Buszvezeto
+    + draw(g: Graphics): void
+}
+
+' --- Régi (Módosított) Modell Osztályok ---
+class Busz {
+    - megfigyelok: List<IView>
+    - pozicio: Utszakasz
+    - allapot: BuszAllapot
+    - hatralevoJavitasiIdo: int
+    + addObserver(v: IView): void
+    - notifyObservers(): void
+    + halad(cel: Utszakasz): void
+    + utkozott(masik: Jarmu): void
+    + idoEltelt(): void
+}
+
+class Buszvezeto {
+    - megfigyelok: List<IView>
+    - nev: String
+    - egyenleg: int
+    - sajatBusz: Busz
+    + addObserver(v: IView): void
+    - notifyObservers(): void
+    + penztKap(osszeg: int): void
+    + utvonalatValtoztat(ujCel: Utszakasz): void
+}
+
+' --- Kapcsolatok és Megvalósítások ---
+BuszController .up.|> KeyListener
+BuszView .up.|> IView
+BuszvezetoHUDView .up.|> IView
+
+BuszController --> Buszvezeto : "- vezeto"
+BuszView --> Busz : "- modell"
+BuszvezetoHUDView --> Buszvezeto : "- sajatVezeto"
+
+' Observer kapcsolatok (A modell ismeri a View-t, de csak az interfészen keresztül)
+Busz o-- IView : "- megfigyelok"
+Buszvezeto o-- IView : "- megfigyelok"
+
+@enduml
