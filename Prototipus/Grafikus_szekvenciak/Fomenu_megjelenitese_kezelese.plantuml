@@ -1,0 +1,21 @@
+@startuml
+title MainMenuView – Főmenü megjelenítése és kezelése
+
+actor Jatekos
+participant "MainMenuView" as MMV
+participant "Game" as Game
+
+Game -> MMV : show()
+activate MMV
+
+alt inditGomb lenyomva
+    Jatekos -> MMV : actionPerformed(ActionEvent e)
+    MMV -> Game : startGame()
+else kilepGomb lenyomva
+    Jatekos -> MMV : actionPerformed(ActionEvent e)
+    MMV -> Game : exitGame()
+end
+
+deactivate MMV
+
+@enduml

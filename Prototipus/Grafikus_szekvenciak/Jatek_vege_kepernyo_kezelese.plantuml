@@ -1,0 +1,22 @@
+@startuml
+title GameOverView – Játék vége képernyő kezelése
+
+actor Jatekos
+participant "GameOverView" as GOV
+participant "MainMenuView" as MMV
+participant "Game" as Game
+
+Game -> GOV : show(egyenleg, nyert)
+activate GOV
+
+alt ujraGomb lenyomva
+    Jatekos -> GOV : actionPerformed(ActionEvent e)
+    GOV -> MMV : show()
+else kilepGomb lenyomva
+    Jatekos -> GOV : actionPerformed(ActionEvent e)
+    GOV -> Game : exitGame()
+end
+
+deactivate GOV
+
+@enduml

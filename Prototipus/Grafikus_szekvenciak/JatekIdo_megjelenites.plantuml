@@ -1,0 +1,18 @@
+@startuml
+title OraView – Játékidő megjelenítése
+
+participant "GameLoop / System" as System
+participant "OraView" as OraView
+participant "Ora" as Ora
+
+loop minden frame
+    System -> OraView : draw(g)
+    activate OraView
+    OraView -> Ora : getCurrentTime()
+    Ora --> OraView : currentTime
+    OraView -> OraView : szövegként kirajzolja\na currentTime értékét
+    OraView --> System
+    deactivate OraView
+end
+
+@enduml
