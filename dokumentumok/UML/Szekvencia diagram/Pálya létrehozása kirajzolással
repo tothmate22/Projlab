@@ -1,0 +1,51 @@
+@startuml
+title Pálya létrehozása
+
+actor Játékos
+participant MainMenuView
+participant Game
+participant PalyaView
+participant KeresztezodesView
+participant UttestView
+participant UtszakaszView
+
+Játékos -> MainMenuView : inditGomb lenyomva
+activate MainMenuView
+
+MainMenuView -> Game : startGame()
+activate Game
+
+
+Game -> PalyaView ** : <<create>>(Palya)
+activate PalyaView
+
+loop minden kereszteződésre
+    PalyaView -> KeresztezodesView ** : draw(Graphics g)
+activate KeresztezodesView 
+KeresztezodesView -> KeresztezodesView : calculateLayout()
+KeresztezodesView --> PalyaView
+deactivate KeresztezodesView 
+end
+
+loop minden úttestre
+    PalyaView -> UttestView ** : draw(Graphics g)
+    activate UttestView
+
+    UttestView -> UttestView : calculateLayout()
+
+    loop minden útszakaszra
+
+        UttestView -> UtszakaszView ** : draw(Graphics g)
+        activate UtszakaszView 
+        UtszakaszView -> PalyaView : repaint()
+        deactivate UtszakaszView 
+    end
+UttestView --> PalyaView
+    deactivate UttestView
+end
+PalyaView --> Game
+Game --> MainMenuView
+deactivate PalyaView
+deactivate Game
+deactivate MainMenuView
+@enduml
