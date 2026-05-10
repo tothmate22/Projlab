@@ -1,0 +1,97 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface IView {
+    + update(): void
+    + draw(g: Graphics): void
+}
+
+class JPanel << (O,#FF7700) >>
+
+class PalyaView {
+- model: Palya
+    - uttestek: List<IView>
+    - keresztezodesek: List<IView>
+    - jarmuvek: List<IView>
+    - calculateLayout(): void
+    + update(): void
+    + draw(g: Graphics): void
+    # paintComponent(g: Graphics): void
+}
+
+class KeresztezodesView {
+    - model: Keresztezodes
+    - x: int
+    - y: int
+    - size: int
+    + update(): void
+    + draw(g: Graphics): void
+}
+
+class UttestView {
+    - model: Uttest
+    - szakaszViews: List<UtszakaszView>
+    - forras: KeresztezodesView
+    - cel: KeresztezodesView
+    - calculateLayout(): void
+    + update(): void
+    + draw(g: Graphics): void
+}
+
+class UtszakaszView {
+    - model: Utszakasz
+    - x: int
+    - y: int
+    - szog: double
+    - szuloPanel: JPanel
+    + update(): void
+    + draw(g: Graphics): void
+}
+
+' Modell osztályok (Observer minta alanyai)
+class Palya {
+    - megfigyelok: List<IView>
+    + addObserver(v: IView): void
+    - notifyObservers(): void
+}
+
+class Keresztezodes {
+    - megfigyelok: List<IView>
+    + addObserver(v: IView): void
+    - notifyObservers(): void
+}
+
+class Uttest {
+    - megfigyelok: List<IView>
+    + addObserver(v: IView): void
+    - notifyObservers(): void
+}
+
+class Utszakasz {
+    - megfigyelok: List<IView>
+    + addObserver(v: IView): void
+    - notifyObservers(): void
+}
+
+' Kapcsolatok
+JPanel <|-- PalyaView
+IView <|.. PalyaView
+IView <|.. KeresztezodesView
+IView <|.. UttestView
+IView <|.. UtszakaszView
+
+PalyaView o-- IView : "tárol"
+UttestView o-- UtszakaszView
+UttestView --> KeresztezodesView : "forras/cel"
+
+' Megfigyelési kapcsolatok
+KeresztezodesView --> Keresztezodes : "megfigyelt modell"
+UttestView --> Uttest : "megfigyelt modell"
+UtszakaszView --> Utszakasz : "megfigyelt modell"
+
+Palya ..> IView : "értesít"
+Keresztezodes ..> IView : "értesít"
+Uttest ..> IView : "értesít"
+Utszakasz ..> IView : "értesít"
+
+@enduml
