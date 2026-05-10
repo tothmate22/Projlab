@@ -8,6 +8,7 @@ interface KeyListener <<interface>> {
 
 interface IView <<interface>> {
     + draw(g: Graphics): void
+    + update(): void
 }
 
 ' --- Új Grafikus / Controller Osztályok ---
